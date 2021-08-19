@@ -1,0 +1,66 @@
+
+.prompt-container {
+  z-index: 999;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: .1px .1px 5px 0px rgba(0,0,0,0.5);
+  /* right: -100%; */
+  width: 30%;
+  left: 35%;
+  bottom: -50%;
+  border-radius: 5px;
+  position: fixed;
+  transition: bottom 5s
+}
+.successBorder {
+  border-left: 10px solid green;
+}
+.successBorder p {
+  color: green;
+}
+.errorBorder {
+  border-left: 10px solid red;
+}
+.errorBorder p {
+  color: red;
+}
+.animation {
+  animation: pop-down 2s linear;
+}
+
+@keyframes pop-down {
+  0% {
+    bottom: -10%;
+  }
+  5% {
+    bottom: 10%
+  }
+  80% {
+    bottom: 10%;
+  }
+  85% {
+    bottom: 15%;
+  }
+  100% {
+    bottom: -50%;
+  }
+}
+
+.prompt-container p {
+  padding: 15px 10px;
+  margin:0;
+}
+
+@media only screen and (max-width: 600px) {
+  .prompt-container {
+    width: 60%;
+    margin-right: 20%;
+    left: 20%;
+  }
+  .prompt-container p {
+    padding: 5px 10px;
+    margin:0;
+
+  }
+
+}

@@ -1,0 +1,25 @@
+
+
+#contributor-request-container h1 {
+  color: #aa03fc;
+}
+
+#contributor-request-container ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25px;
+}
+
+#contributor-request-reason {
+  margin: 10px 0;
+  width: 50%;
+  height: 100px;
+}
+#contributor-request-button {
+}
+
+.rrMsg {
+  color: green;
+  font-size: 25px
+}

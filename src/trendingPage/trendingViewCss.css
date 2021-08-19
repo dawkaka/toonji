@@ -1,0 +1,253 @@
+.trending-header-container{
+  display: grid;
+  grid-template-columns: 5fr 10fr 1fr;
+  padding: 7px;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.5);
+  background-color: #aa03fc;
+  z-index: 1;
+}
+.trending-search-box {
+  border: none;
+  margin-top: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 40%;
+  height: 30px;
+  border-radius: 15px;
+  padding: 5px 10px;
+  color: white;
+}
+.trending-search-box::placeholder{
+  color: white;
+  opacity: .5;
+}
+.trending-view-container {
+  margin-left: 60px;
+  width: auto;
+}
+
+.h1{
+  font-size: 40px;
+  padding-left: 10px;
+  margin-top: 60px;
+}
+#trending-select {
+  margin-left: 10px;
+  padding: 7px;
+  border: none;
+  font-size: 20px;
+}
+.chart-info {
+  color: dodgerblue;
+  margin: 3px;
+  margin-left: 10px;
+}
+.chart-filter-container{
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  margin: 10px 0 10px 10px;
+  margin-right: 10px;
+  padding: 10px;
+}
+.chart-filter {
+  font-size: 20px;
+  cursor: pointer;
+}
+.filter-active {
+  border-bottom: 3px solid #aa03fc;
+}
+
+ .t-w-a-container {
+   width: auto;
+   overflow-x: hidden;
+   position: relative;
+   margin-left: 10px;
+   margin-right: 10px;
+   margin-bottom: 45px;
+ }
+ .chart-card-container-container {
+   display: none;
+   width: 100%;
+   overflow-x: hidden;
+   margin-left: -100%;
+ }
+ .chart-show {
+   display: block;
+   animation: chart-slide .5s;
+   margin-left: 0;
+ }
+ @keyframes chart-slide {
+   0%{margin-left: -100%}
+   100%{margin-left: 0}
+ }
+ .chart-card-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  /* justify-content:space-around; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  background-color: white;
+  margin-bottom: 5px;
+}
+
+.chart-position{
+  margin: 20px;
+  text-align: center;
+
+}
+
+.chart-lyric-info-image {
+  width: 50px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.chart-lyric-info {
+  display: flex;
+  /* width: 50%; */
+}
+.chart-song-info {
+  margin-top: 10px;
+  display: block;
+  margin-left: 5px;
+}
+.chart-song-title {
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.chart-artist-name {
+  color: #aa03fc;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+}
+
+
+.chart-icons {
+  margin-top: 20px;
+  display: flex;
+}
+.chart-icons .bar-icons {
+  /* width: 30px; */
+}
+#chart-star-icon {
+  color: gold;
+}
+
+.chart-bar-card {
+  background-color: white;
+  padding:25px;
+  padding-bottom: 10px;
+  width: 60%;
+  margin-bottom: 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.chart-bar-header {
+  display: flex;
+  justify-content: space-between;
+}
+.chart-bar-detail h3 {
+  margin: 0;
+}
+.chart-bar-detail h6 {
+  margin: 0;
+  color: #aa03fc
+}
+.chart-bar-card p {
+  font-size: 25px;
+  margin-top:5px;
+  margin-bottom: 20px;
+}
+.bars-card-icons-container {
+  display: flex;
+}
+.bars-card-icons-container .play-pause-container {
+  margin-right: 20px;
+  position: relative;
+}
+.bar-card-play-pause-container  {
+  margin-right: 10px;
+}
+.bar-card-play-pause-container .fa-play{
+  position: relative;
+}
+.bar-card-play-pause-container .fa-pause {
+ display: none;
+}
+
+.chart-bar-card h5 {
+  float: right;
+  margin-top: -15px;
+}
+.chart-user-card-container {
+  display: flex;
+  background-color: white;
+  padding:25px;
+  padding-bottom: 10px;
+  width: 60%;
+  margin-bottom: 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.chart-user-card-container img {
+  height: 100px;
+  width: 100px;
+  background-color: violet;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.chart-user-card-details {
+  margin-top: -10px;
+}
+.chart-user-card-stats {
+  display: flex;
+}
+.metric {
+  background-color: rgba(0,0,0,0.03);
+  padding: 5px;
+  margin-right: 3px;
+}
+.metric h5 {
+  margin: 0;
+  text-align: center;
+}
+.metric p {
+  margin: 0;
+  font-size: 12px;
+  color: darkgray
+}
+@media only screen and (max-width: 600px) {
+  .trending-header-container {
+    background-color: white;
+    box-shadow: 1px 0px 10px lightgray;
+  }
+  .trending-view-container {
+    margin-left: 0;
+    width: 100%;
+  }
+  .chart-bar-card,.chart-user-card-container {
+    width: 80%;
+  }
+  .trending-search-box {
+    width: 75%;
+    margin-left: -20px;
+    color: #aa03fc;
+  }
+  .trending-search-box::placeholder{
+    color: #aa03fc;
+    opacity: .5;
+  }
+}
+@media only screen and (max-width:300px) {
+  .chart-icons {
+    display: grid;
+    grid-template-columns: 1fr
+  }
+}

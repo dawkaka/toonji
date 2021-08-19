@@ -1,0 +1,29 @@
+
+
+#verified-profile-main {
+  width: 30%;
+  margin-left: 10px;
+  margin-top: 10px;
+  background-color: white;
+  padding: 25px;
+  float: left;
+}
+
+#verified-profile-form{
+  margin-top: -25px;
+}
+#verified-profile-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  background-color: violet;
+}
+.verified-profile {
+  margin-top: 10px;
+  width: 95%;
+}
+.go-right{
+  float: right;
+  width: 50%;
+  margin-right: 10px;
+}

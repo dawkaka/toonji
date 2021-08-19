@@ -1,0 +1,33 @@
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: white;
+  left: 0;
+  top: 0;
+  position: fixed;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 80px;
+  box-shadow: -1px 0 5px rgba(0,0,0,0.3);
+
+}
+.footer-container-2 {
+  display: none;
+  background-color: white;
+  z-index: 333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  justify-content: space-around;
+  padding: 13px 0;
+  box-shadow: -1px 0 5px rgba(0,0,0,0.3);
+}
+@media  only screen and (max-width: 600px) {
+  .footer-container-2 {
+    display: flex;
+  }
+  .footer-container {
+    display: none;
+  }
+}

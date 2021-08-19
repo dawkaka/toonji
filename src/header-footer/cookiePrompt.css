@@ -1,0 +1,19 @@
+
+#cookie-prompt-container {
+  background-color: black;
+  padding: 25px;
+  position: fixed;
+  bottom: 0;
+  z-index: 77777777;
+  right: 0;
+  display: none;
+}
+
+#cookie-prompt-container p {
+  color: white;
+  text-align: center;
+}
+#cookie-prompt-container button {
+  color: white;
+  background-color: #F5A623;;
+}

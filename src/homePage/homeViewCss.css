@@ -1,0 +1,154 @@
+button, input[type="text"],textarea {
+  -webkit-appearance: none;
+   appearance: none;
+   border-radius: 0;
+}
+
+#home-view-container {
+  padding-top: 8px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-bottom: 25px;
+  margin-left: 50px;
+}
+#the-big-picture-container{
+  display: flex;
+  margin-top: 40px;
+  padding: 25px;
+  border-radius: 5px;
+  margin-top: 70px;
+  margin-left: 70px;
+}
+#the-big-picture-container img {
+  box-shadow: 1px 1px 3px  rgba(0,0,0,1);
+  /* filter: grayscale(100%); */
+  /* object-fit: cover; */
+}
+#the-big-picture-container h1 {
+  margin-top: 50px;
+  font-size: 50px;
+  margin-left: 30px;
+  /* text-shadow: 1px 1px 1px black; */
+  color: #aa03fc;
+}
+
+.recommended-lyrics {
+  display: grid;
+  grid-column-gap: 30px;
+  grid-row-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-left: -100%;
+}
+.recommended-container h2 {
+  margin-bottom: -10px;
+  margin-left: 10px;
+  font-weight: lighter;
+  font-style: italic;
+  color: lightgray;
+}
+.new-arrivals-container {
+  margin-top: 60px;
+  margin-left: -100%;
+}
+.show-lyrics {
+  animation: lyrics-slide .5s linear;
+  animation-delay: .3s;
+  margin-left: 0;
+}
+@keyframes lyrics-slide {
+  0%{
+    margin-left: -100%;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+.new-arrivals-container h2 {
+  margin: 0;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  font-weight: lighter;
+  font-style: italic;
+  color: lightgray;
+}
+.new-arrivals-lyrics {
+  display: grid;
+  grid-column-gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media only screen and (max-width: 800px) {
+
+
+  #the-big-picture-container h1 {
+    font-size: 40px;
+    margin-right: 0;
+  }
+  .new-arrivals-lyrics {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .recommended-lyrics {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #the-big-picture-container {
+
+  }
+  #the-big-picture-container img {
+    width: 70%;
+  }
+  #the-big-picture-container h1 {
+    font-size: 30px;
+    margin-right: 0;
+  }
+  .new-arrivals-lyrics {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .recommended-lyrics {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #the-big-picture-container {
+    margin-right: 0px;
+    margin-left: 0;
+  }
+  #home-view-container {
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 500px) {
+  #the-big-picture-container {
+    display: block;
+  }
+  #the-big-picture-container img {
+    width: 100%;
+  }
+  #the-big-picture-container h1 {
+    margin-left: 0px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .new-arrivals-lyrics {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr;
+  }
+  .recommended-lyrics {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr;
+  }
+}

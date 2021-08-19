@@ -1,0 +1,139 @@
+#autoscroll-container {
+  position: absolute;
+  width: 5px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: lightgray
+}
+#autoscroll {
+  width: 5px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 0;
+  background-color: #aa03fc;
+}
+#autoscroll-bulb {
+  background-color: #aa03fc;
+  width: 12px;
+  height: 12px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+#autoscroll-bulb:hover {
+  height: 13px;
+  width: 13px;
+}
+
+.editBr-container {
+  position: fixed;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.3);
+  width: 50%;
+  display: none;
+  /* width: 70%; */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 222;
+  padding: 25px;
+}
+.editBr-container textarea {
+  border: 2px solid #aa03fc;
+  padding: 10px 10px 2px 10px;
+  margin-left: 50%;
+  width: 100%;
+  border-radius: 5px;
+  transform: translateX(-50%);
+}
+.editBr-container button {
+  background-color: #aa03fc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 8px;
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+.editBr-container #editBr-cancel-button {
+  float: left;
+  background-color: white;
+  border: 2px solid #aa03fc;
+  color: #aa03fc;
+}
+
+#award-br-container {
+  position: fixed;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.3);
+  width: 30%;
+  left: 50%;
+  display: none;
+  transform: translateX(-50%);
+  z-index: 222;
+}
+#awards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 10px;
+    padding: 10px;
+}
+.award-selected {
+  border:  2px solid green !important
+}
+.award-container {
+  border: 2px solid white
+}
+.award-container p {
+  margin: 0;
+}
+.award-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+#award-br-buttons-container {
+  display: flex;
+  padding: 0 7px 0 7px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+#award-br-buttons-container button {
+  background-color: #aa03fc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 8px;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+#award-br-buttons-container #awardBr-cancel-button {
+  background-color: white;
+  border: 2px solid #aa03fc;
+  color: #aa03fc;
+}
+
+@media only screen and (max-width: 700px) {
+  #award-br-container {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #award-br-container {
+    width: 65%
+  }
+}

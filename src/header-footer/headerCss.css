@@ -1,0 +1,295 @@
+.header-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  padding: 10px;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed;
+  box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.5);
+  top: 0;
+  background-color: #aa03fc;
+  z-index: 1;
+}
+
+.logo {
+  margin: 0;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+.logo img {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+.search-box {
+margin: 4px;
+border: none;
+margin-left: 30px;
+background-color: rgba(0, 0, 0, 0.1);
+height: 30px;
+border-radius: 15px;
+padding: 5px 10px;
+color: white;
+}
+/* .search-box:active {
+  border: none;
+} */
+.search-box::placeholder {
+  color: white;
+  opacity: .5;
+}
+
+#result-container {
+  /* display: none; */
+  z-index: 2;
+  top:57px;
+  left: 50%;
+  transform: translate(-50%,0);
+  position: fixed;
+  width: 60%;
+
+  background-color: #D5D5D5;
+}
+.result-item {
+  padding: 7px;
+  background-color: white;
+  margin-bottom: 1px;
+  transition: all .1s
+  /* cursor: pointer */
+}
+.result-item:hover {
+  transform: scale(1.004);
+}
+.result-item p {
+  margin: 0;
+  cursor: pointer;
+}
+.result-item h5 {
+  margin: 0;
+  color: #aa03fc;
+  cursor: pointer;
+}
+.signup-login-button-container {
+  justify-content: space-around;
+  float: right;
+  display: flex;
+}
+.signup-login-button {
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.humburger-container {
+ display: none;
+ width: 50%;
+ margin-top: 7px;
+ cursor: pointer;
+ float: left;
+
+}
+.humburger {
+  margin-bottom: 4px;
+  width: 90%;
+  height: 5px;
+  background-color: white;
+}
+#notifs-messages-container {
+  display: block;
+  z-index: 2;
+  padding: 50px 10px;
+  background-color: rgba(0,0,0,0.9);
+  top: -100%;
+  right: -100%;
+  width: 50%;
+  height: 60%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+  position: fixed;
+  transition: all 1s;
+}
+
+#notifs-messages-container h2 {
+  color: gray;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.pop-left-container {
+  display: block;
+  z-index: 2;
+  padding: 50px 10px;
+  background-color: rgba(0,0,0,0.9);
+  right: -300px;
+  top: -300px;
+  margin-bottom: 10px;
+  position: fixed;
+  transition: all .7s;
+}
+.close-container{
+  display: block;
+  margin-right: -15px;
+  margin-top: -30px;
+  height: 25px;
+  width: 30px;
+  cursor: pointer;
+  margin-right: 15px;
+  float: right;
+}
+.close-bar-one {
+  height: 2px;
+  width: 30px;
+  margin-top: 10px;
+  margin-left: -1px;
+  background-color: gray;
+  transform: rotate(45deg);
+}
+.close-bar-two {
+  height: 2px;
+  width: 30px;
+  margin-top: -2px;
+  margin-left: -1px;
+  background-color: gray;
+  transform: rotate(-45deg);
+}
+.pop-left-container ul {
+  align-items: center;
+
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.pop-left-container ul li {
+  list-style: none;
+  cursor: pointer;
+  border-bottom: 2px solid gray;
+  padding: 5px 30px 5px 30px;
+  color: white;
+}
+#donate-button {
+  color: white;
+  background-color: #F5A623;;
+  border-radius: 5px;
+}
+#notifs-container,#small-device-notifs {
+  margin-top: 5px;
+  position: relative;
+}
+
+#notifs-container div i{
+  font-size: 30px;
+  color: white;
+}
+#small-device-notifs div i {
+  font-size: 20px;
+  color: white;
+}
+#notifs-container span, #small-device-notifs span {
+  position: absolute;
+  top: -3px;
+  right: 5px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+.notif-message-container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+
+}
+.notif-message-container i {
+  font-size: 22px;
+  color: #aa03fc
+}
+.notif-message-container .fa-angle-up {
+  color: green;
+  font-size: 35px;
+}
+.notif-message-container .fa-user {
+  font-size: 25px;
+}
+.notif-message-container .fa-award {
+  font-size: 29px;
+  color: gold
+}
+
+.notif-message-info {
+  margin-left: 5px;
+  border-left: 1px solid lightgray;
+  padding-left: 5px;
+}
+.notif-message-container h4 {
+  margin: 5px 0
+}
+.notif-message-container p {
+  margin: 0 5px 5px 5px
+}
+
+
+@media only screen and (max-width: 600px) {
+
+   .header-container {
+     background-color: white;
+     grid-template-columns: 1fr 2fr 1fr;
+     box-shadow: 1px 0px 10px lightgray;
+   }
+   #result-container {
+     width: 90%;
+
+   }
+   .search-box {
+     margin-left: -10px;
+   }
+   .search-box::placeholder {
+     color: #aa03fc;
+   }
+   #notifs-messages-container {
+     width: 90%;
+     top: -55%;
+     right: -100%;
+   }
+
+  .humburger-container {
+    margin-left: 0;
+    display: block;
+  }
+  .logo {
+    color: #aa03fc
+  }
+  .humburger {
+    background-color: #aa03fc;
+  }
+  .signup-login-button {
+    display: none;
+  }
+  #donate-button {
+    display: none;
+  }
+  .search-box {
+  width: 100%;
+  color: #aa03fc
+  }
+
+  #notifs-container {
+    display: none;
+  }
+
+  #notifs-container span, #small-device-notifs span {
+    font-size: 15px;
+    color: white;
+    padding: 2px 5px;
+  }
+
+}

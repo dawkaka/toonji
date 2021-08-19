@@ -1,0 +1,74 @@
+
+#f-space-1{
+  margin-top: 50px;
+}
+#f-space-2 {
+  margin-top: 100px;
+}
+
+.favourite-lyrics-container {
+  display: grid;
+  grid-column-gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 60px;
+}
+#favourites-select {
+  font-size: 20px;
+}
+
+#favourite-bar-container {
+  margin-top: -30px
+}
+
+.fav-bars-card {
+  background-color: white;
+  padding:25px;
+  width: 60%;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.fav-bar-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fav-bar-detail h3 {
+  margin: 0;
+}
+.fav-bar-detail h6 {
+  margin: 0;
+  color: #aa03fc
+}
+.fav-bars-card p {
+  font-size: 20px;
+  margin-top:5px;
+  margin-bottom: 20px;
+}
+.fav-bars-card h5 {
+  float: right;
+  margin-top: -15px;
+}
+.fav-bars-icons-container {
+  display: flex;
+}
+
+
+@media only screen and (max-width: 700px) {
+  .favourite-lyrics-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fav-bars-card {
+    width: 70%;
+  }
+}
+@media only screen and (max-width:500px) {
+  .favourite-lyrics-container {
+    grid-template-columns: 1fr;
+  }
+  .fav-bars-card {
+    width: 90%;
+  }
+}

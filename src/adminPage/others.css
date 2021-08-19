@@ -1,0 +1,59 @@
+ #others-view {
+  display: none;
+}
+#users-songs-section-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px 10px;
+  grid-column-gap: 25px;
+}
+
+#users-section,#songs-section {
+  background-color: white;
+  padding-left: 10px;
+}
+.others-search-container {
+  margin-bottom: 50px;
+}
+.others-search {
+  border: 2px solid #aa03fc;
+  width: 76%;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
+}
+.others-button {
+  padding: 7px 5px;
+  width: 20%;
+  font-weight: 600;
+  color: white;
+  background-color: #aa03fc;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  border: none;
+}
+.users-cards-container {
+  padding-right: 10px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-row-gap: 15px;
+}
+
+.user-card-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-card-action {
+  margin-bottom: 5px;
+  text-align: center;
+  padding: 5px 6px;
+  font-weight: 600;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid #aa03fc;
+  color: #aa03fc;
+}

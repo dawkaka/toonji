@@ -1,0 +1,127 @@
+#comments-container {
+  overflow-y: scroll;
+  width: 100%;
+  user-select: none;
+  background-color: white;
+  position: relative;
+}
+#add-comment-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+#add-comment-container textarea {
+  width: 80%;
+  margin:0;
+  background-color: rgba(0,0,0,0.03)
+}
+#add-comment {
+  font-weight: 600;
+  color: white;
+  background-color: #aa03fc;
+  border: none;
+  border-radius: 5px;
+  margin-left: -20px;
+}
+
+.comment-container {
+  margin: 5px;
+  background-color: rgba(0,0,0,0.03);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.comment-details {
+ display: flex;
+}
+.options-container {
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+  position: relative;
+}
+.option-dot {
+  height: 5px;
+  width: 5px;
+  background-color: black;
+  margin-bottom: 2px;
+  border-radius: 50%;
+}
+.options-list-container {
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  right: 5px;
+  top: -3px;
+  box-shadow:  2px 2px 5px gray;
+  z-index: 1;
+
+}
+.option-list {
+  cursor: pointer;
+  border-bottom: 1px solid gray;
+  list-style: none;
+  text-align: left;
+}
+.comment-image {
+  background-color: violet;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.comment-details-text {
+  margin-left: 5px;
+  line-height: 15px;
+}
+.comment-details-text small {
+  font-size: 10px;
+}
+.comment-details-text h5 {
+  margin: 0;
+  font-size: 15px;
+}
+.comment-details-text h5 small {
+  color: #aa03fc;
+}
+
+.comment-container p {
+  margin: 0;
+  font-size: 18px;
+  margin-left: 40px;
+  margin-top: 1px;
+  line-height: 18px;
+}
+.comment-icon-container {
+  margin-top: 5px;
+  margin-left: 85%;
+  display: flex;
+}
+.comment-icon-container p {
+  margin: 0;
+  padding: 0 5px;
+  font-size: 12px;
+  margin-top: -2px;
+}
+.fa-thumbs-down  {
+  transform: rotateY(180deg);
+  margin-top: 3px;
+}
+.fa-thumbs-down, .fa-thumbs-up {
+  font-size: 12px;
+}
+.fa-redo {
+color: #aa03fc
+}
+.reload-container {
+  margin-bottom: 5px;
+}
+.comments-reload {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.reload-end {
+  color: #aa03fc
+}

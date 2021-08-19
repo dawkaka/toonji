@@ -1,0 +1,35 @@
+#quiz-main-container,#face-off-main-container {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  background-color: white;
+  height: 100%;
+  justify-content: center;
+}
+
+.quiz-notification {
+ width: 50%;
+ margin-top: 25px;
+}
+.quiz-notification p {
+  font-size: 30px;
+  padding-left: 25px;
+}
+
+.quiz-notification-confirm {
+padding-left: 25px;
+display: flex;
+justify-content: space-between;
+padding-bottom: 25px;
+}
+.cancel {
+  background-color: white;
+  border: 2px solid #aa03fc;
+  color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .quiz-notification {
+   width: 80%;
+  }
+}

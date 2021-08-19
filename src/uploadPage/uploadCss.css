@@ -1,0 +1,129 @@
+
+#upload-view {
+  /* background-color: white; */
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+#edit-view {
+  display: none;
+}
+#reports-view {
+  display: none
+}
+.below-head-view-container {
+  margin-top: 60px;
+}
+
+.big-textarea {
+  margin-left: 10px;
+  border: 2px solid #aa03fc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 95%;
+}
+
+#upload-form-container {
+  padding-left: 5px;
+}
+#upload-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+#edit-lyric-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+#fields-area-container {
+  display: grid;
+  margin-left: 5px;
+  grid-template-columns: 1fr 1fr;
+  width: 70%;
+  height: 40%;
+  grid-column-gap: -10px;
+}
+.input-container {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  width: 100%;
+}
+.upload-input-field {
+  border: 2px solid #aa03fc;
+  border-radius: 5px;
+  padding: 5px 5px;
+  background-color: white;
+}
+.file-field {
+  width: 190px;
+}
+#upload-button{
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  width: 100px;
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+  background-color: #aa03fc;
+  border-radius: 5px;
+  border: none;
+}
+#edit-button {
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  width: 100px;
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+  background-color: #aa03fc;
+  border-radius: 5px;
+  border: none;
+}
+.fa-upload {
+  color: white;
+  margin-left: 3px;
+}
+
+#edit-search-container {
+  width: 92%;
+  height:  50px;
+  margin-bottom: 30px;
+  display: flex;
+}
+#edit-song-search {
+  margin-left: 10px;
+  font-size: 20px;
+  width: 92%;
+  height: inherit;
+  border: 2px solid #aa03fc;
+  border-radius: 5px;
+}
+
+#edit-search-button {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  width: 100px;
+  height: inherit;
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+  background-color: #aa03fc;
+  border-radius: 5px;
+  border: none;
+}
+@media only screen and (max-width: 600px) {
+  #upload-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+#edit-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+}

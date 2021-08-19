@@ -1,0 +1,77 @@
+
+.total {
+  font-size: 12px;
+}
+
+.fas {
+  font-size: 14px;
+  color: lightgray;
+  cursor: pointer;
+}
+.sm {
+  font-size: 12px;
+  user-select: none;
+}
+.xsm {
+  font-size: 8px;
+  user-select: none;
+}
+/* .h-m {
+  margin-top: 4px;
+} */
+.bar-icons {
+  margin-right: 5px;
+  display: flex;
+}
+
+/* .fa-play , .fa-pause{
+ color: lightgray;
+} */
+#pause-icon {
+  display: none;
+}
+
+#heart-icon {
+  margin-left: 20px;
+}
+/* #comment-icon {
+  margin-left: 30px;
+} */
+
+.footer-icon{
+  font-size: 20px;
+}
+
+.back-icon-container {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.back-icon-container i {
+  font-size: 20px;
+  color: white;
+}
+.style-profile {
+  margin-top: 20px;
+}
+.icon-active {
+  color:  #aa03fc;
+}
+@media only screen and (max-width: 700px) {
+
+  .style-profile {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+
+  .back-icon-container i {
+    color: #aa03fc;
+    margin-right: 7px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .sm {
+    font-size: 12px
+  }
+}

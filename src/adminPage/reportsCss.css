@@ -1,0 +1,110 @@
+#reports-view {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.reported-songs-button {
+  margin-bottom: 10px;
+  width: 100px;
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+  background-color: #aa03fc;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.reported-songs-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 15px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 40px 20px;
+  position: relative;
+}
+.spinner-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.report-song-container {
+  position: relative;
+  background-color: rgba(0,0,0,0.03);
+  border-radius: 5px;
+  padding: 10px;
+}
+.report-details {
+  display: flex;
+}
+.report-image {
+  width: 50px;
+  height: 60px;
+  object-fit: cover
+}
+.report-details-text {
+  margin-left: 5px;
+}
+.report-details-text h3 {
+  margin: 0;
+}
+.report-details-text h5 {
+  margin-bottom: 0;
+}
+.report-song-container ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 75px;
+  overflow-x: auto;
+}
+.report-song-container ul li  {
+  background-color: white;
+  list-style: none;
+  margin: 5px;
+  padding: 5px  10px;
+  border-radius: 5px;
+}
+.cancel-out {
+  display: none;
+  height: 5px;
+  position: absolute;
+  background-color: green;
+  width: 450px;
+  top: 110px;
+  left: -20px;
+  transform: rotate(27deg);
+}
+.show-cross {
+  display: block;
+}
+#clear-reports {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  /* width: 70px; */
+  padding: 5px 10px;
+  font-weight: 600;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid #aa03fc;
+  color: #aa03fc;
+  float: right;
+}
+
+.request-container {
+  background-color: rgba(0, 0, 0, 0.07);
+  padding: 10px;
+}
+
+.request-details {
+ display: flex;
+}
+.request-details  h3 {
+  margin: 0
+}
+
+.request-details  h3  span {
+  color: #aa03fc
+}

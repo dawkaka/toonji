@@ -1,0 +1,114 @@
+.battle-user-info {
+  position: absolute;
+  top: 10px;
+  left: 10%;
+  text-align: center;
+}
+.battle-user-info p {
+  margin: 0;
+}
+
+.battle-points {
+  font-size: 50px;
+  color: #aa03fc;
+}
+
+.battle-points-leading {
+  color: green;
+}
+
+.battle-points-animation {
+  backface-visibility: hidden;
+  animation: battle-score-increase .5s ease-out;
+}
+
+
+@keyframes battle-score-increase {
+  0% {
+     color: black;
+     transform: rotateY(180deg);
+  }
+  100% {
+    color: green;
+    transform: translateY(0deg);
+  }
+}
+.battle-points-trailing {
+  color: red;
+}
+.battle-left {
+  margin-left: 70%
+}
+
+#not-start-container {
+  display: flex;
+  justify-content: center;
+}
+
+.invalid-battle-link {
+  color: white;
+  padding: 10px;
+  background-color: #aa03fc;
+  margin-top: 20%;
+}
+#show-get-q-container {
+ text-align: center;
+}
+#show-get-q-container button {
+  background-color: #aa03fc;
+  border: none;
+  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 80px;
+  font-size: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.animation-dots-container {
+  display: flex;
+  position: relative;
+
+}
+.animation-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #aa03fc;
+  margin: 2px;
+  border-radius: 50%;
+  animation: move-right 2s ease-out infinite;
+  position: absolute;
+}
+.one {
+  animation-delay: .28s
+}
+.two {
+  animation-delay: .14s
+}
+.three {
+  animation-delay: .7
+}
+
+
+@keyframes move-right {
+  0% {
+   left: 0px;
+  }
+  50% {
+    left: 50%
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .battle-user-info {
+    top: 5px;
+    left: 5%
+  }
+  .battle-user-info .battle-points {
+    font-size: 25px;
+  }
+}

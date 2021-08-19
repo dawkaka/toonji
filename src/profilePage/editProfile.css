@@ -1,0 +1,121 @@
+#edit-profile-main {
+  top: 0;
+  left: 0;
+  display: none;
+  position: fixed;
+  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+}
+
+#edit-profile-container {
+  /* width: 50%; */
+  position: absolute;
+  overflow-x: hidden;
+  z-index: 9;
+  top: 30px;
+  left: 55%;
+  transform: translate(-50%,0);
+  background-color: white;
+  padding: 25px;
+  width: 30%;
+  border-radius: 5px;
+  opacity: 1;
+  transition: all .5s;
+}
+/* .toggle-edit {
+  animation: editAnimation .5s linear;
+  opacity: 1;
+  left: 50%;
+  background-color: green;
+}
+
+@keyframes editAnimation {
+    0% {
+      left: 55%;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1
+    }
+    100% {
+      left: 50%
+    }
+} */
+
+
+#edit-profile-form {
+  margin-top: -30px;
+}
+.edit-close-container {
+  margin-bottom: 20px;
+  float: right;
+}
+.edit-bar-one {
+  height: 2px;
+  width: 30px;
+  margin-left: -1px;
+  background-color: gray;
+  transform: rotate(45deg);
+}
+.edit-bar-two {
+  height: 2px;
+  width: 30px;
+  margin-top: -2px;
+  margin-left: -1px;
+  background-color: gray;
+  transform: rotate(-45deg);
+}
+#edit-profile-photo {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  /* object-position: center right; */
+  background-color: violet
+
+}
+.edit-profile-file{
+  margin-top: -40px;
+  border: none;
+  margin-bottom: 20px;
+}
+.edit-profile{
+  padding: 10px 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.field {
+  border: none;
+  border-bottom: 2px solid #aa03fc;
+  width: 100%;
+  padding-left: 0;
+  margin-left: 0;
+  /* font-size: 18px; */
+}
+.textArea {
+  width: 100%;
+  padding-left: 0;
+  margin-left: 0;
+}
+.button {
+  background-color: #aa03fc;
+  border: none;
+  color: white;
+  margin-top: 25px;
+  width: 80px;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 600px) {
+  .field {
+    width: 90%;
+  }
+  #edit-profile-container {
+    width: 65%;
+  }
+  .textArea {
+    width: 90%
+  }
+}

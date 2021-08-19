@@ -1,0 +1,19 @@
+#error-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 15%;
+}
+
+#error-page-container h1 {
+  color: red;
+  /* font-size: 40px; */
+}
+
+#error-page-container a  {
+  padding: 7px 10px;
+  background-color: #aa03fc;
+  color: white;
+  border-radius: 5px;
+}

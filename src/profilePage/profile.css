@@ -1,0 +1,335 @@
+* {
+  outline: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0,0,0,0.09);
+  user-select: none;
+}
+
+.profile-view-container {
+   display: grid;
+   grid-template-columns: 4fr 7fr;
+   width: auto;
+}
+
+
+#profile-info-container {
+  width: 100%;
+  overflow-y: hidden;
+}
+#profile-info-container:hover {
+  overflow-y: auto;
+}
+
+#profile-photo {
+  top: 0;
+  background-color: violet;
+  height: 350px;
+  margin-left: -5px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.profile-name{
+  padding: 0;
+  margin:0;
+  margin-bottom: 7px;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.fa-certificate {
+  color: #aa03fc;
+  margin-left: 10px;
+  top: -3px;
+  left: -5px;
+  position: relative;
+}
+.fa-certificate::after {
+  content: '';
+  height: 4px;
+  width: 2px;
+  border: 2px solid white;
+  border-left: none;
+  border-top: none;
+  transform: rotate(35deg);
+  top: 3px;
+  position: absolute;
+  left: 5px;
+}
+.profile-bio {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.profile-buttons {
+  background-color: #aa03fc;
+  border: none;
+  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 80px;
+  font-size: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+#profile-edit-button {
+  margin-left: 5px;
+}
+.profile-buttons a {
+  color: white;
+}
+.fa-edit {
+  color: white;
+  padding-left: 10px;
+}
+
+.profile-achievements-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 7px;
+  grid-row-gap: 7px;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.achievements {
+ background-color: white;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 5px 20px;
+ border: 0px solid #aa03fc;
+ overflow-x: hidden;
+}
+.achievements p {
+  color: black;
+  margin: 0;
+  font-size: 13px;
+}
+#profile-feed {
+position: relative;
+overflow-y: auto;
+}
+
+#feed-filters {
+ display: flex;
+ justify-content: space-around;
+ width: 65%;
+ color: black;
+ position: fixed;
+ background-color: lightgray;
+ z-index: 1;
+}
+
+.feed-filter {
+  padding: 20px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.feed-active {
+  border-bottom: 3px solid #aa03fc;
+}
+
+#space {
+  height: 50px;
+  width: 100%;
+  background-color: white;
+}
+.feed-view {
+  display: none;
+  /* top: 30px; */
+  /* display: grid; */
+  grid-template-columns: 1fr 1fr;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  grid-column-gap: 25px;
+  position: relative;
+  padding-bottom: 30px;
+  /* background-color: white; */
+}
+.feed-show {
+  display: grid;
+}
+.digets-container {
+  margin-top: 10px;
+  background-color: rgba(0,0,0,0.03);
+  padding: 10px;
+  margin-bottom: 10px;
+  /* width: 100%; */
+}
+.digets-container p,h5 {
+  margin: 5px;
+}
+.digets-container h6 {
+  color: #aa03fc;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-top: 0px;
+}
+.loading-container {
+  position: absolute;
+  margin-left: 30%;
+}
+.reload-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+#top-fans-modal,#face-off-records-modal {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.5);
+}
+#top-fans-modal ul,#face-off-records-container{
+  margin-left: 50%;
+  transform: translate(-50%,0);
+  background-color: white;
+  width: 30%;
+  padding: 25px 25px;
+  border-radius: 5px;
+  height: 80%;
+  overflow-y: auto;
+}
+#top-fans-modal ul li {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 5fr;
+  grid-column-gap: 5px;
+  justify-content: center;
+  /* border-bottom: 2px solid #aa03fc; */
+  padding-top: 10px;
+  border-bottom: 1px solid gray;
+}
+/* #top-fan-info {
+  display: flex;
+  justify-content: center;
+} */
+.top-fan-image,.battle-images {
+  height: 40px;
+  width: 40px;
+  background-color: violet;
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #aa03fc;
+  object-fit: cover;
+}
+
+.top-fan-points {
+  color: #aa03fc;
+  margin-left: 10px;
+}
+#face-off-records-container {
+  margin-top: 20px;
+}
+.battle-container {
+  display: grid;
+  grid-template-columns: 4fr .7fr 5fr;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid gray
+}
+
+.battle-user-side, .battle-opponent-side {
+  display: flex;
+}
+
+.battle-images {
+  width:  30px;
+  height: 30px;
+}
+.battle-user-side h3, .battle-opponent-side h3 {
+  margin-left: 3px
+}
+
+.battle-user-side p, .battle-opponent-side p {
+   color: #aa03fc;
+   margin-top: 22px;
+   margin-left: 3px;
+   font-weight: bold;
+}
+.battle-user-side .won-green,.battle-opponent-side .won-green {
+  color: green;
+}
+.battle-user-side .lost-red,.battle-opponent-side .lost-red {
+  color: red;
+}
+
+#display-battle-link {
+  margin-left: 20px;
+  border: none;
+  border-bottom: 1px solid #aa03fc;
+  padding: 5px;
+  width: 70%;
+  background-color: rgba(0,0,0,0.03);
+}
+
+#copy-battle-link {
+  border: none;
+  border-radius: 3px;
+  color: white;
+  background-color: #aa03fc;
+  padding: 3px;
+}
+
+@media only screen and (max-width: 800px) {
+  #top-fans-modal ul{
+    width: 60%;
+  }
+  #face-off-records-container {
+    width: 80%
+  }
+
+}
+@media only screen and (max-width: 700px) {
+   .profile-view-container {
+     grid-template-columns: 1fr
+   }
+   #profile-info-container-2 {
+     position: inherit;
+     width: 100%;
+   }
+  .feed-view {
+    grid-template-columns: 1fr;
+  }
+
+  #feed-filters {
+   display: flex;
+   width: 100%;
+   position: inherit;
+   background-color: inherit;
+  }
+  #space {
+    display: none;
+  }
+
+  #top-fans-modal ul {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 216px) {
+
+  .profile-achievements-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .achievements {
+   margin-bottom: 5px;
+  }
+
+}
