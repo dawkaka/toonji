@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/donate.css">
+<script src="https://www.paypal.com/sdk/js?client-id=AT8okJvBoP0_-l0p4YAUuNVwpq4MJWr8KfCaZiEYc5Z_tE5pz3X3Aqjr2-rk6vawq1NbDMps6kxGbcsr&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+</head>
+<body>
+<div id="smart-button-container">
+  <div id = "input-container">
+  <label for="amount">amount to donate (USD)</label>
+  <input type="number" id = "amount" value="20" placeholder="amount" onChange = "amountChange()"
+  </div>
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+    <p id = "paypal-message"></p>
+  <script src="./donate.js"></script>
+</body>
+</html>

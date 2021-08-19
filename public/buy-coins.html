@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/buy-coins.css">
+    <title>TOONJI | buys coins</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=AT8okJvBoP0_-l0p4YAUuNVwpq4MJWr8KfCaZiEYc5Z_tE5pz3X3Aqjr2-rk6vawq1NbDMps6kxGbcsr&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  </head>
+  <body>
+    <h3>BUYING COINS HELPS MAITAIN THE SERVERS</h3>
+    <h4 id = "not-login-info">YOU ARE NOT LOGED IN, PLEASE LOGIN BEFORE INIATING THE PAYMENT PROCESS</h4>
+    <div id = "buy-input-container">
+    <label for="amount">Amount(USD)</label>
+   <input type="number" id = "amount" value = "5" placeholder="amount" onchange="amountChange()"/>
+   <input type="text" id = "amount-of-coins" value = "500 coins" disabled />
+      <p id = "api-message"></p>
+ </div>
+   <div id = "paypal-button-container"></div>
+   <script src="buyCoins.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+body {
+  text-align: center;
+}
+
+#buy-input-container {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 50px;
+}
+
+#not-login-info {
+  color: red;
+  display: none;
+}
+
+#buy-input-container input {
+  padding: 10px;
+  border: 2px solid gray;
+  margin-bottom: 10px;
+}
+#api-message {
+  font-size: 25px;
+  color: green;
+}
+
+@media only screen and (max-width: 600px) {
+  #buy-input-container {
+    display: inline;
+  }
+  #buy-input-container input {
+    width: 90%;
+  }
+}

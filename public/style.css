@@ -1,0 +1,13 @@
+* {
+  cursor: default;
+  user-select: none;
+  outline: none;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+}
+input {
+  font-size: 15px;
+}
