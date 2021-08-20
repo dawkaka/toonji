@@ -35,9 +35,11 @@ export default function ProfileView() {
        useEffect(()=>{
          let isCancel = false;
          let pathname  = window.location.pathname;
-         let profileUser = document.cookie.substr(document.cookie.lastIndexOf("=")+1);
-         if (profileUser === pathname.substr(pathname.lastIndexOf('/') + 1)){
-          window.location.pathname = "/my/profile"
+         let profileUser = document.cookie.split(";")
+                                          .join("=").split("=").map(a => a.trim())
+                                          .includes(pathname.substr(pathname.lastIndexOf('/') + 1))
+         if(profileUser){
+          window.location.href= "/my/profile"
          }
          if(window.innerWidth > 700){
          document.getElementById("profile-info-container").style.height
@@ -46,11 +48,10 @@ export default function ProfileView() {
          = `${window.innerHeight}px`;
        }
 
-
          if(!isCancel){
          document.title = "TOONJI - User Profile"
          document.getElementById("top-fans-modal").style.display = "none"
-       }
+          }
          if(!isCancel){
            setParam(pathname.substr(pathname.lastIndexOf('/')))
          }
@@ -260,7 +261,7 @@ axios.get(BASEURL + path3)
     <div className = "profile-view-container">
     <div id= "profile-info-container">
     <div id= "profile-info-container-2">
-    <img src =  {`${IMAGEURL}${userData.picture}?tr=w-350,h-350,c-at_max`} id = "profile-photo" alt = "artist" />
+    <img src =  {`${IMAGEURL}${userData.picture}?tr=w-500,h-350,c-at_max`} id = "profile-photo" alt = "artist" />
     {<h2 className= "profile-name" id = "profile-name">
     {userData.name === undefined ? "-":userData.name}
     {userData.verified && <i className = "fas fa-certificate"></i>}</h2>}

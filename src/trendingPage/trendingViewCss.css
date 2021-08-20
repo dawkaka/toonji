@@ -104,7 +104,7 @@
 .chart-lyric-info-image {
   width: 50px;
   height: 60px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .chart-lyric-info {
@@ -201,7 +201,7 @@
   width: 100px;
   background-color: violet;
   margin-right: 10px;
-  object-fit: cover;
+  object-fit: fill;
 }
 .chart-user-card-details {
   margin-top: -10px;

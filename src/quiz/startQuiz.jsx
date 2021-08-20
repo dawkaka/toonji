@@ -15,7 +15,7 @@ function StartQuiz() {
        const [generatedQuestions,setQuestions] = useState([]);
        const [getCoins,setGetCoins] = useState(false)
          useEffect(()=>{
-           document.title = "TOONJI - Quiz top fan quiz"
+           document.title = "toonji - top fan quiz"
            let path = window.location.pathname;
            let param = path.substr(path.lastIndexOf('/'))
                trackPromise(
@@ -50,6 +50,7 @@ function StartQuiz() {
         qDisplay = {indx === current ? "start-quiz-main show-question":"start-quiz-main"}
          submitClick = {(e)=>{
              let inpt = document.getElementById(`${indx}-answer`).value.toLowerCase();
+             if(inpt === "") return
              let ans = q.questionAnswer.toLowerCase()
              ans = ans.replace(/in'/g,'ing')
              ans = ans.replace(/\W/g,'')
@@ -134,6 +135,25 @@ function StartQuiz() {
 }
 
 export function QuizQuestion(props) {
+   useEffect(()=> {
+     if(props.qDisplay === "start-quiz-main show-question") {
+       document.getElementById(props.id).childNodes[2].focus()
+     }
+
+     let input = document.getElementById(props.inputId)
+     let mainDiv = document.getElementById(props.id)
+     mainDiv.addEventListener("keypress",e => {
+        e.stopImmediatePropagation()
+       if(e.key === "Enter" && input.value !== "") {
+         if(input.nextSibling.childNodes[1].style.display === "none"){
+           mainDiv.nextSibling.childNodes[1].click()
+         }else {
+            input.nextSibling.childNodes[1].click()
+         }
+       }
+     })
+
+   })
 
   return (
     <>
@@ -141,7 +161,7 @@ export function QuizQuestion(props) {
     <h1>{props.questionTitle}</h1>
     <p>{props.questionText}</p>
     <input type="text" placeholder = "enter answer" className = "quiz-answer-input"
-    aria-label ="enter your answer" id = {props.inputId}/>
+    aria-label ="enter your answer" id = {props.inputId} />
     <div className = "start-quiz-notification-confirm">
     <button className = "profile-buttons cancel" onClick = {props.nextClick}>{props.action === 'finish' ? 'finish':'skip'}</button>
     <button className = "profile-buttons" onClick = {props.submitClick}>submit</button>

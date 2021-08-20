@@ -29,7 +29,7 @@ body {
   height: 350px;
   margin-left: -5px;
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .profile-name{
@@ -223,8 +223,7 @@ overflow-y: auto;
   margin-top: 10px;
   padding: 0;
   border-radius: 50%;
-  border: 1px solid #aa03fc;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .top-fan-points {
@@ -294,9 +293,9 @@ overflow-y: auto;
 
 }
 @media only screen and (max-width: 700px) {
-   .profile-view-container {
-     grid-template-columns: 1fr
-   }
+  .profile-view-container {
+    grid-template-columns: 1fr 1fr
+  }
    #profile-info-container-2 {
      position: inherit;
      width: 100%;
@@ -319,6 +318,16 @@ overflow-y: auto;
     width: 70%;
   }
 }
+
+@media only screen and (max-width:500px) {
+  .profile-view-container {
+    grid-template-columns: 1fr
+  }
+  .feed-view {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media only screen and (max-width: 216px) {
 
   .profile-achievements-container {

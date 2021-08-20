@@ -70,7 +70,7 @@
 #edit-profile-photo {
   height: 250px;
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
   /* object-position: center right; */
   background-color: violet
 

@@ -11,3 +11,6 @@ body{
 input {
   font-size: 15px;
 }
+button:active {
+  border: 2px solid green;
+}
