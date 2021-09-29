@@ -4,12 +4,12 @@
 #read-header-container {
   display: flex;
   padding: 7px;
-  width: 100%;
+  width: 100vw;
   overflow-x: hidden;
   position: fixed;
   z-index: 999;
   top: 0;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   height: 40px;
 }
 
@@ -62,7 +62,7 @@
   font-size: 25px;
 }
 .read-side-header-container h6 {
-  color: #aa03fc;
+  color: var(--main-color);
   margin: 0;
   font-size: 12px;
   /* width: 150px; */
@@ -179,15 +179,15 @@
 }
 #report-lyrics form label {
   cursor: pointer;
-  color: #aa03fc;
+  color: var(--main-color);
 }
 #report-lyrics form label input {
   cursor: pointer;
   margin-bottom: 10px;
-  color: #aa03fc;
+  color: var(--main-color);
 }
 #report-submit {
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border: none;
   color: white;
   margin-top: 10px;
@@ -223,7 +223,7 @@
   font-size: 20px;
 }
 .artist-points {
-  color: #aa03fc
+  color: var(--main-color)
 }
 .fa-paper-plane {
   transform: rotate(180deg);
@@ -234,7 +234,7 @@ textarea {
   padding: 10px 5px;
   border: none;
   font-size: 15px;
-  border-bottom: 2px solid #aa03fc;
+  border-bottom: 2px solid var(--main-color);
 }
 
 .youtube-video {

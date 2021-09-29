@@ -24,7 +24,7 @@ export function ChartCardContainer(props) {
         position = {indx + 1}  songArtists = {`${a.songArtist}
        ${others !== "" && others !== undefined &&
         others !== 'undefined'? `ft ${others}`:''}`}
-      songCover = {a.songCover} rating = {!a.rating ? "-":a.rating }/>
+      songCover = {a.songCover} rating = {isNaN(a.rating) ? "0":a.rating }/>
     })
   }
   }else if(props.param === "Punchlines") {

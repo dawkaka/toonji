@@ -24,7 +24,7 @@
   margin-bottom: 8px;
 }
 #avatar {
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -41,7 +41,7 @@
 }
 .input-box {
   border: none;
-  border-bottom: 1px solid #aa03fc;
+  border-bottom: 1px solid var(--main-color);
   padding: 5px;
   width: 90%;
   background-color: rgba(0,0,0,0.03);
@@ -55,7 +55,7 @@
 }
 .submitButton {
   border: none;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   padding: 6px 8px;
   margin: 5px 0 0 0;
   border-radius: 5px;
@@ -66,7 +66,7 @@
    opacity: .8;
 }
 .signup-login-link {
-  color: #aa03fc;
+  color: var(--main-color);
   cursor: pointer;
 }
 .signup-login-link:hover{

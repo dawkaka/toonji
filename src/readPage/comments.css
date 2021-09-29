@@ -19,7 +19,7 @@
 #add-comment {
   font-weight: 600;
   color: white;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border: none;
   border-radius: 5px;
   margin-left: -20px;
@@ -83,7 +83,7 @@
   font-size: 15px;
 }
 .comment-details-text h5 small {
-  color: #aa03fc;
+  color: var(--main-color);
 }
 
 .comment-container p {
@@ -112,7 +112,7 @@
   font-size: 12px;
 }
 .fa-redo {
-color: #aa03fc
+color: var(--main-color)
 }
 .reload-container {
   margin-bottom: 5px;
@@ -123,5 +123,5 @@ color: #aa03fc
   transform: translateX(-50%);
 }
 .reload-end {
-  color: #aa03fc
+  color: var(--main-color)
 }

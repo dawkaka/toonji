@@ -12,5 +12,8 @@ input {
   font-size: 15px;
 }
 button:active {
-  border: 2px solid green;
+  border: 1px solid purple;
+}
+button:hover {
+  opacity: .8
 }

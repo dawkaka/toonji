@@ -174,7 +174,7 @@ function Search() {
       for(let elm of Array.from(songs)) {
         let title = elm.innerText.toLowerCase()
         if(searchValue.toLowerCase() === title.substr(0,len) && len>0){
-          elm.style.backgroundColor = "#aa03fc"
+          elm.style.backgroundColor = "var(--main-color)"
         }else {
           elm.style.backgroundColor = "transparent"
         }

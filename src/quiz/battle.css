@@ -10,7 +10,7 @@
 
 .battle-points {
   font-size: 50px;
-  color: #aa03fc;
+  color: var(--main-color);
 }
 
 .battle-points-leading {
@@ -48,14 +48,14 @@
 .invalid-battle-link {
   color: white;
   padding: 10px;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   margin-top: 20%;
 }
 #show-get-q-container {
  text-align: center;
 }
 #show-get-q-container button {
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border: none;
   color: white;
   margin-top: 10px;
@@ -74,7 +74,7 @@
 .animation-dot {
   width: 7px;
   height: 7px;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   margin: 2px;
   border-radius: 50%;
   animation: move-right 2s ease-out infinite;

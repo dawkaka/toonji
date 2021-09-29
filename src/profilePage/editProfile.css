@@ -87,7 +87,7 @@
 }
 .field {
   border: none;
-  border-bottom: 2px solid #aa03fc;
+  border-bottom: 2px solid var(--main-color);
   width: 100%;
   padding-left: 0;
   margin-left: 0;
@@ -99,7 +99,7 @@
   margin-left: 0;
 }
 .button {
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border: none;
   color: white;
   margin-top: 25px;

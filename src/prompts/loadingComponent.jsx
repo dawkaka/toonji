@@ -10,7 +10,7 @@ export default function LoadingSpinner(props) {
     <center>
     {
       (promiseInProgress === true) ?
-    <Loader type="ThreeDots" color={props.color ?props.color:"#aa03fc"} height={props.height} width={props.width} />:
+    <Loader type="ThreeDots" color={props.color ?props.color:"var(--main-color)"} height={props.height} width={props.width} />:
     null
   }
   </center>

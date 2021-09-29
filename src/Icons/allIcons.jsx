@@ -1,5 +1,6 @@
 import React from 'react'
 import './IconsCss.css'
+import '../fontawesome/fontawesome-free-5.14.0-web/css/all.css'
 
 export function LyricsCardIcon(props) {
 let number = props.number ? <span className = {props.total}>{props.number}</span> : "";
@@ -30,7 +31,7 @@ export function BackIcon(props) {
      let cls = props.profile ? "back-icon-container style-profile":"back-icon-container"
   return (
     <div className = {cls} onClick = {goBack}>
-    <i className = "fas fa-arrow-left"></i>
+    <i className = "fas fa-arrow-left" onClick = {goBack}></i>
     </div>
   )
 }

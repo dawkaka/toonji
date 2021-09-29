@@ -13,7 +13,7 @@
 
 #error-page-container a  {
   padding: 7px 10px;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   color: white;
   border-radius: 5px;
 }

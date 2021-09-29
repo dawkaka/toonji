@@ -107,7 +107,7 @@
   border-radius: 3px;
   font-size: 10px;
   position: absolute;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   color: white;
   right: 5px;
   display: none;

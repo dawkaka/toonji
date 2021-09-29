@@ -183,18 +183,18 @@ function ReadPunchlines(props) {
         }
     }
     function addtoFavourites(e) {
+      if(!favActive) {
+        setFavActive(true)
+        setNoFavourited(noFavourited + 1)
+      }else {
+        setFavActive(false)
+        setNoFavourited(noFavourited - 1)
+      }
       axios.post(BASEURL + '/favourited' + window.location.pathname)
       .then(res => {
         let message = res.data.msg;
         if(res.data.type === "SUCCESS"){
         successPrompt(message)
-        if(message === "added to favourites") {
-          setFavActive(true)
-          setNoFavourited(noFavourited + 1)
-        }else {
-          setFavActive(false)
-          setNoFavourited(noFavourited - 1)
-        }
         }
          if(res.data.type === "ERROR"){
            if(res.data.msg === "log in required") {
@@ -215,18 +215,16 @@ function ReadPunchlines(props) {
       if(starsContainer.childNodes[0].className === "fas fa-star icon-active"){
         return;
       }
+      for(let i = 0; i < numberOfStar; i++){
+         starsContainer.childNodes[i].classList.add('icon-active')
+      }
       axios.post(`${BASEURL}/lyrics/rate/${numberOfStar}${window.location.pathname}`)
         .then(res =>{
-           if(res.data.type === 'SUCCESS'){
-             for(let i = 0; i < numberOfStar; i++){
-                starsContainer.childNodes[i].classList.add('icon-active')
-             }
-           }else if(res.data.type === "ERROR") {
+           if(res.data.type === "ERROR") {
              if(res.data.msg === "log in required"){
                showLoginModal()
              }
             errorPrompt(res.data.msg)
-
           }
         })
         .catch(e =>{

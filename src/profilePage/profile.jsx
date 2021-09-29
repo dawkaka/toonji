@@ -120,10 +120,17 @@ export default function ProfileView() {
          }
        },[param])
 
-window.setInterval(()=> {
+
+let interval = window.setInterval(()=> {
   let pathname  = window.location.pathname;
   setParam(pathname.substr(pathname.lastIndexOf('/')))
 },1)
+
+useEffect(()=>{
+  return () => {
+    clearInterval(interval)
+  }
+})
 
 function showTopFans(e) {
   document.getElementById("top-fans-modal").style.display = "block";
@@ -174,6 +181,13 @@ const showFaceOff = ()=> {
 const handleFollowClick = (e) => {
   let pathname  = window.location.pathname;
     let path = `/p/follow${pathname.substr(pathname.lastIndexOf('/'))}`
+    if(!following) {
+      setIsFollowing(true)
+      setFollowing(following + 1)
+    }else {
+      setIsFollowing(false)
+      setFollowing(following - 1)
+    }
     axios({
          method: 'post',
          url: BASEURL + path,
@@ -188,15 +202,7 @@ const handleFollowClick = (e) => {
           errorPrompt(message)
       }else {
           successPrompt(res.data.msg)
-          if(message === "unfollowed"){
-            setIsFollowing(false)
-            setFollowing(following - 1)
-          }else {
-            setIsFollowing(true)
-            setFollowing(following + 1)
-          }
       }
-
    })
    .catch(err=>{
          errorPrompt("something went wrong")

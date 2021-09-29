@@ -17,7 +17,7 @@
 
 .big-textarea {
   margin-left: 10px;
-  border: 2px solid #aa03fc;
+  border: 2px solid var(--main-color);
   border-radius: 5px;
   margin-right: 10px;
   width: 95%;
@@ -51,7 +51,7 @@
   width: 100%;
 }
 .upload-input-field {
-  border: 2px solid #aa03fc;
+  border: 2px solid var(--main-color);
   border-radius: 5px;
   padding: 5px 5px;
   background-color: white;
@@ -67,7 +67,7 @@
   padding: 10px;
   font-weight: 600;
   color: white;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border-radius: 5px;
   border: none;
 }
@@ -79,7 +79,7 @@
   padding: 10px;
   font-weight: 600;
   color: white;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border-radius: 5px;
   border: none;
 }
@@ -99,7 +99,7 @@
   font-size: 20px;
   width: 92%;
   height: inherit;
-  border: 2px solid #aa03fc;
+  border: 2px solid var(--main-color);
   border-radius: 5px;
 }
 
@@ -111,7 +111,7 @@
   padding: 10px;
   font-weight: 600;
   color: white;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border-radius: 5px;
   border: none;
 }

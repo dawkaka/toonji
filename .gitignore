@@ -10,6 +10,7 @@
 
 # production
 /build
+/fontawesome
 
 # misc
 .DS_Store

@@ -29,5 +29,5 @@
   border-bottom: 2px solid gray;
 }
 .side-bar-item-active {
-  background-color: #aa03fc
+  background-color: var(--main-color)
 }

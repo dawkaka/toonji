@@ -10,25 +10,32 @@ export default function LyricsReviewCard(props) {
    const [favActive,setFavActive] = useState(props.isInFavourites);
    const [noFavourited,setNoFavourited] = useState(props.favourited)
 
+   const toggleFavourite = () => {
+     if(!favActive) {
+       setFavActive(true)
+       setNoFavourited(noFavourited + 1)
+     }else {
+       setFavActive(false)
+       setNoFavourited(noFavourited - 1)
+     }
+   }
+
   function handleAddToFavourites(e){
+     toggleFavourite()
     axios.post(BASEURL + '/favourited/' + props.songId)
     .then(res => {
       let message = res.data.msg
       if(res.data.type === "SUCCESS"){
-        if(message === "added to favourites"){
-          setFavActive(true)
-          setNoFavourited(noFavourited + 1)
-        }else {
-          setFavActive(false)
-          setNoFavourited(noFavourited - 1)
-        }
-    successPrompt(message)
-  }
+        successPrompt(message)
+     }else {
+        toggleFavourite()
+     }
+
    if(res.data.type === "ERROR"){
      if(message === 'log in required') {
-       showLoginModal()
+         showLoginModal()
      }
-    errorPrompt(message)
+       errorPrompt(message)
   }
   })
    .catch((err)=>{
@@ -100,8 +107,7 @@ export default function LyricsReviewCard(props) {
      <LyricsCardIcon className = 'fas fa-copy' id="copy-punchline"
      onClick = {copyPunchline} />
      <LyricsCardIcon
-     className = {`fas fa-heart ${favActive === '' ?
-     props.isInFavourites ? "icon-active":"" : favActive ? "icon-active":''}`}
+     className = {`fas fa-heart ${favActive ? "icon-active":""}`}
      onClick = {handleAddToFavourites} songId = {props.songId}
       number = {numberToKOrM(noFavourited)} total = "total"/>
      </div>

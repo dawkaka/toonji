@@ -20,7 +20,7 @@
 .quiz-answer-input{
   margin-left: 10px;
   border: none;
-  border-bottom: 2px solid #aa03fc;
+  border-bottom: 2px solid var(--main-color);
   width: 70%;
   font-size: 20px;
   padding: 7px 8px;
@@ -69,7 +69,7 @@
   font-size: 20px;
 }
 #quiz-finish-result p span {
-  color: #aa03fc
+  color: var(--main-color)
 }
 @media only screen and (max-width: 600px) {
   .start-quiz-main {

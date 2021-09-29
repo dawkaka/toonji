@@ -145,7 +145,7 @@ function Search() {
            let targets = document.getElementsByClassName("chart-song-title")
            for(let elm of Array.from(targets)) {
              if((elm.innerText.toLowerCase().substr(0,ss.length) === ss.toLowerCase())&& ss.length > 0){
-               elm.style.backgroundColor = "#aa03fc"
+               elm.style.backgroundColor = "var(--main-color)"
              }else {
                elm.style.backgroundColor = "transparent"
              }

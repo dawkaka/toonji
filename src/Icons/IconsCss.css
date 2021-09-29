@@ -48,6 +48,8 @@
 }
 
 .back-icon-container i {
+  padding: 0;
+  margin: 0;
   font-size: 20px;
   color: white;
 }
@@ -55,7 +57,7 @@
   margin-top: 20px;
 }
 .icon-active {
-  color:  #aa03fc;
+  color:  var(--main-color);
 }
 @media only screen and (max-width: 700px) {
 
@@ -66,7 +68,7 @@
 @media only screen and (max-width: 600px) {
 
   .back-icon-container i {
-    color: #aa03fc;
+    color: var(--main-color);
     margin-right: 7px;
   }
 }

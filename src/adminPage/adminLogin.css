@@ -11,7 +11,7 @@
 }
 .admin-input-box {
   border: none;
-  border-bottom: 1px solid #aa03fc;
+  border-bottom: 1px solid var(--main-color);
   padding: 5px;
   width: 90%;
   background-color: rgba(0,0,0,0.03);

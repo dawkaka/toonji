@@ -41,7 +41,7 @@ body {
 }
 
 .fa-certificate {
-  color: #aa03fc;
+  color: var(--main-color);
   margin-left: 10px;
   top: -3px;
   left: -5px;
@@ -65,7 +65,7 @@ body {
 }
 
 .profile-buttons {
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   border: none;
   color: white;
   margin-top: 10px;
@@ -104,7 +104,7 @@ body {
  flex-direction: column;
  align-items: center;
  padding: 5px 20px;
- border: 0px solid #aa03fc;
+ border: 0px solid var(--main-color);
  overflow-x: hidden;
 }
 .achievements p {
@@ -133,7 +133,7 @@ overflow-y: auto;
   font-size: 15px;
 }
 .feed-active {
-  border-bottom: 3px solid #aa03fc;
+  border-bottom: 3px solid var(--main-color);
 }
 
 #space {
@@ -168,7 +168,7 @@ overflow-y: auto;
   margin: 5px;
 }
 .digets-container h6 {
-  color: #aa03fc;
+  color: var(--main-color);
   margin-bottom: 0px;
   margin-left: 5px;
   margin-top: 0px;
@@ -207,7 +207,7 @@ overflow-y: auto;
   grid-template-columns: 1fr 2fr 2fr 5fr;
   grid-column-gap: 5px;
   justify-content: center;
-  /* border-bottom: 2px solid #aa03fc; */
+  /* border-bottom: 2px solid var(--main-color); */
   padding-top: 10px;
   border-bottom: 1px solid gray;
 }
@@ -227,7 +227,7 @@ overflow-y: auto;
 }
 
 .top-fan-points {
-  color: #aa03fc;
+  color: var(--main-color);
   margin-left: 10px;
 }
 #face-off-records-container {
@@ -254,7 +254,7 @@ overflow-y: auto;
 }
 
 .battle-user-side p, .battle-opponent-side p {
-   color: #aa03fc;
+   color: var(--main-color);
    margin-top: 22px;
    margin-left: 3px;
    font-weight: bold;
@@ -269,7 +269,7 @@ overflow-y: auto;
 #display-battle-link {
   margin-left: 20px;
   border: none;
-  border-bottom: 1px solid #aa03fc;
+  border-bottom: 1px solid var(--main-color);
   padding: 5px;
   width: 70%;
   background-color: rgba(0,0,0,0.03);
@@ -279,7 +279,7 @@ overflow-y: auto;
   border: none;
   border-radius: 3px;
   color: white;
-  background-color: #aa03fc;
+  background-color: var(--main-color);
   padding: 3px;
 }
 

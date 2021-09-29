@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import LoadingSpinner from '../prompts/loadingComponent';
 import { trackPromise} from 'react-promise-tracker';
 import {successPrompt,errorPrompt,showLoginModal} from '../prompts/promptMessages'
@@ -19,10 +19,6 @@ export default function Punchline(props) {
       const [addBrOpened,setAddBrOpened] = useState(false)
       const {promiseInProgress} = usePromiseTracker({area:'add-breakdown'})
       const [userFav,setUserFav] = useState(props.userFav)
-
-      useEffect(()=> {
-
-      })
 
 
     function handleClick(e)  {
@@ -61,7 +57,7 @@ const axiosGetBreakdowns = () => {
         e.target.style.color = "";
         target.nextSibling.classList.remove("breakdown-show")
       }else {
-        e.target.style.color = "#aa03fc";
+        e.target.style.color = "var(--main-color)";
         target.nextSibling.classList.add("breakdown-show");
         axiosGetBreakdowns()
 
@@ -69,13 +65,14 @@ const axiosGetBreakdowns = () => {
     }
 
    const addBarToFavourites = () => {
+      setUserFav(!userFav)
       axios.post(`${BASEURL}/bar-favourited${window.location.pathname}/${props.id}`)
       .then(res => {
          let message = res.data.msg
          if(res.data.type === "SUCCESS") {
-           setUserFav(!userFav)
            successPrompt(message)
          }else {
+           setUserFav(!userFav)
            if(res.data.msg === "log in required") {
              showLoginModal()
              return
@@ -89,17 +86,17 @@ const axiosGetBreakdowns = () => {
    }
 
     function handleFireclick(e) {
+      if(!fired){
+        setFires(fires + 1)
+        setFired(true)
+      }else {
+        setFires(fires - 1)
+        setFired(false)
+      }
        axios.post(`${BASEURL}/lyrics/fire${window.location.pathname}/${props.indx}`)
          .then(res =>{
            let message = res.data.msg
        if(res.data.type === "SUCCESS"){
-         if(message === 'bars *_*'){
-           setFires(fires + 1)
-           setFired(true)
-         }else {
-           setFires(fires - 1)
-           setFired(false)
-         }
          successPrompt(message)
        }
         if(res.data.type === "ERROR"){

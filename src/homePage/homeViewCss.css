@@ -29,7 +29,7 @@ button, input[type="text"],textarea {
   font-size: 50px;
   margin-left: 30px;
   /* text-shadow: 1px 1px 1px black; */
-  color: #aa03fc;
+  color: var(--main-color);
 }
 
 .recommended-lyrics {

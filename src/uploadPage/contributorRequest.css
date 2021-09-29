@@ -1,7 +1,7 @@
 
 
 #contributor-request-container h1 {
-  color: #aa03fc;
+  color: var(--main-color);
 }
 
 #contributor-request-container ul {

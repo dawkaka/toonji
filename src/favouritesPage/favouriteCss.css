@@ -40,7 +40,7 @@
 }
 .fav-bar-detail h6 {
   margin: 0;
-  color: #aa03fc
+  color: var(--main-color)
 }
 .fav-bars-card p {
   font-size: 20px;
