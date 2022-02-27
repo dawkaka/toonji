@@ -1,13 +1,14 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios'
-import { usePromiseTracker } from "react-promise-tracker";
+import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import {Link} from 'react-router-dom'
+import {Helmet} from "react-helmet"
+
 import {Logo} from '../header-footer/header'
 import './readLyricsCss.css'
 import {LyricsCardIcon} from '../Icons/allIcons'
 import Punchline from './punchlines'
 import CommentSideView from './comments'
-import { trackPromise} from 'react-promise-tracker';
 import {BASEURL} from '../credentials'
 import {AutoScroll,EditBr,AwardBr} from './autoScroll'
 import {numberToKOrM} from './readFunctions';
@@ -15,7 +16,7 @@ import {successPrompt,errorPrompt,showLoginModal} from '../prompts/promptMessage
 import LoadingSpinner from '../prompts/loadingComponent';
 import {BackIcon} from '../Icons/allIcons'
 export default function ReadLyricsView() {
-  const [lyricData,setLyricData] = useState("")
+  const [lyricData,setLyricData] = useState([])
   const [performanceData,setPerformanceData] = useState([])
      useEffect(()=>{
        if(!sessionStorage.getItem(window.location.pathname)){
@@ -25,8 +26,7 @@ export default function ReadLyricsView() {
           let message = res.data.message
           if(res.data.type === 'ERROR') {
             errorPrompt(message)
-          }
-          else if(res.data !== undefined){
+          }else {
            setLyricData(res.data.modefiedData)
            setPerformanceData(res.data.performanceData)
            sessionStorage.setItem(window.location.pathname,JSON.stringify(res.data))
@@ -69,6 +69,11 @@ export default function ReadLyricsView() {
    <CommentSideView />
    </div>
    </div>
+   <Helmet>
+   <meta name="description"
+    content = {`Song lyrics for ${lyricData.songArtist}'s ${lyricData.songTitle}. Toonji.com the best lyrics platform on the internet`}
+   />
+   </Helmet>
    </>
   )
 }
@@ -160,12 +165,16 @@ function ReadPunchlines(props) {
        setNoFavourited(props.noFavourited)
      },[props.lyricData,props.stars,props.noFavourited])
 
-       let punchlines = ""
+       let punchlines = []
           if(props.lyricData !== undefined){
             punchlines =  props.lyricData.map((p,indx)=>{
-             return (<Punchline key = {indx} punchline = {p.punchline}
-              artist = {p.artist} indx = {indx} id = {p._id} raters = {p.rating}
-              hasFire = {p.rated} userFav = {p.userFav}/>
+              let punchline = p.punchline;
+              if(p.hasIcons === false) {
+                punchline = p.punchline.substring(0,p.punchline.length - 3)
+              }
+             return (<Punchline key = {indx} punchline = {punchline} artist = {p.artist}
+              indx = {indx} id = {p._id} raters = {p.rating}
+              hasFire = {p.rated} userFav = {p.userFav} hasIcons = {p.hasIcons}/>
             )
            })
          }
@@ -286,8 +295,11 @@ function ReadPunchlines(props) {
     <AwardBr />
     <div className='read-side-controls'>
     <div className = "checkbox-container">
+    <div className = "tooltip">
     <input type= "checkbox" id="toggle-puncline-icons" onChange={checkboxChange} />
-    <label htmlFor = "toggle-puncline-icons">show icons</label>
+    <span className ="checkmark"></span>
+    <span className ="tooltiptext">toggle icons</span>
+    </div>
     </div>
     <div id = "heart-down">
     <LyricsCardIcon className ={`fas fa-heart ${favActive === '' ?

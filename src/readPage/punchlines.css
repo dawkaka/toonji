@@ -54,12 +54,12 @@
   margin-right: 40px;
   display: flex;
   gap: 10px;
-  -moz-gap:10px;
-  -webkit-gap:10px;
 }
+
 .badge-container {
   position: relative;
 }
+
 .awards-acumulated-image{
   width: 15px;
   height: 15px;

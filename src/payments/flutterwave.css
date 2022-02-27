@@ -1,0 +1,35 @@
+#flutterwave-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#flutterwave-form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-color);
+  width: 40%;
+  height: 300px;
+  color: white;
+  border-radius: 5px;
+}
+
+#flutterwave-form-container form label input {
+  margin-bottom:  10px;
+}
+
+.btn-block {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-around;
+  width: 250px;
+}
+
+@media only screen and (max-width: 700px) {
+   #flutterwave-form-container form {
+     width: 90vw
+   }
+}

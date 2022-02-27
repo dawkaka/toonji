@@ -11,6 +11,7 @@ button, input[type="text"],textarea {
   margin-bottom: 25px;
   margin-left: 50px;
 }
+
 #the-big-picture-container{
   display: flex;
   margin-top: 40px;

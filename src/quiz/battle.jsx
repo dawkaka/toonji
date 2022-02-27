@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from 'react'
 import io from "socket.io-client"
 import strSimilarity from 'string-similarity'
+import {Helmet} from "react-helmet"
+
 import './battle.css'
 import {BASEURL} from "../credentials"
 import './startQuizCss.css'
@@ -95,12 +97,20 @@ export default function BattlePage() {
    }
   }
   return (
+    <>
     <div className = "battle-view-container">
       {!getQuestions && <NotStartQuiz isValidLink = {isValidLink} joined = {joined}
       sGetQuestions = {emitForQuestions} showGetQuestion = {showGetQuestion}
        waitingForOwner = {waitingForOwner} linkFull = {linkFull} opponentName = {opponentName} inP = {battleInProcess}/>}
       {getQuestions && <StartQuiz questions = {questions} socket = {socket}  oppName = {opponentName} owName = {ownersName}/>}
     </div>
+    <Helmet>
+    <title>TOONJI BATTLE</title>
+    <meta name="description"
+     content = "Battle with friends based on lyrics of selected artists. Prove you are a lyrics warrior"
+    />
+    </Helmet>
+    </>
   )
 }
 

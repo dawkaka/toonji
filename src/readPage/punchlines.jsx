@@ -189,17 +189,18 @@ const axiosGetBreakdowns = () => {
      {props.punchline}
     </p>
     <div className = "punchline-icons" >
-
     <LyricsCardIcon className = {userFav ? "fas fa-heart icon-active sm" : "fas fa-heart sm"}
     onClick = {addBarToFavourites}/>
     <LyricsCardIcon className = 'fas fa-copy sm' id="copy-punchline"
     onClick = {copyPunchline} />
-    <LyricsCardIcon className="fas fa-lightbulb sm" onClick = {openBreakdowns}/>
-     <LyricsCardIcon
-     className ={`fas fa-fire-alt sm ${fired ? "icon-active":''}`}
-      number = {`${numberToKOrM(fires)}`} total = "total sm"
-      onClick = {handleFireclick} ind = {props.indx}/>
+    {(props.hasIcons === undefined || props.hasIcons) &&
+     <LyricsCardIcon className="fas fa-lightbulb sm" onClick = {openBreakdowns}/>}
+    {(props.hasIcons === undefined || props.hasIcons) &&
+    <LyricsCardIcon number = {`${numberToKOrM(fires)}`} total = "total sm"
+      onClick = {handleFireclick} ind = {props.indx}
+     className ={`fas fa-fire-alt sm ${fired ? "icon-active":''}`}/>}
      </div>
+    {(props.hasIcons === undefined || props.hasIcons) &&
      <div className = "breakdowns-container">
     <button id = "add-br-toggle" onClick = {()=> setAddBrOpened(!addBrOpened)}>
     {addBrOpened ? "x":"+"}</button>
@@ -222,10 +223,13 @@ const axiosGetBreakdowns = () => {
        breakdownPic = {`${IMAGEURL}${b.picture}?tr=w-45,h-45,c-at_max`}
        isThisUser = {b.isThisUser} points = {b.points}
        songId = {window.location.pathname.substr(1)}
-       addClass = 'shift-vote-total' isDeletedBr = {brDeleted} awards = {b.brAwards ? b.brAwards :
-                                                                      {}} />
+       addClass = 'shift-vote-total' isDeletedBr = {brDeleted}
+       awards = {b.brAwards ? b.brAwards : {}} />
      })}
+
     </div>
+  }
+    <span></span>
     </>
   )
 }
@@ -320,7 +324,6 @@ export function Breakdowns (props) {
 }
 
 export function AwardBadge(props) {
-  console.log();
   return (
     <>
     {props.numOfTimesAWarded > 0 && <div className = "badge-container">

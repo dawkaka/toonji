@@ -6,7 +6,7 @@ import {IMAGEURL} from '../credentials'
 import {successPrompt,errorPrompt} from '../prompts/promptMessages'
 export function ChartCardContainer(props) {
   let cls = props.show === "true" ? "chart-card-container-container chart-show": "chart-card-container-container";
-  let chartCards = ""
+  let chartCards;
   function getOthersPreview(others) {
     if(others !== undefined && others !== '' && others !== 'undefined'){
       if(others.length < 15) return others
@@ -14,21 +14,21 @@ export function ChartCardContainer(props) {
     }
     return '';
   }
-    if(props.param === "Songs"){
-      if(props.chartResult){
-      chartCards = props.chartResult.map((a,indx)=>{
-      let others = getOthersPreview(a.otherArtists);
-      return <ChartCard key = {indx}
-      views = {!a.view ? "-": a.view}  lyricId = {a.lyricId}
-       songTitle = {a.songTitle} songArtist = {a.songArtist}
-        position = {indx + 1}  songArtists = {`${a.songArtist}
-       ${others !== "" && others !== undefined &&
-        others !== 'undefined'? `ft ${others}`:''}`}
-      songCover = {a.songCover} rating = {isNaN(a.rating) ? "0":a.rating }/>
+
+  switch (props.param) {
+    case "Songs":
+    chartCards = props.chartResult.map((a,indx)=>{
+    let others = getOthersPreview(a.otherArtists);
+    return <ChartCard key = {indx}
+    views = {!a.view ? "-": a.view}  lyricId = {a.lyricId}
+     songTitle = {a.songTitle} songArtist = {a.songArtist}
+      position = {indx + 1}  songArtists = {`${a.songArtist}
+     ${others !== "" && others !== undefined &&
+      others !== 'undefined'? `ft ${others}`:''}`}
+    songCover = {a.songCover} rating = {isNaN(a.rating) ? "0":a.rating }/>
     })
-  }
-  }else if(props.param === "Punchlines") {
-    if(props.barResult){
+      break;
+    case "Punchlines":
     chartCards = props.barResult.map((p,indx)=> {
       let others = getOthersPreview(p.otherArtists);
       return <BarsCards key = {indx} punchline = {p.punchline}
@@ -39,14 +39,20 @@ export function ChartCardContainer(props) {
         ${others !== "" && others !== undefined && others !== 'undefined'?
         `ft ${others}`:''}`}/>
     })
-  }
-  }else {
+      break;
+    case "Artists":
+    chartCards = props.artistsResult.map((u,indx)=> {
+      return < ChartUserCard key = {indx} name = {u.name} picture = {u.picture}
+      points = {u.points} followers = {`${u.followers}`} verified = {true}/>
+    })
+      break;
+    default:
     chartCards = props.userResult.map((u,indx)=> {
       return < ChartUserCard key = {indx} name = {u.name} picture = {u.picture}
       points = {u.points} followers = {`${u.followers}`}/>
     })
-
   }
+
   return (
   <div className = {cls}  id = {props.id}>
    {chartCards}
@@ -157,7 +163,7 @@ function ChartUserCard(props) {
     alt = "user" />
     <div className = "chart-user-card-details">
     <Link to = {`/p/${props.name}`}>
-    <h3>{props.name}</h3>
+    <h3>{props.name} {props.verified && <i className = "fas fa-certificate"></i>}</h3>
     </Link>
     <div className = "chart-user-card-stats">
     <div className = "metric">

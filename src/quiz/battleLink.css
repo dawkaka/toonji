@@ -1,0 +1,112 @@
+#face-off-main-container {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  background: var(--main-color);
+  padding-top: 10px;
+  height: 100vh
+  }
+
+  #face-off-main-container main {
+    background-color: white;
+    width: 40vw;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  #available-links-container {
+    padding: 10px 50px 10px 50px;
+  }
+  #new-link-container {
+    padding: 0 50px 10px 50px;
+  }
+
+  #display-battle-link {
+    border: none;
+    border-bottom: 1px solid var(--main-color);
+    padding: 5px;
+    background-color: rgba(0,0,0,0.03);
+  }
+
+  #copy-battle-link {
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background-color: var(--main-color);
+    padding: 3px;
+  }
+
+  #links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .battle-link {
+    position: relative;
+    padding: 0 3px;
+  }
+
+  .battle-link input {
+    appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background-color: lightgray;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  .battle-link span {
+    background-color: var(--main-color);
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 13px;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top:0;
+    right: 0
+  }
+  .battle-link span:hover {
+    display: inline-block;
+  }
+
+  .battle-link:hover + span {
+    display: inline-block;
+  }
+
+  .battle-link input:hover + span {
+    display: inline-block;
+  }
+
+  .battle-artists {
+    color: var(--main-color);
+    margin-left: 5px;
+    font-size: 13px;
+  }
+
+  #new-link-buttons-container {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    justify-content: space-between;
+  }
+
+  .disabled{
+    opacity: .5
+  }
+
+  @media only screen and (max-width: 700px) {
+    #face-off-main-container main {
+        width: 60vw;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    #face-off-main-container main {
+        width: 80vw;
+    }
+  }

@@ -24,11 +24,14 @@ export function DonateForm() {
      }
      }
 
+  const donatePage = localStorage.getItem("continent") === "Africa"  ?
+                     "https://dashboard.flutterwave.com/donate/vahiqajlgmmt" : "donate.html"
+
  return (
   <div id = "donate-modal" onClick = {hideDonateModal}>
    <div id="smart-button-container">
-   <button type="button" className = "payment-buttons"> <a href="donate.html" target ="_BLANK"
-    rel="noopener noreferrer">card/paypal</a></button>
+   <button type="button" className = "payment-buttons"> <a href= {donatePage} target ="_BLANK"
+    rel="noopener noreferrer">e-payments</a></button>
     <br />
     <button className = "payment-buttons" onClick = {showCryptoAdds}>crypto
      <i id = "crypto-caret-icon"className = "fas fa-angle-up angle-crypto"></i></button>

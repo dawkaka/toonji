@@ -17,7 +17,6 @@ const [favData,setFavData] = useState([])
 const [favBars,setFavBars] = useState([])
 const [favParam,setFavParam] = useState('songs')
   useEffect(()=>{
-    document.title = "TOONJI - My favourites"
     trackPromise(
      axios.get(BASEURL + '/my/favourites/' + favParam)
        .then((res)=>{
@@ -90,7 +89,8 @@ const handleSelectChange = (e) => {
     <div id= "f-space-2"></div>
    </div>
    <Helmet>
-   <meta name = "description" content = "your favourite songs lyrics all in one place."/>
+   <title>Favorites Lyrics and Bars</title>
+   <meta name = "description" content = "Your favourite song lyrics and bars all in one place." />
    </Helmet>
    </>
   )

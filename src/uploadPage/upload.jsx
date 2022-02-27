@@ -1,12 +1,15 @@
 import React,{useEffect,useState} from 'react';
+import FormObject from 'form-data'
+import axios from 'axios'
+import {Helmet} from 'react-helmet'
+
 import {Logo} from '../header-footer/header';
 import './uploadCss.css';
 import {successPrompt,errorPrompt} from '../prompts/promptMessages'
 import {trackPromise,usePromiseTracker } from "react-promise-tracker";
-import axios from 'axios'
 import LoadingSpinner from '../prompts/loadingComponent';
 import {BASEURL} from '../credentials'
-import FormObject from 'form-data'
+
 
 export default function Upload() {
   return (
@@ -116,6 +119,7 @@ export function UploadForm(props) {
 }
 
   return (
+    <>
   <form id="upload-form"  onSubmit = {handleSubmit}>
   <div id= "textArea-container">
   <UploadTextArea handleChange = {handleTextArea} value = {songLyrics}/>
@@ -174,6 +178,10 @@ export function UploadForm(props) {
   </button>}
   </div>
     </form>
+    <Helmet>
+    <title>UPLOAD LYRICS</title>
+    </Helmet>
+    </>
 )
 }
 

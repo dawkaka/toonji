@@ -27,6 +27,8 @@ import ContributorRequest from './uploadPage/contributorRequest'
 import ReportBug from './header-footer/reportBug'
 import EditSongs from './uploadPage/edit'
 import Upload from './uploadPage/upload'
+import BattleLink from './quiz/battleLink'
+import FlutterWave from './payments/flutterwave'
 
 export default function App() {
   axios.defaults.withCredentials = true;
@@ -82,12 +84,18 @@ export default function App() {
         <Route exact path="/my/profile">
          <MyProfileView />
         </Route>
+        <Route exact path="/buy/coins">
+         <FlutterWave />
+        </Route>
         <Route exact path = "/top-fan/:userName">
         <StartQuiz />
         </Route>
         <Route exact path='/go/to/contributor-panel'>
         <AdminPanel/>
         </Route>
+        <Route exact path = "/b/battle-link">
+        <BattleLink />
+        </Route >
         <Route exact path = "/battle/:battleId">
         <BattlePage />
         </Route >

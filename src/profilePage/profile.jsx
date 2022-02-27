@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {trackPromise} from 'react-promise-tracker';
+import {Helmet} from "react-helmet";
+
 import './profile.css';
 import './editProfile.css'
 import LyricsReviewCard from '../homePage/lyricsCard';
@@ -19,7 +21,6 @@ export default function ProfileView() {
       const [userData,setUserData] = useState({name: ''})
       const [isFollowing,setIsFollowing] = useState(false)
       const [following,setFollowing] = useState(0);
-      const [topFan,setTopFan] = useState({data:[],header:false})
       const [userSongs,setUserSongs] = useState([])
       const [userBreaks,setUserBreaks] = useState([])
       const [loaderCount,setLoaderCount] = useState(0)
@@ -30,7 +31,11 @@ export default function ProfileView() {
       const [brLoadSpinning,setBrLoadSpinning] = useState(false)
       const [faceoffData,setFaceOffData] = useState([])
       const [param,setParam] = useState('')
-
+      const [followersFetchInfo, setFollowersFetchInfo] = useState({nextFetch:0,isEnd: false})
+      const [topFansFetchInfo, setTopFansFetchInfo] = useState({nextFetch: 0, isEnd: false})
+      const [topFansInfo, setTopFansInfo] = useState([])
+      const [followersInfo, setFollowersInfo] = useState([])
+      const profileName = window.location.pathname.substr(window.location.pathname.lastIndexOf('/'));
 
        useEffect(()=>{
          let isCancel = false;
@@ -50,7 +55,11 @@ export default function ProfileView() {
 
          if(!isCancel){
          document.title = "TOONJI - User Profile"
-         document.getElementById("top-fans-modal").style.display = "none"
+          let modals = document.getElementsByClassName("top-fans-modal")
+           Array.from(modals).forEach((item, i) => {
+             item.style.display = "none"
+           });
+
           }
          if(!isCancel){
            setParam(pathname.substr(pathname.lastIndexOf('/')))
@@ -132,35 +141,51 @@ useEffect(()=>{
   }
 })
 
-function showTopFans(e) {
+const showTopFans = (e) => {
   document.getElementById("top-fans-modal").style.display = "block";
   let pathname  = window.location.pathname;
-  let path ="";
-  let detailsToShow = e.target.className === "achievements" ?
-  e.target.id : e.target.parentNode.id;
-  if(detailsToShow === "top-fans") {
-    path =   `/p/top-fans${pathname.substr(pathname.lastIndexOf('/'))}`
-  }else if (detailsToShow === "followers"){
-    path = `/p/followers${pathname.substr(pathname.lastIndexOf('/'))}`
-  }
-
+  let path = `/p/top-fans${pathname.substr(pathname.lastIndexOf('/'))}/${topFansFetchInfo.nextFetch}`
+  setTopFansFetchInfo({...topFansFetchInfo, isSpinning: true})
   trackPromise(
+
    axios.get(BASEURL + path)
    .then(res =>{
      if(res.data.type === 'ERROR'){
        errorPrompt(res.data.msg)
      }else {
-      if(detailsToShow === "followers"){
-        setTopFan({data:res.data,header: "followers"})
-      }else {
-        setTopFan({data:res.data,header:"top fans"})
-      }
+        setTopFansInfo([...topFansInfo,...res.data.data])
+        setTopFansFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd, isSpinning: false})
    }
    })
    .catch(e =>{
+       setTopFansFetchInfo({...topFansFetchInfo, isSpinning: false})
      errorPrompt("something went wrong")
    }),'top-fans')
 }
+
+const showFollowers = () => {
+  document.getElementById("followers-modal").style.display = "block";
+  let pathname = window.location.pathname
+  let path = `/p/followers${pathname.substr(pathname.lastIndexOf('/'))}/${followersFetchInfo.nextFetch}`
+  setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
+  trackPromise(
+  axios.get(BASEURL + path)
+  .then(res =>{
+    if(res.data.type === 'ERROR'){
+      errorPrompt(res.data.msg)
+    }else {
+        setFollowersInfo([...followersInfo,...res.data.data])
+        setFollowersFetchInfo({nextFetch:res.data.nextFetch,isEnd:res.data.isEnd, isSpinning: false})
+   }
+  })
+  .catch(e =>{
+    setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
+    errorPrompt("something went wrong")
+  }),"followers")
+}
+
+
+
 const showFaceOff = ()=> {
     document.getElementById("face-off-records-modal").style.display = "block"
     let pathname  = window.location.pathname;
@@ -261,11 +286,15 @@ axios.get(BASEURL + path3)
 
   return (
     <>
-    <TopFans topFans = {topFan.data} header = {topFan.header}/>
+    <TopFans topFans = {topFansInfo}  fetchInfo= {topFansFetchInfo} loaderClick = {showTopFans} />
+    <Followers followers = {followersInfo} fetchInfo = {followersFetchInfo}  loaderClick = {showFollowers}/>
     <TopFanQuiz user = {userData.name}/>
     <FaceoffRecord faceoffData = {faceoffData} />
     <div className = "profile-view-container">
     <div id= "profile-info-container">
+    <div className = "back-icons-container">
+    <BackIcon />
+    </div>
     <div id= "profile-info-container-2">
     <img src =  {`${IMAGEURL}${userData.picture}?tr=w-500,h-350,c-at_max`} id = "profile-photo" alt = "artist" />
     {<h2 className= "profile-name" id = "profile-name">
@@ -276,7 +305,7 @@ axios.get(BASEURL + path3)
        '-':userData.noSongs}`} bottom = 'songs' />}
     <Achievements id = "points" top = {`${userData.points === undefined ? '-':numberToKOrM(userData.points)}`} bottom = 'points' />
     <Achievements id = "followers" top = {`${userData.followers === undefined ? "-":numberToKOrM(following)}`}
-     bottom = {following === 1 ? "follower":"followers"} onClick = {showTopFans} />
+     bottom = {following === 1 ? "follower":"followers"} onClick = {showFollowers} />
    {userData.verified && <Achievements id = "top-fans" top = {`${userData.topFans === undefined ? "-":userData.topFans}`}
     bottom ='top fans' onClick = {showTopFans} />}
     {!userData.verified && <Achievements id = "face-off-stats" top = {userData.battleRecord}
@@ -341,6 +370,9 @@ axios.get(BASEURL + path3)
     </div>
     </div>
     </div>
+    <Helmet>
+    <meta name = "description" content = {`${profileName}'s toonji profile`}/>
+    </Helmet>
     </>
   )
 }
@@ -411,24 +443,76 @@ export function Digest(props) {
   )
 }
 
+
 export function TopFans(props) {
+
   return (
-    <div id="top-fans-modal" onClick = {(e)=>{
-      if(e.target.id === "top-fans-modal"){
+    <div id = "top-fans-modal" className="top-fans-modal" onClick = {(e)=>{
+      if(e.target.className === "top-fans-modal"){
       e.target.style.display= "none"
     }
     }}>
     <ul>
     <LoadingSpinner area = "top-fans" height = {30} width = {30} />
-    <h1>{props.header}</h1>
+    <h1>Top Fans</h1>
     {
       props.topFans.map((f,indx) =>{
-        return <TopFan key = {indx} pos = {props.header === "top fans" ?indx + 1:""} name = {f.name}
+        return <TopFan key = {indx} pos = {indx + 1} name = {f.name}
         points = {f.points}
         picture = {`${IMAGEURL}${f.picture}?tr=w-45,h-45,c-at_max`}/>
       })
     }
+    <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
+    handleLoaderClick = {props.loaderClick}/>
+    </ul>
+    </div>
+  )
+}
 
+export function Followers(props) {
+
+  return (
+    <div id = "followers-modal" className="top-fans-modal" onClick = {(e)=>{
+      if(e.target.className === "top-fans-modal"){
+      e.target.style.display= "none"
+    }
+    }}>
+    <ul>
+    <LoadingSpinner area = "followers" height = {30} width = {30} />
+    <h1>Followers</h1>
+    {
+      props.followers.map((f,indx) =>{
+        return <TopFan key = {indx} name = {f.name}
+        points = {f.points}
+        picture = {`${IMAGEURL}${f.picture}?tr=w-45,h-45,c-at_max`}/>
+      })
+    }
+    <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
+    handleLoaderClick = {props.loaderClick}/>
+    </ul>
+    </div>
+  )
+}
+
+export function Following(props) {
+  return (
+    <div id = "following-modal" className="top-fans-modal" onClick = {(e)=>{
+      if(e.target.className === "top-fans-modal"){
+      e.target.style.display= "none"
+    }
+    }}>
+    <ul>
+    <LoadingSpinner area = "following" height = {30} width = {30} />
+    <h1>Following</h1>
+    {
+      props.following.map((f,indx) =>{
+        return <TopFan key = {indx} name = {f.name}
+        points = {f.points}
+        picture = {`${IMAGEURL}${f.picture}?tr=w-45,h-45,c-at_max`}/>
+      })
+    }
+    <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
+      handleLoaderClick = {props.loaderClick}/>
     </ul>
     </div>
   )

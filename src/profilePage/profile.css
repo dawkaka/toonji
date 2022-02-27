@@ -23,6 +23,20 @@ body {
   overflow-y: auto;
 }
 
+.back-icons-container {
+  display: none;
+  top: 7px;
+  z-index: 99999;
+  position: fixed;
+  right: 5px;
+  background-color: rgba(255,255,255,0.2);
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-radius: 50%;
+  border:1px solid var(--main-color);
+
+}
+
 #profile-photo {
   top: 0;
   background-color: violet;
@@ -183,7 +197,7 @@ overflow-y: auto;
   transform: translateX(-50%);
   bottom: 0;
 }
-#top-fans-modal,#face-off-records-modal {
+.top-fans-modal,#face-off-records-modal {
   display: none;
   height: 100%;
   width: 100%;
@@ -191,7 +205,7 @@ overflow-y: auto;
   z-index: 999;
   background-color: rgba(0,0,0,0.5);
 }
-#top-fans-modal ul,#face-off-records-container{
+.top-fans-modal ul,#face-off-records-container{
   margin-left: 50%;
   transform: translate(-50%,0);
   background-color: white;
@@ -201,7 +215,7 @@ overflow-y: auto;
   height: 80%;
   overflow-y: auto;
 }
-#top-fans-modal ul li {
+.top-fans-modal ul li {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 5fr;
@@ -284,7 +298,7 @@ overflow-y: auto;
 }
 
 @media only screen and (max-width: 800px) {
-  #top-fans-modal ul{
+  .top-fans-modal ul{
     width: 60%;
   }
   #face-off-records-container {
@@ -314,12 +328,15 @@ overflow-y: auto;
     display: none;
   }
 
-  #top-fans-modal ul {
+  .top-fans-modal ul {
     width: 70%;
   }
 }
 
 @media only screen and (max-width:500px) {
+  .back-icons-container {
+    display: block;
+  }
   .profile-view-container {
     grid-template-columns: 1fr
   }

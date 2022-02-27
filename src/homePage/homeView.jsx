@@ -13,11 +13,11 @@ export default function HomeView() {
   const [data, setData] = useState({songs:[],newArrivals:[]})
 
      useEffect(()=> {
-       document.title = "TOONJI | Home for ksi's songs lyrics"
-       let msg  = "TOONJI, HOME FOR KSI'S SONGS LYRICS."
+       document.title = "TOONJI |Best song lyrics platform"
+       let msg  = "TOONJI, BEST SONGS LYRICS PLATFORM."
        let i = 0;
        let str = ""
-       window.setInterval(()=> {
+       let interval = window.setInterval(()=> {
          if(i < msg.length) {
            str += msg[i];
            document.getElementById("welcome-message").innerText = str
@@ -42,11 +42,22 @@ export default function HomeView() {
         }else {
           setData(JSON.parse(sessionStorage.getItem("home_data")))
         }
-
-
+        
     return ()=> {
-      i = 1000000
+      clearInterval(interval)
     }
+  },[])
+
+  useEffect(()=> {
+    if(!localStorage.getItem("continent")){
+    fetch('https://extreme-ip-lookup.com/json/')
+    .then( res => res.json())
+    .then(response => {
+       localStorage.setItem("continent",response.continent)
+     })
+    .catch((data) => {
+    })
+   }
   },[])
 
   window.addEventListener("load",()=> {

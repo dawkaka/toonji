@@ -1,4 +1,4 @@
-#quiz-main-container,#face-off-main-container {
+#quiz-main-container{
   display: none;
   position: fixed;
   z-index: 2;

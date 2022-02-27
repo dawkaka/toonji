@@ -19,32 +19,65 @@ export default function CommentSideView(props) {
       const {promiseInProgress} = usePromiseTracker({area:'add-comment'})
        useEffect(()=> {
          let didCancel = false;
-         trackPromise(
-          axios.get(BASEURL + `/comments${window.location.pathname}/${0}`)
-          .then(res => {
-              if(res.data.type === 'ERROR'){
-                errorPrompt(res.data.msg)
-              }else {
-                  if(!didCancel){
-                setComments([])
-                setComments(res.data.comments)
-                if(res.data.isEnd) {
-                  setCommentEnd(true)
-                  setLoadCount(0)
-                }
-                setLoadCount(res.data.nextFetch)
-              }
-            }
-          })
-          .catch(e => {
-            errorPrompt("something went wrong")
-          }),'comments')
+         // trackPromise(
+         //  axios.get(BASEURL + `/comments${window.location.pathname}/${0}`)
+         //  .then(res => {
+         //      if(res.data.type === 'ERROR'){
+         //        errorPrompt(res.data.msg)
+         //      }else {
+         //          if(!didCancel){
+         //        setComments([])
+         //        setComments(res.data.comments)
+         //        if(res.data.isEnd) {
+         //          setCommentEnd(true)
+         //          setLoadCount(0)
+         //        }
+         //        setLoadCount(res.data.nextFetch)
+         //      }
+         //    }
+         //  })
+         //  .catch(e => {
+         //    errorPrompt("something went wrong")
+         //  }),'comments')
+            createObserver(didCancel)
           return ()=> didCancel = true;
        },[])
+
+     function createObserver(didCancel) {
+
+        let observer = new IntersectionObserver(()=> {
+          if(!didCancel){
+            trackPromise(
+              axios.get(BASEURL + `/comments${window.location.pathname}/${0}`)
+              .then(res => {
+                if(res.data.type === 'ERROR'){
+                  errorPrompt(res.data.msg)
+                }else {
+                    setComments([])
+                    setComments(res.data.comments)
+                    if(res.data.isEnd) {
+                      setCommentEnd(true)
+                      setLoadCount(0)
+                    }
+                    setLoadCount(res.data.nextFetch)
+                    didCancel = true
+                }
+              })
+              .catch(e => {
+                errorPrompt("something went wrong")
+              }),'comments')
+          }
+        })
+        const commentContainer = document.querySelector("#comments-container")
+        observer.observe(commentContainer)
+     }
+
+
 
        const commentDeleted = (e) => {
          e.target.parentNode.parentNode.parentNode.style.display = "none"
        }
+
        let lyricComments = comments.map((a,indx) => {
            return (
              <LyricsComments key = {indx}
@@ -119,7 +152,7 @@ export default function CommentSideView(props) {
    }
 
   return (
-    <div className = "comment-side-container">
+    <div id = "comment-side-container">
     <div className = "read-side-header-container">
       <h2 id = "song-title">Comments</h2>
     </div>
@@ -241,7 +274,12 @@ function LyricsComments(props) {
 export function Options(props) {
 
   const showOptions = (e) => {
-    let target = e.target.parentNode.childNodes[3]
+    let target = e.target.parentNode.childNodes[1]
+
+    if(e.target.className === "option-dot") {
+      target = e.target.parentNode.parentNode.childNodes[1]
+    }
+
     if(target.style.display === "block") {
       target.style.display = "none"
     }else {
@@ -256,6 +294,7 @@ export function Options(props) {
    }else {
      path = BASEURL + `/delete/${props.item}/${props.songId}/${props.commentId}`
    }
+   if(!window.confirm("are you sure you want to delete ?")) return
       axios.post(path)
       .then(res => {
         if(res.data.type === 'SUCCESS'){
@@ -283,24 +322,24 @@ const handleEdit = (e)=> {
 }
 
   return (
-    <div className = "options-container">
-    <div className = "option-dot"
-    onClick = {showOptions} ></div>
-    <div className = "option-dot"
-    onClick = {showOptions} ></div>
-    <div className = "option-dot"
-    onClick = {showOptions} ></div>
-    <div className = "options-list-container">
+    <div className = "options-container" >
+    <div onClick = {showOptions} className = "option-dots-container">
+    <div className = "option-dot"></div>
+    <div className = "option-dot"></div>
+    <div className = "option-dot"></div>
+    </div>
+    <ul className = "options-list-container">
+    <span className = "dots-close" onClick = {(e)=> e.target.parentNode.style.display = "none" }>x</span>
     {props.isUser && props.options.userOnly.map((a,indx) => {
       return <li key = {indx}
-      className = "option-list" onClick = {a === 'delete' ? handleDelete:handleEdit}>{a}</li>
+      className = "option-list" onClick = {a === 'delete' ? handleDelete : handleEdit}>{a}</li>
     })}
     {!props.isUser &&  props.options.allUsers.map((a,indx)=> {
         return <li key = {indx} className = "option-list"
         onClick = {a === "award" ? props.giveAward: ()=>{}}>{a}</li>
       })
     }
-    </div>
+    </ul>
     </div>
   )
 }

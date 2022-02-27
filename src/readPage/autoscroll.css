@@ -1,5 +1,5 @@
 #autoscroll-container {
-  position: absolute;
+  position: fixed;
   width: 5px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -72,35 +72,51 @@
 }
 
 #award-br-container {
+  display: none;
   position: fixed;
+  padding: 25px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px 10px rgba(0,0,0,0.07);
   width: 30%;
   left: 50%;
-  display: none;
   transform: translateX(-50%);
   z-index: 222;
 }
 #awards-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 5px;
+    grid-column-gap: 10px;
     grid-row-gap: 10px;
     padding: 10px;
 }
 .award-selected {
-  border:  2px solid green !important
+  background-color: green !important;
 }
+
 .award-container {
-  border: 2px solid white
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 5px;
 }
+
+.award-container:hover {
+  opacity: 0.9
+}
+
+
 .award-container p {
   margin: 0;
 }
+
 .award-image {
-  width: 30px;
+  background-color: var(--main-color);
   height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
 #award-br-buttons-container {

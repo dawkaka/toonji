@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './IconsCss.css'
 import '../fontawesome/fontawesome-free-5.14.0-web/css/all.css'
 
@@ -7,8 +8,7 @@ let number = props.number ? <span className = {props.total}>{props.number}</span
 
   return (
     <div className = "bar-icons">
-    <i className= {props.className} id = {props.id}
-    onClick = {props.onClick}></i>
+    <i className= {props.className} id = {props.id} onClick = {props.onClick}></i>
     {number}
     </div>
   )
@@ -18,7 +18,7 @@ export function FooterIcon(props) {
 
   return (
     <div className = "footer-icons">
-    <i className = {props.className} id = {props.id}></i>
+    {props.icon}
     </div>
   )
 }

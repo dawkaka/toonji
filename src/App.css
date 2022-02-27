@@ -2,9 +2,9 @@
   --main-color: #764abc
 }
 
-
 button {
   appearance: none;
   -moz-appearance: none;
   border: none;
+  cursor: pointer;
 }

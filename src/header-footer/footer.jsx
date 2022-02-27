@@ -1,5 +1,9 @@
 import React,{useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import {AiFillHome} from 'react-icons/ai'
+import {BsFillBarChartFill} from 'react-icons/bs'
+import {FaHeart, FaUser} from 'react-icons/fa'
+
 import {FooterIcon} from '../Icons/allIcons'
 import "./footer.css"
 
@@ -33,22 +37,42 @@ import "./footer.css"
   return (
     <>
     <div className = "footer-container">
-     <Link to="/"><FooterIcon className = "footer-icon fas fa-home"
-     id = "home-icon"/></Link>
-     <Link to="/chart"><FooterIcon className = "footer-icon fas fa-chart-bar"
-     id = "f-chart-icon"/></Link>
-     <Link to="/favourites"><FooterIcon className = "footer-icon fas fa-heart"
-     id = 'f-heart-icon'/></Link>
-     <Link to="/my/profile"><FooterIcon className = "footer-icon fas fa-user" /></Link>
+     <Link to="/">
+     <FooterIcon
+     icon = {<AiFillHome className = "footer-icon fas fa-home" id = "home-icon"  />}
+     /> </Link>
+     <Link to="/chart">
+     <FooterIcon
+      icon = {<BsFillBarChartFill className = "footer-icon fas fa-chart-bar"
+      id = "f-chart-icon" /> }/>
+     </Link>
+     <Link to="/favourites">
+     <FooterIcon
+     icon = {<FaHeart className = "footer-icon fas fa-heart"
+     id = 'f-heart-icon'/>}/>
+     </Link>
+     <Link to="/my/profile">
+     <FooterIcon icon = {<FaUser className = "footer-icon fas fa-user"/>}/>
+     </Link>
     </div>
     <div className = "footer-container-2">
-    <Link to="/"><FooterIcon className = "footer-icon fas fa-home"
-    id = "home-icon-2"/></Link>
-    <Link to="/chart"><FooterIcon className = "footer-icon fas fa-chart-bar"
-    id = "f-chart-icon-2"/></Link>
-    <Link to="/favourites"><FooterIcon className = "footer-icon fas fa-heart"
-    id = 'f-heart-icon-2'/></Link>
-    <Link to="/my/profile"><FooterIcon className = "footer-icon fas fa-user" /></Link>
+    <Link to="/">
+    <FooterIcon
+    icon = {<AiFillHome className = "footer-icon fas fa-home" id = "home-icon-2"  />}
+    /> </Link>
+    <Link to="/chart">
+    <FooterIcon
+     icon = {<BsFillBarChartFill className = "footer-icon fas fa-chart-bar"
+     id = "f-chart-icon-2" /> }/>
+    </Link>
+    <Link to="/favourites">
+    <FooterIcon
+    icon = {<FaHeart className = "footer-icon fas fa-heart"
+    id = 'f-heart-icon-2'/>}/>
+    </Link>
+    <Link to="/my/profile">
+    <FooterIcon icon = {<FaUser className = "footer-icon fas fa-user"/>}/>
+    </Link>
     </div>
     </>
   );

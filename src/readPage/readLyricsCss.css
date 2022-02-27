@@ -1,10 +1,11 @@
 .read-page-container{
   margin: 0;
+  padding: 0;
 }
+
 #read-header-container {
   display: flex;
   padding: 7px;
-  width: 100vw;
   overflow-x: hidden;
   position: fixed;
   z-index: 999;
@@ -31,23 +32,27 @@
   grid-template-columns: 6fr 4fr;
 }
 
-::-webkit-scrollbar {
-  width: 7px;
+@media only screen and (min-width: 701px) {
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+   ::-webkit-scrollbar-track {
+     box-shadow: inset 0 0 5px lightgray;
+     background: lightgray;
+     width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    width: 7px;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    width: 10px;
+    background-color:darkgray;
+  }
+
 }
- ::-webkit-scrollbar-track {
-   box-shadow: inset 0 0 5px lightgray;
-   background: lightgray;
-   width: 5px;
-}
-::-webkit-scrollbar-thumb {
-  background: gray;
-  width: 7px;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  width: 10px;
-  background-color:darkgray;
-}
+
 
 .read-side-header-container {
   /* background-color: rgba(0,0,0,0.03); */
@@ -99,9 +104,59 @@
   grid-column-gap: 10px;
   justify-content: space-between;
 }
-.read-side-controls lable {
-  font-style: italic;
+
+
+.checkbox-container {
+  display: flex;
+  justify-content: center;
+  margin-top: -3px;
 }
+
+.tooltip input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+.tooltip:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+.tooltip input:checked ~ .checkmark {
+  background-color: var(--main-color);
+}
+
+.checkmark {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 13px;
+  width: 13px;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.tooltip input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.tooltip .checkmark:after {
+  left: 3px;
+  width: 4px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 #heart-down {
   margin-top: 3px;
 }
@@ -209,7 +264,7 @@
   border-radius: 10px;
   margin-left: 50%;
   transform: translate(-50%);
-  background-color: rgba(0,0,0,0.03);
+  background-color: lightgray;
 }
 #song-info h2 {
   text-align: left;
@@ -258,16 +313,16 @@ textarea {
     overflow-x: hidden;
     overflow-y: auto;
     padding-right: 5px;
-    width: 98%;
+
   }
   .read-side-controls {
-    grid-template-columns:2fr 1fr 2fr 1fr;
+    grid-template-columns:1fr 1fr 2fr 1fr;
   }
   .editBr-container {
     width: 80%;
   }
   #autoscroll-container {
-     display: none;
+      display: none;  
   }
   .fa-fire-alt{
     margin-bottom: 10px;
@@ -278,7 +333,7 @@ textarea {
     padding-right: 5px;
     margin-top: 0;
     overflow-x: hidden;
-    width: 100%;
+    width: 100vw;
   }
   .comment-container {
     margin: 5px;
@@ -288,9 +343,10 @@ textarea {
   }
 
 }
+
 @media only screen and (max-width: 500px) {
   .puchline-container{
-    width: 85%;
+    width: 100%;
   }
 
 }

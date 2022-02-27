@@ -7,9 +7,9 @@ function TopFanQuiz(props) {
     <div id = "quiz-main-container">
     <div className = "quiz-notification">
      <h1>A TOP FAN ?</h1>
-     <p>We are going to give you a series of quizes based on Ksi's lyrics,
+     <p>We are going to give you a series of quizes based on the artist's lyrics,
      you get points base on how correctly and how fast you answer them.
-     Are you ready ?
+     Are you ready?
      </p>
      <div  className = "quiz-notification-confirm">
      <button className = "profile-buttons cancel" onClick = {()=>{

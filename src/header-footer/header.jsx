@@ -50,7 +50,7 @@ export function Logo() {
 
   return (
     <div className = "logo">
-    <img src = "/logo.jpg" alt = "toonji logo" />
+    <img src = "/logo.png" alt = "toonji logo" />
     </div>
   )
 }
@@ -135,8 +135,7 @@ function Notifs(props) {
   const id = props.id || "notifs-container"
   const openNotifs = () => {
     let cont =  document.getElementById("notifs-messages-container")
-    cont.style.right = 0;
-    cont.style.top = 0;
+    cont.style.display = "block";
     let dc  = document.querySelector('.pop-left-container')
     dc.style.right = "-300px";
     dc.style.top = "-300px";
@@ -159,8 +158,7 @@ function Notifs(props) {
 function NotifsMessages(props) {
   const closeContainer = (e)=> {
     let doc  = document.getElementById("notifs-messages-container")
-    doc.style.right = "-100%";
-    doc.style.top = "-100%";
+    doc.style.display ="none";
   }
   const notifs = props.notifs
   return (
@@ -169,6 +167,7 @@ function NotifsMessages(props) {
     <div className = "close-bar-one"></div>
     <div className = "close-bar-two"></div>
     </div>
+    <div id = "notifs-messages">
     {notifs.others.map((a,indx)=> {
       return (
         <div key = {indx} className = "notif-message-container">
@@ -226,6 +225,7 @@ function NotifsMessages(props) {
       )
     })}
     {props.hasNotifs < 1 && <h2>No new notifications</h2>}
+    </div>
     </div>
   )
 }

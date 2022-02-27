@@ -99,27 +99,36 @@ color: white;
   background-color: white;
 }
 #notifs-messages-container {
-  display: block;
+  display: none;
+  position: fixed;
+  background-color: white;
+  right: 20px;
+  top: 20px;
   z-index: 2;
-  padding: 50px 10px;
-  background-color: rgba(0,0,0,0.9);
-  top: -100%;
-  right: -100%;
-  width: 50%;
-  height: 60%;
+  padding: 20px 15px;
+  width: 30%;
+  height: 85%;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-bottom: 10px;
-  position: fixed;
-  transition: all 1s;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px gray;
 }
-
-#notifs-messages-container h2 {
-  color: gray;
+#notifs-messages {
+  display: flex;
+  padding: 10px 10px;
+  width: 95%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#notifs-messages h2 {
+  color: lightgray;
+  text-align: center;
+  width: max-content;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%,-50%);
 }
 
 .pop-left-container {
@@ -135,17 +144,15 @@ color: white;
 }
 .close-container{
   display: block;
-  margin-right: -15px;
-  margin-top: -30px;
-  height: 25px;
-  width: 30px;
-  cursor: pointer;
-  margin-right: 15px;
   float: right;
+  height: 25px;
+  width: 20px;
+  cursor: pointer;
+
 }
 .close-bar-one {
   height: 2px;
-  width: 30px;
+  width: 20px;
   margin-top: 10px;
   margin-left: -1px;
   background-color: gray;
@@ -153,7 +160,7 @@ color: white;
 }
 .close-bar-two {
   height: 2px;
-  width: 30px;
+  width: 20px;
   margin-top: -2px;
   margin-left: -1px;
   background-color: gray;
@@ -203,6 +210,7 @@ color: white;
 
 .notif-message-container {
   display: flex;
+  width: 100%;
   align-items: center;
   background-color: white;
   padding: 10px;
@@ -231,11 +239,15 @@ color: white;
   padding-left: 5px;
 }
 .notif-message-container h4 {
-  margin: 5px 0
+  margin: 5px 0;
+  color: gray;
 }
 .notif-message-container p {
-  margin: 0 5px 5px 5px
+  margin: 0 5px 5px 5px;
+  color: gray;
 }
+
+
 
 
 @media only screen and (max-width: 600px) {
@@ -256,9 +268,8 @@ color: white;
      color: var(--main-color);
    }
    #notifs-messages-container {
-     width: 90%;
-     top: -55%;
-     right: -100%;
+     width: 70%;
+     height: 70%;
    }
 
   .humburger-container {
@@ -292,4 +303,12 @@ color: white;
     padding: 2px 5px;
   }
 
+}
+
+@media only screen and (max-width: 500px) {
+  #notifs-messages-container {
+    width: 90%;
+    height: 80%;
+    margin-right: 0;
+  }
 }

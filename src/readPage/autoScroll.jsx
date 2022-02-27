@@ -68,12 +68,13 @@ export function AwardBr() {
                       {name:"copper",image:"/copper.jpg",numberOfCoins:5}]
 
     function giveAWard() {
-      let selectedAwards
+
       let awardStore = document.getElementById("award-br-container")
       let awards = Array.from(document.getElementById("awards-container").childNodes)
-      selectedAwards = awards.filter(a => {
+      let selectedAwards = awards.filter(a => {
         return a.className.split(" ").some(a => a === "award-selected")
       }).map(a => a.childNodes[0].innerText)
+      if(selectedAwards.length < 1) return
       let awardInfo = awardStore.className.split("-")
       let songId,punchId,brId,commentId,reqURL;
        songId = awardInfo[1]
@@ -106,7 +107,6 @@ export function AwardBr() {
            data
          })
         .then((res)=>{
-          console.log(res.data);
             let message = res.data.msg
             if(res.data.type === 'ERROR') {
               errorPrompt(message)
@@ -134,11 +134,15 @@ export function AwardBr() {
      </div>
      <div id = "award-br-buttons-container">
      <button id = "awardBr-cancel-button" onClick = {()=> {
+       const awardContainers = document.getElementsByClassName("award-container")
+       Array.from(awardContainers).forEach((awardContainer, i) => {
+            awardContainer.classList.remove("award-selected")
+       });
        document.getElementById("award-br-container").style.display = "none"
-     }}>cancel</button>
+     }}>close</button>
      <button id = "awardBr-submit-button" onClick = {giveAWard}>
      <LoadingSpinner color = 'white' height = {20} width = {20} area = 'award-br'/>
-     {!promiseInProgress && 'Award'}</button>
+     {!promiseInProgress && 'award'}</button>
      </div>
     </div>
   )

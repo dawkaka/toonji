@@ -1,15 +1,15 @@
 import React,{useEffect,useState} from 'react';
 import axios from 'axios'
-import {usePromiseTracker,trackPromise} from "react-promise-tracker";
+import {trackPromise} from "react-promise-tracker";
 import {Link} from 'react-router-dom'
 
 import './profile.css';
 import './editProfile.css'
 import {BASEURL,IMAGEURL} from '../credentials'
-import {errorPrompt,successPrompt,showLoginModal} from '../prompts/promptMessages'
+import {errorPrompt,showLoginModal} from '../prompts/promptMessages'
 import LoadingSpinner from '../prompts/loadingComponent';
 import EditProfile from './editProfile'
-import {Digest,TopFans} from './profile'
+import {Digest,Followers,Following} from './profile'
 import {numberToKOrM} from '../homePage/homeFunctions'
 import {ReloadButton} from '../readPage/comments'
 import {EditBr} from '../readPage/autoScroll'
@@ -19,11 +19,13 @@ export default function MyProfileView() {
       const [userData,setUserData] = useState({})
       const [userBreaks,setUserBreaks] = useState([])
       const [brLoaderCount,setBrLoaderCount] = useState(0)
-      const [topFan,setTopFan] = useState({data:[],header:false})
       const [faceoffData,setFaceOffData] = useState([])
       const [brEnd,setBrEnd] = useState(false)
       const [brLoadSpinning,setBrLoadSpinning] = useState(false)
-
+      const [followersFetchInfo, setFollowersFetchInfo] = useState({nextFetch:0,isEnd: false})
+      const [followingFetchInfo, setFollowingFetchInfo] = useState({nextFetch: 0, isEnd: false})
+      const [followingInfo, setFollowingInfo] = useState([])
+      const [followersInfo, setFollowersInfo] = useState([])
 
        useEffect(()=>{
 
@@ -100,34 +102,47 @@ export default function MyProfileView() {
           })
        }
 
-       function showTopFans(e) {
-         document.getElementById("top-fans-modal").style.display = "block";
-         let path ="";
-         let detailsToShow = e.target.className === "achievements" ?
-         e.target.id : e.target.parentNode.id;
-         if(detailsToShow === "following") {
-           path =   `/p/my/following`
-         }else if (detailsToShow === "followers"){
-           path = `/p/my/followers`
-         }
 
+       const showFollowers = () => {
+         document.getElementById("followers-modal").style.display = "block";
+         let path = `/p/my/followers/${followersFetchInfo.nextFetch}`
+         setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
          trackPromise(
-          axios.get(BASEURL + path)
-          .then(res =>{
-            if(res.data.type === 'ERROR'){
-              errorPrompt(res.data.msg)
-            }else {
-             if(detailsToShow === "followers"){
-               setTopFan({data:res.data,header: "followers"})
-             }else {
-               setTopFan({data:res.data,header:"following"})
-             }
+         axios.get(BASEURL + path)
+         .then(res =>{
+           if(res.data.type === 'ERROR'){
+             errorPrompt(res.data.msg)
+           }else {
+               setFollowersInfo([...followersInfo,...res.data.data])
+               setFollowersFetchInfo({nextFetch:res.data.nextFetch,isEnd:res.data.isEnd, isSpinning: false})
           }
-          })
-          .catch(e =>{
-            errorPrompt("something went wrong")
-          }),'top-fans')
+         })
+         .catch(e =>{
+           setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
+           errorPrompt("something went wrong")
+         }),"followers")
        }
+
+       const showFollowing = () => {
+         document.getElementById("following-modal").style.display = "block";
+         let path = `/p/my/following/${followingFetchInfo.nextFetch}`
+         setFollowingFetchInfo({...followersFetchInfo, isSpinning: false})
+         trackPromise(
+         axios.get(BASEURL + path)
+         .then(res =>{
+           if(res.data.type === 'ERROR'){
+             errorPrompt(res.data.msg)
+           }else {
+               setFollowingInfo([...followingInfo,...res.data.data])
+               setFollowingFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd, isSpinning: false})
+          }
+         })
+         .catch(e =>{
+           setFollowingFetchInfo({...followersFetchInfo, isSpinning: false})
+           errorPrompt("something went wrong")
+         }),"following")
+       }
+
 
        const showFaceOff = ()=> {
            document.getElementById("face-off-records-modal").style.display = "block"
@@ -149,10 +164,13 @@ export default function MyProfileView() {
     <>
     <EditProfile name = {userData.name} bio = {userData.bio}
     picture = {userData.picture} reqURL = {BASEURL + '/profile/edit-profile'}/>
-    <TopFans topFans = {topFan.data} header = {topFan.header}/>
+    <Followers followers = {followersInfo} fetchInfo = {followersFetchInfo}  loaderClick = {showFollowers}/>
+    <Following following = {followingInfo} fetchInfo = {followingFetchInfo}  loaderClick = {showFollowing}/>
     <FaceoffRecord faceoffData = {faceoffData}/>
-    <Faceoff />
     <div className = "profile-view-container">
+    <div className = "back-icons-container">
+    <BackIcon />
+    </div>
     <div id= "profile-info-container">
     <img src = {`${IMAGEURL}${userData.picture}?tr=w-350,h-350,c-at_max`} id = "profile-photo" alt = "artist" />
     {<h2 className= "profile-name" id = "profile-name">
@@ -161,9 +179,9 @@ export default function MyProfileView() {
     <div className = "profile-achievements-container">
     <Achievements id = "points" top = {`${userData.points === undefined ? "-":numberToKOrM(userData.points)}`} bottom = 'points' />
     <Achievements id = "following" top = {`${userData.following === undefined ? "-":numberToKOrM(userData.following)}`}
-     bottom = 'following' onClick = {showTopFans} />
+     bottom = 'following' onClick = {showFollowing} />
     <Achievements id = "followers" top = {`${userData.followers === undefined ? "-":numberToKOrM(userData.followers)}`}
-     bottom = 'followers' onClick = {showTopFans}/>
+     bottom = 'followers' onClick = {showFollowers}/>
      <Achievements id = "coins" top = {userData.coins} bottom = "coins"/>
      <Achievements id = "face-off-stats" top = {userData.battleRecord}
      bottom = "battles" onClick = {showFaceOff}/>
@@ -173,9 +191,9 @@ export default function MyProfileView() {
       document.getElementById("edit-profile-main").style.display = "block"
     }}>edit<i className = "fas fa-edit"></i>
     </button>
-    <button className="profile-buttons" onClick = {()=>{
-      document.getElementById("face-off-main-container").style.display = "flex"
-    }}>battle</button>
+    <Link to = "/b/battle-link">
+    <button className="profile-buttons">battle</button>
+    </Link>
     <button className = "profile-buttons"><a href = "/buy-coins.html" target = "_SELF">coins</a></button>
     </div>
     <div id = "profile-feed">
@@ -296,72 +314,6 @@ function Battle(props) {
      <p className = {userPoints > oppPoints ? "lost-red":
       userPoints < oppPoints ? "won-green":""}>{oppPoints}</p>
      </div>
-    </div>
-  )
-}
-
-
-function Faceoff() {
-  const {promiseInProgress} = usePromiseTracker({area: "battle-link"})
-  const location = window.location.origin + "/battle/"
-  const [battleLink,setBattleLink] = useState("")
-  const [linkFetched,setLinkFetched] = useState(false)
-  const getLink = () => {
-    if(linkFetched) {
-       document.getElementById("face-off-main-container").style.display = "none"
-       return
-    }
-    trackPromise(
-     axios.get(BASEURL + "/battle/battle-link")
-     .then(res => {
-       if(res.data.type === 'ERROR'){
-         errorPrompt(res.data.msg)
-       }else {
-        setBattleLink(location + res.data.battleId)
-        setLinkFetched(true)
-       }
-     })
-     .catch(e =>{
-       errorPrompt("something went wrong")
-     }),'battle-link')
-  }
-  const copyBattleLink = (e) => {
-    try{
-    let inp = document.createElement("input")
-    inp.setAttribute('type',"text");
-    inp.value = document.getElementById("display-battle-link").value
-    document.getElementById("face-off-main-container").appendChild(inp);
-    inp.select();
-    document.execCommand("copy")
-    inp.style.display = "none";
-    successPrompt("link copied")
-  }catch(e) {
-    errorPrompt("something went wrong")
-  }
-  }
-  return (
-    <div id = "face-off-main-container" >
-    <div className = "quiz-notification">
-     <h1>READY FOR A FACE OFF ?</h1>
-     <p>We are going to give you a link you can share with friends to
-     challenge them to Ksi songs lyrics face off, Are you ready?
-     <br />
-     <small> link only valid for 24 hours </small>
-     </p>
-     <div  className = "quiz-notification-confirm">
-     <button className = "profile-buttons cancel" onClick = {()=>{
-       document.getElementById("face-off-main-container").style.display = "none"
-     }}>back</button>
-     <LoadingSpinner height = {30} width = {30} area = "battle-link" />
-     {!promiseInProgress && <button className = "profile-buttons" onClick = {getLink}>{linkFetched ? "exit" : "Yes"}</button>}
-     </div>
-     <input id = "display-battle-link" type = "text" value = {battleLink} readOnly/>
-     <button id = "copy-battle-link" onClick = {copyBattleLink}>copy</button>
-     <br/>
-     <br/>
-     <br/>
-     <small> open a new browser tab and paste the link to start </small>
-    </div>
     </div>
   )
 }

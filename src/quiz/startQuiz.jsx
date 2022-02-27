@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import strSimilarity from 'string-similarity'
 import { trackPromise} from 'react-promise-tracker';
+import {Helmet} from 'react-helmet'
 
 import './startQuizCss.css'
 import LoadingSpinner from '../prompts/loadingComponent';
@@ -130,6 +131,11 @@ function StartQuiz() {
     <p>you had a total points of <span>{totalPoints}</span></p>
     <button className = "profile-buttons" onClick = {() => window.history.back()}>ok</button>
     </div>
+    <Helmet>
+    <title> TOP FAN QUIZ </title>
+    <meta name = "description"
+          content = "Answer questions based on selected artist lyrics to earn points and climb the artist top fan list"/>
+    </Helmet>
     </>
   )
 }
