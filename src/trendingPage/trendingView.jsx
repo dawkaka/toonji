@@ -24,9 +24,6 @@ export default function TrendingView() {
            trackPromise(
             axios.get(BASEURL + '/charts/'+chartParam)
             .then(res =>{
-              if(res.data.type === "ERROR"){
-                errorPrompt(res.data.msg)
-              }else {
                 switch (chartParam) {
                   case "Songs":
                   setChartResult(res.data)
@@ -44,10 +41,9 @@ export default function TrendingView() {
                   setChartResultUser(res.data)
                   sessionStorage.setItem("Users",JSON.stringify(res.data))
                 }
-              }
             })
             .catch(err => {
-              errorPrompt("something went wrong")
+                errorPrompt(err.response?.data.msg)
             })
          )}else {
            switch (chartParam) {

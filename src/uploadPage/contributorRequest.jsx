@@ -18,12 +18,9 @@ export default function ContributorRequest(){
       trackPromise(
       axios.post(BASEURL + "/p/contributor-request",{reason})
       .then((res)=>{
-        if(res.data.type === 'ERROR') {
-          errorPrompt(res.data.msg)
-        }else {
           setMsg(res.data.msg)
-        }
-      }).catch(e => console.log(e)),'contributor-request')
+      }).catch(err => errorPrompt(err.response?.data.msg))
+    )
     }
   }
 

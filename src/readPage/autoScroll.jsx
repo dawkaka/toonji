@@ -108,18 +108,15 @@ export function AwardBr() {
          })
         .then((res)=>{
             let message = res.data.msg
-            if(res.data.type === 'ERROR') {
-              errorPrompt(message)
-              if(message === "log in required") {
-                showLoginModal()
-              }
-              return
-            }
             successPrompt(message)
             document.getElementById("award-br-container").style.display = "none"
           })
         .catch((err)=>{
-          errorPrompt("something went wrong")
+          if(err.response.status === 401) {
+            showLoginModal()
+          }else {
+            errorPrompt(err.response?.data.msg)
+          }
         }),'award-br')
     }
 
@@ -191,15 +188,17 @@ export function EditBr(){
         }
       })
       .then(res => {
-        if(res.data.type === 'SUCCESS') {
+        
           successPrompt(res.data.msg)
           document.getElementById('editBr-container').style.display = "none"
-        }else {
-          errorPrompt(res.data.msg)
-        }
+
       })
-      .catch(e => {
-        errorPrompt("something went wrong")
+      .catch(err => {
+        if(err.response.status === 401) {
+          showLoginModal()
+        }else {
+          errorPrompt(err.response?.data.msg)
+        }
       }),'edit-br')
  }
 

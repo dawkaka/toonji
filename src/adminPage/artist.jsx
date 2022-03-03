@@ -27,14 +27,12 @@ function SongsSection() {
           trackPromise(
           axios.get(BASEURL + '/songs/user/'+param)
           .then(res => {
-            if(res.data.type === 'ERROR') {
-              errorPrompt('something went wrong')
-            }else {
+
               setSongs(res.data)
-            }
+
           })
-          .catch(e => {
-            errorPrompt("something went wrong")
+          .catch(error => {
+            errorPrompt(error.response?.data.msg)
           }),'songs-area')
    }
   return (
@@ -71,15 +69,11 @@ function OthersSongCard(props) {
    if(!window.confirm(`sure want to delete the song ${props.songTitle} by ${props.songArtist}?`)) return
     axios.post(BASEURL + '/songs/delete/'+props.songId)
     .then(res => {
-      if(res.data.type === 'ERROR'){
-        errorPrompt(res.data.msg)
-      }else {
         setDeleted(true)
         successPrompt(res.data.msg)
-      }
     })
     .catch(e => {
-      errorPrompt('something went wrong')
+      errorPrompt(e.response?.data.msg)
     })
   }
 
@@ -172,15 +166,10 @@ function CreateVerfiedProfile(){
     })
     .then((res)=>{
       document.getElementById("add-artist").style.display = "block"
-       if(res.data.type === 'SUCCESS'){
          successPrompt(res.data.msg)
-       }
-       if(res.data.type === 'ERROR'){
-         errorPrompt(res.data.msg)
-       }
   })
    .catch(e=>{
-     errorPrompt("something went wrong")
+    errorPrompt(e.response?.data.msg)
   }),'add-verified-artist')
   }
  return (

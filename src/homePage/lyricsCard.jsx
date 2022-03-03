@@ -25,21 +25,15 @@ export default function LyricsReviewCard(props) {
     axios.post(BASEURL + '/favourited/' + props.songId)
     .then(res => {
       let message = res.data.msg
-      if(res.data.type === "SUCCESS"){
         successPrompt(message)
-     }else {
-        toggleFavourite()
-     }
-
-   if(res.data.type === "ERROR"){
-     if(message === 'log in required') {
-         showLoginModal()
-     }
-       errorPrompt(message)
-  }
   })
    .catch((err)=>{
-     errorPrompt("something went wrong")
+     toggleFavourite()
+     if(err.response.status === 401) {
+       showLoginModal()
+     }else {
+       errorPrompt(err.response?.data.msg)
+     }
   })
 }
 

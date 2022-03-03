@@ -35,15 +35,15 @@ const axiosGetBreakdowns = () => {
   trackPromise(
     axios.get(`${BASEURL}/breakdowns${window.location.pathname}/${props.indx}`)
     .then(res => {
-      if(res.data.type === "ERROR"){
-       errorPrompt(res.data.msg)
-     }else {
        setBrDowns([])
        setBrDowns(res.data)
-     }
     })
-    .catch(er => {
-      errorPrompt("something went wrong")
+    .catch(err => {
+      if(err.response.status === 401) {
+        showLoginModal()
+      }else {
+        errorPrompt(err.response?.data.msg)
+      }
     }),'breakdown-area')
 }
     function openBreakdowns(e) {
@@ -73,15 +73,14 @@ const axiosGetBreakdowns = () => {
            successPrompt(message)
          }else {
            setUserFav(!userFav)
-           if(res.data.msg === "log in required") {
-             showLoginModal()
-             return
-           }
-           errorPrompt(message)
          }
       })
       .catch(err => {
-        errorPrompt("something went wrong")
+        if(err.response.status === 401) {
+          showLoginModal()
+        }else {
+          errorPrompt(err.response?.data.msg)
+        }
       })
    }
 
@@ -99,15 +98,13 @@ const axiosGetBreakdowns = () => {
        if(res.data.type === "SUCCESS"){
          successPrompt(message)
        }
-        if(res.data.type === "ERROR"){
-           if(res.data.msg === 'log in required') {
-             showLoginModal()
-           }
-          errorPrompt(message)
-       }
        })
         .catch((err)=>{
-          errorPrompt("something went wrong")
+          if(err.response.status === 401) {
+            showLoginModal()
+          }else {
+            errorPrompt(err.response?.data.msg)
+          }
        })
     }
 
@@ -159,27 +156,25 @@ const axiosGetBreakdowns = () => {
      setBrText('')
      axios.get(`${BASEURL}/breakdowns${window.location.pathname}/${props.indx}`)
      .then(res => {
-       if(res.data.type === "ERROR"){
-        errorPrompt(message)
-      }else {
         setBrDowns([])
         setBrDowns(res.data)
-      }
      })
-     .catch(er => {
-       errorPrompt("something went wrong")
+     .catch(err => {
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
      })
      successPrompt(message)
    }
-    if(res.data.type === "ERROR"){
-      if(message === "log in required") {
-        showLoginModal()
-      }
-      errorPrompt(message)
-   }
    })
     .catch((err)=>{
-      errorPrompt("something went wrong")
+      if(err.response.status === 401) {
+        showLoginModal()
+      }else {
+        errorPrompt(err.response?.data.msg)
+      }
    }),'add-breakdown')
    }
  const brDeleted = () => axiosGetBreakdowns()
@@ -262,15 +257,14 @@ export function Breakdowns (props) {
           }
          successPrompt(message)
     }
-     if(res.data.type === "ERROR"){
-       if(message === 'log in required') {
-         showLoginModal()
-       }
-      errorPrompt(message)
-    }
+
     })
      .catch((err)=>{
-       errorPrompt("something went wrong")
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
      })
     }
 

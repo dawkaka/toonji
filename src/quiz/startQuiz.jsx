@@ -22,20 +22,15 @@ function StartQuiz() {
                trackPromise(
                  axios.get(`${BASEURL}/top-fan-quiz${param}`)
                    .then(res => {
-                     if(res.data.type === "ERROR"){
-                       if(res.data.msg === 'log in required') {
-                         showLoginModal()
-                       }
-                       if(res.data.msg === "more coins required") {
-                         setGetCoins(true)
-                       }
-                       errorPrompt(res.data.msg)
-                     }else {
                        setQuestions(res.data)
-                     }
+
                    })
                    .catch(err => {
-                     errorPrompt("something went wrong")
+                     if(err.response.status === 401) {
+                       showLoginModal()
+                     }else {
+                       errorPrompt(err.response?.data.msg)
+                     }
                    })
                )
               setTimeStart(Date.now())
@@ -97,14 +92,14 @@ function StartQuiz() {
            axios.post(`${BASEURL}/top-fan${param}/${totalPoints}`)
              .then(res => {
                let msg = res.data.msg;
-               if(res.data.type === 'ERROR') {
-                 errorPrompt(msg)
-               }else {
                  successPrompt(msg)
-               }
              })
-             .catch(e => {
-               errorPrompt("something went wrong")
+             .catch(err => {
+               if(err.response.status === 401) {
+                 showLoginModal()
+               }else {
+                 errorPrompt(err.response?.data.msg)
+               }
              })
            document.getElementById("quiz-finish-result").style.display = "block"
          }

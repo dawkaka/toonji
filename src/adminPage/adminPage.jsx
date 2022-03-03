@@ -28,14 +28,11 @@ export default function AdminPanel() {
    }
   })
      .then(res => {
-      let message = res.data.msg;
-          if(res.data.type === "SUCCESS"){
             setIsAdmin(true)
-         }
-          if(res.data.type === "ERROR") errorPrompt(message)
+
        })
        .catch( error => {
-           errorPrompt("something went wrong")
+           errorPrompt(error.response?.data.msg)
        }),'admin-login')
      }
 

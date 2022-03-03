@@ -33,7 +33,7 @@ export function EditForm(props) {
     const [cover,setCover] = useState('')
     const [writers,setWriters] = useState('')
     const [youtube,setYoutube] = useState('')
-    
+
   function handleInputChange(e) {
     switch (e.target.id) {
       case "edit-artist-name":
@@ -96,12 +96,10 @@ export function EditForm(props) {
     setReleaseDate(''); setYoutube(""); setWriters("")
     successPrompt(message)
   }
-   if(res.data.type === "ERROR"){
-     errorPrompt(message)
-  }
+
   })
    .catch((err)=>{
-     errorPrompt("something went wrong")
+    errorPrompt(err.response?.data.msg)
   }),'edit-song')
 }
 
@@ -110,9 +108,6 @@ export function EditForm(props) {
     if(param.length > 8){
     axios.get(`${BASEURL}/edit-lyrics/${param}`)
       .then(res => {
-        if(res.data.type === "ERROR") {
-          errorPrompt(res.data.msg)
-        }else {
           let {artist,songTitle,songGenre,lyrics,
              otherArtists,producer,releaseDate,youtubeVideo,writers} = res.data;
           setArtist(artist)
@@ -131,11 +126,9 @@ export function EditForm(props) {
             }
           }
           setSongLyrics(lyric)
-
-        }
       })
       .catch(e => {
-         errorPrompt("something went wrong")
+         errorPrompt(e.response?.data.msg)
       })
   }
 }

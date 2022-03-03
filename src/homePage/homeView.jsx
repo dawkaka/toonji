@@ -29,20 +29,16 @@ export default function HomeView() {
        trackPromise(
           axios.get(BASEURL)
           .then(res => {
-            if(res.data.type === 'ERROR'){
-              errorPrompt(res.data.msg)
-            }else{
               setData(res.data);
               sessionStorage.setItem("home_data",JSON.stringify(res.data))
-            }
           })
           .catch(err =>{
-            errorPrompt("something went wrong")
+              errorPrompt(err.response?.data.msg)
           }),'recommended')
         }else {
           setData(JSON.parse(sessionStorage.getItem("home_data")))
         }
-        
+
     return ()=> {
       clearInterval(interval)
     }

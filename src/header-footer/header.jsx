@@ -62,20 +62,11 @@ export function Search() {
          if(searchParam.length > 0){
                 axios.get(`${BASEURL}/search/${searchParam}`)
                 .then((res)=>{
-               if(res.data.type === "ERROR"){
-                let prompt = document.getElementById("prompt")
-                document.getElementById("message").innerText = `${res.data.msg}`
-                prompt.className = "prompt-container animation errorBorder"
-                window.setTimeout(()=>{
-                  prompt.className = "prompt-container"
-                },5001)
-              }else {
                  setSearchResult(res.data)
-              }
               })
                .catch((err)=>{
                  let prompt = document.getElementById("prompt");
-                 document.getElementById("message").innerText = `something went wrong`
+                 document.getElementById("message").innerText = err.response?.data.msg
                  prompt.className = "prompt-container animation errorBorder"
                  console.log("done");
                  window.setTimeout(()=>{
@@ -236,16 +227,12 @@ function HeaderPopLeft(props) {
    if(!window.confirm("are you sure you want to logout ?")) return
         axios.post(BASEURL + '/p/log-out')
         .then(res => {
-          if(res.data.type ==='ERROR'){
-            errorPrompt(res.data.msg)
-          }else {
             props.handleSignedOut()
             successPrompt(res.data.msg)
-          }
         })
        .catch(e => {
          console.log(e);
-         errorPrompt('something went wrong')
+         errorPrompt(e.response?.data.msg)
        })
     }
 
@@ -325,17 +312,12 @@ function LogOut(props) {
 
       axios.post(BASEURL + '/p/log-out')
       .then(res => {
-        if(res.data.type ==='ERROR'){
-          errorPrompt(res.data.msg)
-        }else {
           props.handleSignedOut()
           document.cookie = "user_id=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
           successPrompt(res.data.msg)
-        }
       })
      .catch(e => {
-       console.log(e);
-       errorPrompt('something went wrong')
+         errorPrompt(e.response?.data.msg)
      })
   }
   return (

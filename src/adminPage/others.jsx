@@ -34,14 +34,10 @@ function UsersSection() {
          trackPromise(
          axios.get(BASEURL + '/users/'+param)
          .then(res => {
-           if(res.data.type === 'ERROR') {
-             errorPrompt(res.data.msg)
-           }else {
              setUsers(res.data)
-           }
          })
          .catch(e => {
-           errorPrompt("something went wrong")
+           errorPrompt(e.response?.data.msg)
          })
        )
   }
@@ -87,31 +83,22 @@ function OthersUserCard(props) {
      axios.post(BASEURL + '/users/verify/'+props.userName)
      .then(res => {
        let msg = res.data.msg;
-       if(res.data.type === 'ERROR') {
-         errorPrompt(msg)
-       }
-       if(res.data.type === 'SUCCESS'){
          setVerified(!verified)
          successPrompt(msg)
-       }
      })
      .catch(e => {
-       errorPrompt("something went wrong")
+       errorPrompt(e.response?.data.msg)
      })
    }
    const deleteUser = () => {
     if(!window.confirm("are you sure you want to delete this user?")) return
      axios.post(BASEURL + '/users/delete/'+props.userName)
      .then(res => {
-       if(res.data.type === 'ERROR'){
-         errorPrompt(res.data.msg)
-       }else {
          setDeleted(true)
          successPrompt(res.data.msg)
-       }
      })
      .catch(e => {
-       errorPrompt('something went wrong')
+       errorPrompt(e.response?.data.msg)
      })
    }
    let userInfo = {
@@ -152,14 +139,10 @@ function SongsSection() {
           trackPromise(
           axios.get(BASEURL + '/songs/title/'+param)
           .then(res => {
-            if(res.data.type === 'ERROR') {
-              errorPrompt('somethign went wrong')
-            }else {
               setSongs(res.data)
-            }
           })
           .catch(e => {
-            errorPrompt("something went wrong")
+            errorPrompt(e.response?.data.msg)
           }),'songs-area')
    }
   return (
@@ -196,15 +179,11 @@ function OthersSongCard(props) {
    if(!window.confirm(`sure want to delete the song ${props.songTitle} by ${props.songArtist}?`)) return
     axios.post(BASEURL + '/songs/delete/'+props.songId)
     .then(res => {
-      if(res.data.type === 'ERROR'){
-        errorPrompt(res.data.msg)
-      }else {
         setDeleted(true)
         successPrompt(res.data.msg)
-      }
     })
     .catch(e => {
-      errorPrompt('something went wrong')
+      errorPrompt(e.response?.data.msg)
     })
   }
 

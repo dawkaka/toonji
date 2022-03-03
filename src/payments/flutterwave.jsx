@@ -17,19 +17,16 @@ export default function FlutterWave() {
      trackPromise(
        axios.post(`${BASEURL}/buy-coins/flutterwave`,{amount: amount})
        .then(res => {
-         console.log(res);
-         if(res.data.type === "ERROR") {
-           errorPrompt(res.data.msg)
-           if (res.data.msg === "log in required") {
-              showLoginModal()
-           }
-         }else {
+
            window.location.assign(res.data.data.link)
-         }
+
        })
-       .catch(e => {
-          console.log(e);
-          errorPrompt("something went wrong")
+       .catch(err => {
+         if(err.response.status === 401) {
+           showLoginModal()
+         }else {
+           errorPrompt(err.response?.data.msg)
+         }
        }),"payment")
   }
 

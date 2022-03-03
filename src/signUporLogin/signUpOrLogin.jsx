@@ -99,21 +99,16 @@ export default function SignUpOrLogIN(props) {
         }
         })
     .then( res => {
-              let message = res.data.msg;
-              if(res.data.type === "SUCCESS"){
+          let message = res.data.msg;
+        if(res.data.type === "SUCCESS"){
             document.getElementById("sign-login-collapse").style.transform = "scale(0)"
             props.handleSignedIn();
             successPrompt(message)
-
             }
-           if(res.data.type === "ERROR") {
-             setErrorMessages([...res.data.data])
-             errorPrompt(message)
-           }
         })
-    .catch(error => {
-              errorPrompt("something went wrong")
-            }),'signup-area')
+    .catch(err => {
+        errorPrompt(err.response?.data.msg)
+        }),'signup-area')
      }
    }else if(e.target.value === "login"){
      if(userNameError !== '' || userPasswordError !== ''
@@ -137,10 +132,9 @@ export default function SignUpOrLogIN(props) {
              props.handleSignedIn();
              successPrompt(message)
            }
-            if(res.data.type === "ERROR") errorPrompt(message)
          })
-         .catch( error => {
-             errorPrompt("something went wrong")
+         .catch(err => {
+             errorPrompt(err.response?.data.msg)
          }),'login-area')
      }
    }

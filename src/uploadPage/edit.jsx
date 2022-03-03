@@ -36,9 +36,6 @@ export function EditForm(props) {
 
       axios.get(`${BASEURL}/edit-lyrics/${searchP}`)
         .then(res => {
-          if(res.data.type === "ERROR") {
-            errorPrompt(res.data.msg)
-          }else {
             let {artist,songTitle,songGenre,lyrics,
                otherArtists,producer,releaseDate,writers,youtubeVideo} = res.data;
             setArtist(artist)
@@ -57,10 +54,9 @@ export function EditForm(props) {
               }
             }
             setSongLyrics(lyric)
-          }
         })
-        .catch(e => {
-           errorPrompt("something went wrong")
+        .catch(err => {
+            errorPrompt(err.response?.data.msg)
         })
     },[])
 
@@ -128,12 +124,9 @@ export function EditForm(props) {
     setReleaseDate('');setYoutube(""); setWriters("")
     successPrompt(message)
   }
-   if(res.data.type === "ERROR"){
-     errorPrompt(message)
-  }
   })
    .catch((err)=>{
-     errorPrompt("something went wrong")
+       errorPrompt(err.response?.data.msg)
   }),'edit-song')
 }
 

@@ -73,16 +73,11 @@ function EditProfile(props){
       headers: {'Content-Type': 'multipart/form-data'}
     })
     .then((res)=>{
-      if(res.data.type === "SUCCESS"){
       handleFileChangeFinish()
      successPrompt(res.data.msg)
-      }
-   if(res.data.type === "ERROR"){
-     errorPrompt(res.data.msg)
-  }
   })
    .catch((err)=>{
-     errorPrompt("something went wrong")
+       errorPrompt(err.response?.data.msg)
   }),'edit-user')
   }
  return (

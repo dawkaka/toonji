@@ -24,9 +24,7 @@ export default function ReadLyricsView() {
         axios.get(BASEURL + window.location.pathname)
         .then(res =>{
           let message = res.data.message
-          if(res.data.type === 'ERROR') {
-            errorPrompt(message)
-          }else {
+
            setLyricData(res.data.modefiedData)
            setPerformanceData(res.data.performanceData)
            sessionStorage.setItem(window.location.pathname,JSON.stringify(res.data))
@@ -37,12 +35,11 @@ export default function ReadLyricsView() {
              .then(res => {
              })
              .catch(err => {
-                errorPrompt("something went wrong")
+                 errorPrompt(err.response?.data.msg)
              })
-         }
         })
         .catch(err => {
-          errorPrompt('something went wrong')
+            errorPrompt(err.response?.data.msg)
         }),'read-lyrics')
       }else {
         let sessionData = JSON.parse(sessionStorage.getItem(window.location.pathname))
@@ -205,15 +202,13 @@ function ReadPunchlines(props) {
         if(res.data.type === "SUCCESS"){
         successPrompt(message)
         }
-         if(res.data.type === "ERROR"){
-           if(res.data.msg === "log in required") {
-             showLoginModal()
-           }
-           errorPrompt(message)
-        }
     })
      .catch(err =>{
-       errorPrompt("something went wrong")
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
     })
   }
 
@@ -229,15 +224,14 @@ function ReadPunchlines(props) {
       }
       axios.post(`${BASEURL}/lyrics/rate/${numberOfStar}${window.location.pathname}`)
         .then(res =>{
-           if(res.data.type === "ERROR") {
-             if(res.data.msg === "log in required"){
-               showLoginModal()
-             }
-            errorPrompt(res.data.msg)
-          }
+
         })
-        .catch(e =>{
-          errorPrompt("something went wrong")
+        .catch(err =>{
+          if(err.response.status === 401) {
+            showLoginModal()
+          }else {
+            errorPrompt(err.response?.data.msg)
+          }
         })
     }
 
@@ -280,12 +274,14 @@ function ReadPunchlines(props) {
        document.getElementById("reports-container").style.display = "none"
        successPrompt(message)
    }
-    if(res.data.type === "ERROR"){
-      errorPrompt(message)
-   }
+
    })
     .catch(err =>{
-      errorPrompt('something went wrong')
+      if(err.response.status === 401) {
+        showLoginModal()
+      }else {
+        errorPrompt(err.response?.data.msg)
+      }
    })
    }
 

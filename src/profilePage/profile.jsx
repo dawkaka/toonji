@@ -67,10 +67,6 @@ export default function ProfileView() {
          let path = `/p${pathname.substr(pathname.lastIndexOf('/'))}`
          axios.get(BASEURL + path)
          .then(res => {
-           if(res.data.type === "ERROR"){
-             errorPrompt(res.data.msg)
-             return;
-           }
            if(!isCancel){
            setUserData(res.data);
            setFollowing(res.data.followers);
@@ -78,6 +74,11 @@ export default function ProfileView() {
          }
          })
          .catch(err =>{
+           if(err.response.status === 401) {
+             showLoginModal()
+           }else {
+             errorPrompt(err.response?.data.msg)
+           }
          })
 
         let path2 = `/p/songs${pathname.substr(pathname.lastIndexOf('/'
@@ -85,10 +86,7 @@ export default function ProfileView() {
         trackPromise(
          axios.get(BASEURL + path2)
          .then(res => {
-           if(res.data.type === "ERROR"){
-             errorPrompt(res.data.msg)
-             return;
-           }
+
            if(!isCancel){
            if(res.data.isEnd) {
              setSongsEnd(true)
@@ -101,16 +99,17 @@ export default function ProfileView() {
          }
          })
          .catch(err =>{
+           if(err.response.status === 401) {
+             showLoginModal()
+           }else {
+             errorPrompt(err.response?.data.msg)
+           }
          }),'profile-songs')
 
          let path3 = `/p/breakdowns${pathname.substr(pathname.lastIndexOf('/'))}/${0}`
          trackPromise(
           axios.get(BASEURL + path3)
           .then(res => {
-            if(res.data.type === "ERROR"){
-              errorPrompt(res.data.msg)
-              return;
-            }
             if(!isCancel){
             if(res.data.isEnd) {
               setBrEnd(true)
@@ -122,6 +121,11 @@ export default function ProfileView() {
           }
           })
           .catch(err =>{
+            if(err.response.status === 401) {
+              showLoginModal()
+            }else {
+              errorPrompt(err.response?.data.msg)
+            }
           }),'profile-songs')
 
          return ()=>{
@@ -150,16 +154,16 @@ const showTopFans = (e) => {
 
    axios.get(BASEURL + path)
    .then(res =>{
-     if(res.data.type === 'ERROR'){
-       errorPrompt(res.data.msg)
-     }else {
         setTopFansInfo([...topFansInfo,...res.data.data])
         setTopFansFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd, isSpinning: false})
-   }
    })
-   .catch(e =>{
+   .catch(err =>{
        setTopFansFetchInfo({...topFansFetchInfo, isSpinning: false})
-     errorPrompt("something went wrong")
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
    }),'top-fans')
 }
 
@@ -171,16 +175,16 @@ const showFollowers = () => {
   trackPromise(
   axios.get(BASEURL + path)
   .then(res =>{
-    if(res.data.type === 'ERROR'){
-      errorPrompt(res.data.msg)
-    }else {
         setFollowersInfo([...followersInfo,...res.data.data])
         setFollowersFetchInfo({nextFetch:res.data.nextFetch,isEnd:res.data.isEnd, isSpinning: false})
-   }
   })
-  .catch(e =>{
+  .catch(err =>{
     setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
-    errorPrompt("something went wrong")
+    if(err.response.status === 401) {
+      showLoginModal()
+    }else {
+      errorPrompt(err.response?.data.msg)
+    }
   }),"followers")
 }
 
@@ -193,13 +197,13 @@ const showFaceOff = ()=> {
     trackPromise(
      axios.get(BASEURL + path)
      .then(res =>{
-       if(res.data.type === 'ERROR'){
-         errorPrompt(res.data.msg)
-         return
-       }
         setFaceOffData(res.data)
-     }).catch(e =>{
-       errorPrompt("something went wrong")
+     }).catch(err =>{
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
      }),'face-off')
 }
 
@@ -220,17 +224,14 @@ const handleFollowClick = (e) => {
        })
    .then(res=>{
      let message = res.data.msg;
-      if(res.data.type === "ERROR"){
-        if(message === 'log in required') {
-          showLoginModal()
-        }
-          errorPrompt(message)
-      }else {
-          successPrompt(res.data.msg)
-      }
+      successPrompt(res.data.msg)
    })
    .catch(err=>{
-         errorPrompt("something went wrong")
+     if(err.response.status === 401) {
+       showLoginModal()
+     }else {
+       errorPrompt(err.response?.data.msg)
+     }
       })
 }
 
@@ -241,10 +242,6 @@ const handleFollowClick = (e) => {
   axios.get(BASEURL + path2)
     .then(res => {
       setSongsLoadSpinnig(false)
-      if(res.data.type === "ERROR"){
-        errorPrompt(res.data.msg)
-        return;
-      }else {
         if(res.data.isEnd) {
           setSongsEnd(true)
         }
@@ -252,10 +249,13 @@ const handleFollowClick = (e) => {
           let userSongsCopy = [...userSongs,...res.data.songs]
           setUserSongs([])
           setUserSongs(userSongsCopy)
-      }
     })
     .catch(err =>{
-      errorPrompt('something went wrong')
+      if(err.response.status === 401) {
+        showLoginModal()
+      }else {
+        errorPrompt(err.response?.data.msg)
+      }
     })
  }
 
@@ -267,10 +267,6 @@ const handleFollowClick = (e) => {
 axios.get(BASEURL + path3)
     .then(res => {
       setBrLoadSpinning(false)
-      if(res.data.type === "ERROR"){
-        errorPrompt(res.data.msg)
-        return;
-      }
       if(res.data.isEnd) {
         setBrEnd(true)
       }
@@ -280,7 +276,11 @@ axios.get(BASEURL + path3)
       setBrLoaderCount(res.data.nextFetch)
     })
     .catch(err =>{
-      errorPrompt('something went wrong')
+      if(err.response.status === 401) {
+        showLoginModal()
+      }else {
+        errorPrompt(err.response?.data.msg)
+      }
     })
  }
 

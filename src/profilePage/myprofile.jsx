@@ -39,28 +39,22 @@ export default function MyProfileView() {
          let isCancel = false
          axios.get(BASEURL + '/my/profile')
          .then(res =>{
-           if(res.data.type === "ERROR") {
-             if(res.data.msg === 'log in required') {
-               showLoginModal()
-             }
-              errorPrompt(res.data.msg)
-            }else {
               if(!isCancel){
                 setUserData(res.data)
               }
-           }
          })
          .catch(err =>{
-           errorPrompt('something went wrong')
+           if(err.response.status === 401) {
+             showLoginModal()
+           }else {
+             errorPrompt(err.response?.data.msg)
+           }
          })
           let path3 = `/p/my/breakdowns/${0}`
           trackPromise(
            axios.get(BASEURL + path3)
            .then(res => {
-             if(res.data.type === "ERROR"){
-               errorPrompt(res.data.msg)
-               return;
-             }
+
              if(!isCancel){
              if(res.data.isEnd) {
                setBrEnd(true)
@@ -72,7 +66,11 @@ export default function MyProfileView() {
            }
            })
            .catch(err =>{
-             errorPrompt('something went wrong')
+             if(err.response.status === 401) {
+               showLoginModal()
+             }else {
+               errorPrompt(err.response?.data.msg)
+             }
            }),'profile-songs')
          return ()=> {
            isCancel = true;
@@ -84,11 +82,6 @@ export default function MyProfileView() {
        setBrLoadSpinning(true)
       axios.get(BASEURL + path3)
           .then(res => {
-            setBrLoadSpinning(false)
-            if(res.data.type === "ERROR"){
-              errorPrompt(res.data.msg)
-              return;
-            }
             if(res.data.isEnd) {
               setBrEnd(true)
             }
@@ -98,7 +91,11 @@ export default function MyProfileView() {
             setBrLoaderCount(res.data.nextFetch)
           })
           .catch(err =>{
-            errorPrompt('something went wrong')
+            if(err.response.status === 401) {
+              showLoginModal()
+            }else {
+              errorPrompt(err.response?.data.msg)
+            }
           })
        }
 
@@ -110,16 +107,16 @@ export default function MyProfileView() {
          trackPromise(
          axios.get(BASEURL + path)
          .then(res =>{
-           if(res.data.type === 'ERROR'){
-             errorPrompt(res.data.msg)
-           }else {
                setFollowersInfo([...followersInfo,...res.data.data])
                setFollowersFetchInfo({nextFetch:res.data.nextFetch,isEnd:res.data.isEnd, isSpinning: false})
-          }
          })
-         .catch(e =>{
+         .catch(err =>{
            setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
-           errorPrompt("something went wrong")
+           if(err.response.status === 401) {
+             showLoginModal()
+           }else {
+             errorPrompt(err.response?.data.msg)
+           }
          }),"followers")
        }
 
@@ -130,16 +127,16 @@ export default function MyProfileView() {
          trackPromise(
          axios.get(BASEURL + path)
          .then(res =>{
-           if(res.data.type === 'ERROR'){
-             errorPrompt(res.data.msg)
-           }else {
                setFollowingInfo([...followingInfo,...res.data.data])
                setFollowingFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd, isSpinning: false})
-          }
          })
-         .catch(e =>{
+         .catch(err =>{
            setFollowingFetchInfo({...followersFetchInfo, isSpinning: false})
-           errorPrompt("something went wrong")
+           if(err.response.status === 401) {
+             showLoginModal()
+           }else {
+             errorPrompt(err.response?.data.msg)
+           }
          }),"following")
        }
 
@@ -150,13 +147,13 @@ export default function MyProfileView() {
            trackPromise(
             axios.get(BASEURL + path)
             .then(res =>{
-              if(res.data.type === 'ERROR'){
-                errorPrompt(res.data.msg)
-                return
-              }
                setFaceOffData(res.data)
-            }).catch(e =>{
-              errorPrompt("something went wrong")
+            }).catch(err =>{
+              if(err.response.status === 401) {
+                showLoginModal()
+              }else {
+                errorPrompt(err.response?.data.msg)
+              }
             }),'face-off')
        }
 

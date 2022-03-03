@@ -50,9 +50,6 @@ export default function CommentSideView(props) {
             trackPromise(
               axios.get(BASEURL + `/comments${window.location.pathname}/${0}`)
               .then(res => {
-                if(res.data.type === 'ERROR'){
-                  errorPrompt(res.data.msg)
-                }else {
                     setComments([])
                     setComments(res.data.comments)
                     if(res.data.isEnd) {
@@ -61,10 +58,13 @@ export default function CommentSideView(props) {
                     }
                     setLoadCount(res.data.nextFetch)
                     didCancel = true
-                }
               })
-              .catch(e => {
-                errorPrompt("something went wrong")
+              .catch(err => {
+                if(err.response.status === 401) {
+                  showLoginModal()
+                }else {
+                  errorPrompt(err.response?.data.msg)
+                }
               }),'comments')
           }
         })
@@ -103,22 +103,18 @@ export default function CommentSideView(props) {
       })
       .then((res)=>{
          let message = res.data.msg;
-        if(res.data.type === "SUCCESS"){
           setComment('')
           let comm = [...res.data.userComment,...comments]
           setComments([])
           setComments(comm)
           successPrompt(message)
-        }
-     if(res.data.type === "ERROR"){
-       if(res.data.msg === "log in required") {
-         showLoginModal()
-       }
-        errorPrompt(message)
-    }
     })
      .catch((err)=>{
-       errorPrompt("something went wrong")
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
     }),'add-comment')
     }
 
@@ -131,11 +127,7 @@ export default function CommentSideView(props) {
      setCommentLoadSpinning(true)
      axios.get(BASEURL + `/comments${window.location.pathname}/${loadCount}`)
      .then(res => {
-
        setCommentLoadSpinning(false)
-         if(res.data.type === 'ERROR'){
-           errorPrompt(res.data.msg)
-         }else {
           if(res.data.isEnd){
             setCommentEnd(true)
             setComments([...comments,...res.data.comments])
@@ -144,10 +136,13 @@ export default function CommentSideView(props) {
             setComments([...comments,...res.data.comments])
             setLoadCount(res.data.nextFetch)
           }
-       }
      })
-     .catch(e => {
-       errorPrompt("something went wrong")
+     .catch(err => {
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
      })
    }
 
@@ -221,15 +216,13 @@ function LyricsComments(props) {
      }
      successPrompt(message)
    }
-    if(res.data.type === "ERROR"){
-      if(message === "log in required") {
-        showLoginModal()
-      }
-     errorPrompt(message)
-   }
    })
     .catch((err)=>{
-      errorPrompt("something went wrong")
+      if(err.response.status === 401) {
+        showLoginModal()
+      }else {
+        errorPrompt(err.response?.data.msg)
+      }
    })
    }
 
@@ -297,20 +290,19 @@ export function Options(props) {
    if(!window.confirm("are you sure you want to delete ?")) return
       axios.post(path)
       .then(res => {
-        if(res.data.type === 'SUCCESS'){
           if(props.item ==='breakdown'){
             props.isDeletedBr()
           }else {
             props.isDeleted(e)
           }
           successPrompt(res.data.msg)
-        }
-        if(res.data.type === 'ERROR') {
-          errorPrompt(res.data.msg)
-        }
       })
-      .catch(e => {
-        errorPrompt("something went wrong")
+      .catch(err => {
+        if(err.response.status === 401) {
+          showLoginModal()
+        }else {
+          errorPrompt(err.response?.data.msg)
+        }
       })
  }
 

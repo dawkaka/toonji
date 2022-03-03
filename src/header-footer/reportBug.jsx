@@ -20,14 +20,11 @@ export default function ReportBug(){
       trackPromise(
       axios.post(BASEURL + "/p/bug-report",{reason})
       .then((res)=>{
-
-        if(res.data.type === 'ERROR') {
-          errorPrompt(res.data.msg)
-        }else {
           setReason("")
           setMsg(res.data.msg)
-        }
-      }).catch(e => {}),'contributor-request')
+      }).catch(e => {
+          errorPrompt(e.response?.data.msg)
+      }),'contributor-request')
     }
   }
 

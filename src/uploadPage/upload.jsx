@@ -109,12 +109,10 @@ export function UploadForm(props) {
     setReleaseDate('');setWriters('');setYoutube("")
     successPrompt(message)
   }
-   if(res.data.type === "ERROR"){
-     errorPrompt(message)
-  }
+
   })
    .catch((err)=>{
-     errorPrompt("something went wrong")
+       errorPrompt(err.response?.data.msg)
   }),'upload-song')
 }
 

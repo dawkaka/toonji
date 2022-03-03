@@ -16,14 +16,11 @@ export default function Reports() {
       trackPromise(
        axios.get(BASEURL + '/songs/reported-songs')
         .then(res => {
-          if(res.data.type === 'ERROR'){
-            errorPrompt(res.data.msg)
-          }else {
             setReportedSongs(res.data)
-          }
         })
         .catch(e => {
-          errorPrompt('something went wrong')
+          errorPrompt(e.response?.data.msg)
+
         })
       )
     }
@@ -32,23 +29,20 @@ export default function Reports() {
       trackPromise (
         axios.get(BASEURL + "/c/contributor-request")
         .then(res => {
-          if(res.data.type === 'ERROR'){
-            errorPrompt(res.data.msg)
-          }else {
             setRequest(res.data)
-          }
-        }).catch(e =>{}),"request")
+        }).catch(e =>{
+          errorPrompt(e.response?.data.msg)
+        }),"request")
   }
 
   const getBugReports = () => {
       trackPromise(
         axios.get(BASEURL + "/c/bug-reports")
         .then(res => {
-          if(res.data.type === 'ERROR') {
-            errorPrompt(res.data.msg)
-          }else {
             setBugReports(res.data)
-          }
+        })
+        .catch(e => {
+          errorPrompt(e.response?.data.msg)
         })
       )
   }
@@ -105,23 +99,15 @@ function Request(props) {
   const acceptRequest = () => {
       axios.post(BASEURL + "/c/request/" + props.id)
       .then(res => {
-         if(res.data.type === 'ERROR') {
-           errorPrompt(res.data.msg)
-         }else {
            successPrompt(res.data.msg)
-         }
-      }).catch(e => errorPrompt("something went wrong"))
+      }).catch(e =>        errorPrompt(e.response?.data.msg))
   }
 
   const deleteRequest = () => {
       axios.delete(BASEURL + "/c/request/" + props.id)
       .then(res => {
-         if(res.data.type === 'ERROR') {
-           errorPrompt(res.data.msg)
-         }else {
            successPrompt(res.data.msg)
-         }
-      }).catch(e => errorPrompt("something went wrong"))
+      }).catch(e => errorPrompt(e.response?.data.msg))
   }
 
   return (
@@ -144,15 +130,11 @@ function ReportedSong(props) {
        axios.post(BASEURL + '/songs/clear-reports/'+ props.songId)
        .then(res => {
          let msg = res.data.msg;
-         if(res.data.type === 'ERROR'){
-           errorPrompt(msg)
-         }else {
-            setCancel(true)
+           setCancel(true)
            successPrompt(msg)
-         }
        })
        .catch(e => {
-         errorPrompt("something went wrong")
+         errorPrompt(e.response?.data.msg)
        })
     }
   return (

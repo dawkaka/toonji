@@ -16,22 +16,20 @@ export default function Favourite() {
 const [favData,setFavData] = useState([])
 const [favBars,setFavBars] = useState([])
 const [favParam,setFavParam] = useState('songs')
+
   useEffect(()=>{
     trackPromise(
      axios.get(BASEURL + '/my/favourites/' + favParam)
        .then((res)=>{
       let message = res.data.msg
-      if(res.data.type === "ERROR"){
-        if(message === 'log in required'){
-          showLoginModal()
-        }
-       errorPrompt(message)
-     }else {
        favParam === "songs" ? setFavData(res.data) : setFavBars(res.data)
-     }
      })
      .catch(err => {
-       errorPrompt("something went wrong")
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
      })
   )
 },[favParam])
@@ -131,15 +129,15 @@ function FavouriteBarCard(props) {
      axios.post(`${BASEURL}/bar-favourited/${props.songId}/${props.id}`)
      .then(res => {
         let message = res.data.msg
-        if(res.data.type === "SUCCESS") {
           setUserFav(!userFav)
           successPrompt(message)
-        }else {
-          errorPrompt(message)
-        }
      })
      .catch(err => {
-       errorPrompt("something went wrong")
+       if(err.response.status === 401) {
+         showLoginModal()
+       }else {
+         errorPrompt(err.response?.data.msg)
+       }
      })
   }
 
