@@ -297,9 +297,7 @@ export function Breakdowns (props) {
      <AwardBadge image = "/bronze.jpg" numOfTimesAWarded = {props.awards ? props.awards.bronze ?  props.awards.bronze : "0" : "0"} />
      <AwardBadge image = "/copper.jpg" numOfTimesAWarded = {props.awards ? props.awards.copper ?  props.awards.copper : "0" : "0"} />
      </div>
-     <p className= "brd-text" id = {props.indx} onClick = {(e)=> {
-       e.target.parentNode.childNodes[0].childNodes[3].style.display = "none"
-     }}>
+     <p className= "brd-text" id = {props.indx}>
       {props.breakdown}
      </p>
      </div>

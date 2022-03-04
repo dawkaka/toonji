@@ -82,8 +82,8 @@ export default function HomeView() {
   return (
     <>
     <div id = "the-big-picture-container">
-    <img src = "./theBigPicture.jpg" alt = "ksi's main"/>
-    <h1 id = "welcome-message">TUNJI, HOME FOR KSI'S SONGS LYRICS</h1>
+    <img src = "./theBigPicture.jpg" alt = "Toonji's artist of the week"/>
+    <h1 id = "welcome-message"></h1>
     </div>
     <hr />
     <div id="home-view-container">

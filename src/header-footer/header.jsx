@@ -265,7 +265,7 @@ function HeaderPopLeft(props) {
         let doc  = document.querySelector('.pop-left-container')
         doc.style.right = "-300px";
         doc.style.top = "-300px";
-      }}>signup</li>}
+      }}>Signup</li>}
       {props.isSignedIn ? "": <li id ="li-login-link"  onClick= {()=> {
         document.getElementById("sign-login-collapse").style.transform = 'scale(1)';
         document.getElementById("form-collapse").style.display = "block";
@@ -274,7 +274,7 @@ function HeaderPopLeft(props) {
         let doc  = document.querySelector('.pop-left-container')
         doc.style.right = "-300px";
         doc.style.top = "-300px";
-      }}>login</li>}
+      }}>Login</li>}
       {!props.isSignedIn ? "": <li id ="li-logout-link"
        onClick= {logOutClicked}>logout</li>}
       <li onClick = {showDonationForm}>Donate</li>
@@ -292,7 +292,7 @@ function SignUp() {
       document.getElementById("form-collapse").style.display = "block";
       document.getElementById("signup-form").style.display = "block";
       document.getElementById("login-form").style.display = "none";
-    }}>signup</button>
+    }}>Signup</button>
   )
 }
 function Login() {
@@ -302,7 +302,7 @@ function Login() {
     document.getElementById("form-collapse").style.display = "block";
     document.getElementById("signup-form").style.display = "none";
     document.getElementById("login-form").style.display = "block";
-  }}>login</button>
+  }}>Login</button>
 )
 }
 function LogOut(props) {
@@ -313,7 +313,7 @@ function LogOut(props) {
       axios.post(BASEURL + '/p/log-out')
       .then(res => {
           props.handleSignedOut()
-          document.cookie = "user_id=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          document.cookie = "_user_id=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
           successPrompt(res.data.msg)
       })
      .catch(e => {
@@ -322,7 +322,7 @@ function LogOut(props) {
   }
   return (
   <button className = "signup-login-button"
-  onClick = {logOutClicked}>logout</button>
+  onClick = {logOutClicked}>Logout</button>
 )
 }
 

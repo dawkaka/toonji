@@ -14,7 +14,9 @@ button, input[type="text"],textarea {
 
 #the-big-picture-container{
   display: flex;
+  align-items: center;
   margin-top: 40px;
+  gap: 40px;
   padding: 25px;
   border-radius: 5px;
   margin-top: 70px;
@@ -22,11 +24,8 @@ button, input[type="text"],textarea {
 }
 #the-big-picture-container img {
   box-shadow: 1px 1px 3px  rgba(0,0,0,1);
-  /* filter: grayscale(100%); */
-  /* object-fit: cover; */
 }
 #the-big-picture-container h1 {
-  margin-top: 50px;
   font-size: 50px;
   margin-left: 30px;
   /* text-shadow: 1px 1px 1px black; */
@@ -131,7 +130,7 @@ button, input[type="text"],textarea {
 }
 @media only screen and (max-width: 500px) {
   #the-big-picture-container {
-    display: block;
+    flex-direction: column;
   }
   #the-big-picture-container img {
     width: 100%;
