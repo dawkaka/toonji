@@ -35,6 +35,8 @@ export default function ProfileView() {
       const [topFansFetchInfo, setTopFansFetchInfo] = useState({nextFetch: 0, isEnd: false})
       const [topFansInfo, setTopFansInfo] = useState([])
       const [followersInfo, setFollowersInfo] = useState([])
+      const [faceOffFetchInfo, setFaceOffFetchInfo] = useState({nextFetch: 0, isEnd: false})
+
       const profileName = window.location.pathname.substr(window.location.pathname.lastIndexOf('/'));
 
        useEffect(()=>{
@@ -193,11 +195,13 @@ const showFollowers = () => {
 const showFaceOff = ()=> {
     document.getElementById("face-off-records-modal").style.display = "block"
     let pathname  = window.location.pathname;
-    let  path =   `/battle-records${pathname.substr(pathname.lastIndexOf('/'))}`
+    let  path =   `/battle-records${pathname.substr(pathname.lastIndexOf('/'))}/${faceOffFetchInfo.nextFetch}`
     trackPromise(
      axios.get(BASEURL + path)
      .then(res =>{
-        setFaceOffData(res.data)
+       setFaceOffData(prev => [...prev,...res.data.data])
+       setFaceOffFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd})
+
      }).catch(err =>{
        if(err.response.status === 401) {
          showLoginModal()
@@ -289,7 +293,8 @@ axios.get(BASEURL + path3)
     <TopFans topFans = {topFansInfo}  fetchInfo= {topFansFetchInfo} loaderClick = {showTopFans} />
     <Followers followers = {followersInfo} fetchInfo = {followersFetchInfo}  loaderClick = {showFollowers}/>
     <TopFanQuiz user = {userData.name}/>
-    <FaceoffRecord faceoffData = {faceoffData} />
+    <FaceoffRecord faceoffData = {faceoffData}
+     fetchInfo = {faceOffFetchInfo} loaderClick = {showFaceOff}/>
     <div className = "profile-view-container">
     <div id= "profile-info-container">
     <div className = "back-icons-container">
@@ -454,7 +459,7 @@ export function TopFans(props) {
     }}>
     <ul>
     <LoadingSpinner area = "top-fans" height = {30} width = {30} />
-    <h1>Top Fans</h1>
+    <h1>{window.location.pathname.substr(window.location.pathname.lastIndexOf("/")+1)}'s Top Fans</h1>
     {
       props.topFans.map((f,indx) =>{
         return <TopFan key = {indx} pos = {indx + 1} name = {f.name}

@@ -24,6 +24,7 @@ export default function MyProfileView() {
       const [brLoadSpinning,setBrLoadSpinning] = useState(false)
       const [followersFetchInfo, setFollowersFetchInfo] = useState({nextFetch:0,isEnd: false})
       const [followingFetchInfo, setFollowingFetchInfo] = useState({nextFetch: 0, isEnd: false})
+      const [faceOffFetchInfo, setFaceOffFetchInfo] = useState({nextFetch: 0, isEnd: false})
       const [followingInfo, setFollowingInfo] = useState([])
       const [followersInfo, setFollowersInfo] = useState([])
 
@@ -143,11 +144,13 @@ export default function MyProfileView() {
 
        const showFaceOff = ()=> {
            document.getElementById("face-off-records-modal").style.display = "block"
-           let  path =   `/my/battle-records`
+           let  path =   `/my/battle-records/${faceOffFetchInfo.nextFetch}`
+           if(faceOffFetchInfo.isEnd) return
            trackPromise(
             axios.get(BASEURL + path)
             .then(res =>{
-               setFaceOffData(res.data)
+               setFaceOffData(prev => [...prev,...res.data.data])
+               setFaceOffFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd})
             }).catch(err =>{
               if(err.response.status === 401) {
                 showLoginModal()
@@ -163,7 +166,8 @@ export default function MyProfileView() {
     picture = {userData.picture} reqURL = {BASEURL + '/profile/edit-profile'}/>
     <Followers followers = {followersInfo} fetchInfo = {followersFetchInfo}  loaderClick = {showFollowers}/>
     <Following following = {followingInfo} fetchInfo = {followingFetchInfo}  loaderClick = {showFollowing}/>
-    <FaceoffRecord faceoffData = {faceoffData}/>
+    <FaceoffRecord faceoffData = {faceoffData}
+     fetchInfo = {faceOffFetchInfo} loaderClick = {showFaceOff}/>
     <div className = "profile-view-container">
     <div className = "back-icons-container">
     <BackIcon />
@@ -271,6 +275,7 @@ function  Achievements(props) {
 export function FaceoffRecord(props) {
 
   function hideModal(e) {
+
     if(e.target.id === "face-off-records-modal") {
       e.target.style.display = "none"
     }
@@ -280,7 +285,7 @@ export function FaceoffRecord(props) {
     <div id = "face-off-records-modal" onClick = {hideModal}>
     <div id = "face-off-records-container">
     <h1>FACE OFFs</h1>
-    <LoadingSpinner area = "face-off" height = {30} width = {30} />
+
     {
       props.faceoffData.map((a,indx)=> {
         return (
@@ -288,6 +293,9 @@ export function FaceoffRecord(props) {
         )
       })
     }
+    <LoadingSpinner area = "face-off" height = {30} width = {30} />
+    <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
+    handleLoaderClick = {props.loaderClick}/>
     </div>
     </div>
   )
