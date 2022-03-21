@@ -8,7 +8,7 @@ import './profile.css';
 import './editProfile.css'
 import LyricsReviewCard from '../homePage/lyricsCard';
 import {BASEURL,IMAGEURL} from '../credentials'
-import {ReloadButton} from '../readPage/comments'
+import {ReloadButton} from './myprofile'
 import {successPrompt,errorPrompt,showLoginModal} from '../prompts/promptMessages'
 import {numberToKOrM} from '../homePage/homeFunctions'
 import {Breakdowns} from '../readPage/punchlines'
@@ -458,7 +458,6 @@ export function TopFans(props) {
     }
     }}>
     <ul>
-    <LoadingSpinner area = "top-fans" height = {30} width = {30} />
     <h1>{window.location.pathname.substr(window.location.pathname.lastIndexOf("/")+1)}'s Top Fans</h1>
     {
       props.topFans.map((f,indx) =>{
@@ -467,6 +466,7 @@ export function TopFans(props) {
         picture = {`${IMAGEURL}${f.picture}?tr=w-45,h-45,c-at_max`}/>
       })
     }
+    <LoadingSpinner area = "top-fans" height = {30} width = {30} />
     <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
     handleLoaderClick = {props.loaderClick}/>
     </ul>
@@ -483,7 +483,6 @@ export function Followers(props) {
     }
     }}>
     <ul>
-    <LoadingSpinner area = "followers" height = {30} width = {30} />
     <h1>Followers</h1>
     {
       props.followers.map((f,indx) =>{
@@ -492,9 +491,11 @@ export function Followers(props) {
         picture = {`${IMAGEURL}${f.picture}?tr=w-45,h-45,c-at_max`}/>
       })
     }
+    <LoadingSpinner area = "followers" height = {30} width = {30} />
     <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
     handleLoaderClick = {props.loaderClick}/>
     </ul>
+
     </div>
   )
 }
@@ -507,7 +508,6 @@ export function Following(props) {
     }
     }}>
     <ul>
-    <LoadingSpinner area = "following" height = {30} width = {30} />
     <h1>Following</h1>
     {
       props.following.map((f,indx) =>{
@@ -516,6 +516,7 @@ export function Following(props) {
         picture = {`${IMAGEURL}${f.picture}?tr=w-45,h-45,c-at_max`}/>
       })
     }
+    <LoadingSpinner area = "following" height = {30} width = {30} />
     <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
       handleLoaderClick = {props.loaderClick}/>
     </ul>

@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import axios from 'axios'
-import {trackPromise} from "react-promise-tracker";
+import {trackPromise, usePromiseTracker} from "react-promise-tracker";
 import {Link} from 'react-router-dom'
 
 import './profile.css';
@@ -11,7 +11,6 @@ import LoadingSpinner from '../prompts/loadingComponent';
 import EditProfile from './editProfile'
 import {Digest,Followers,Following} from './profile'
 import {numberToKOrM} from '../homePage/homeFunctions'
-import {ReloadButton} from '../readPage/comments'
 import {EditBr} from '../readPage/autoScroll'
 import {BackIcon} from '../Icons/allIcons'
 
@@ -228,6 +227,17 @@ export default function MyProfileView() {
   )
 }
 
+
+export function ReloadButton(props) {
+  return (
+    <div className = "reload-container-p">
+    {!props.isSpinning && !props.isEnd && <i className = "fas fa-redo"
+    onClick = {props.handleLoaderClick}></i>}
+    {props.isEnd && <span className = "reload-end">end</span>}
+    </div>
+  )
+}
+
 function FeedFilters() {
      function feedFilterToggle(e) {
         for(let elm of Array.from(document.getElementsByClassName("feed-filter"))){
@@ -274,6 +284,8 @@ function  Achievements(props) {
 
 export function FaceoffRecord(props) {
 
+  const {inProgress} = usePromiseTracker("face-off")
+
   function hideModal(e) {
 
     if(e.target.id === "face-off-records-modal") {
@@ -294,8 +306,8 @@ export function FaceoffRecord(props) {
       })
     }
     <LoadingSpinner area = "face-off" height = {30} width = {30} />
-    <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
-    handleLoaderClick = {props.loaderClick}/>
+    {!inProgress && <ReloadButton isSpinning = {props.fetchInfo.isSpinning} isEnd = {props.fetchInfo.isEnd}
+    handleLoaderClick = {props.loaderClick}/> }
     </div>
     </div>
   )
