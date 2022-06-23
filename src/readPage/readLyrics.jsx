@@ -204,7 +204,7 @@ function ReadPunchlines(props) {
         }
     })
      .catch(err =>{
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
@@ -227,7 +227,7 @@ function ReadPunchlines(props) {
 
         })
         .catch(err =>{
-          if(err.response.status === 401) {
+          if(err.response?.status === 401) {
             showLoginModal()
           }else {
             errorPrompt(err.response?.data.msg)
@@ -277,7 +277,7 @@ function ReadPunchlines(props) {
 
    })
     .catch(err =>{
-      if(err.response.status === 401) {
+      if(err.response?.status === 401) {
         showLoginModal()
       }else {
         errorPrompt(err.response?.data.msg)

@@ -29,7 +29,7 @@ export default function LyricsReviewCard(props) {
   })
    .catch((err)=>{
      toggleFavourite()
-     if(err.response.status === 401) {
+     if(err.response?.status === 401) {
        showLoginModal()
      }else {
        errorPrompt(err.response?.data.msg)

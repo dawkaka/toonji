@@ -76,7 +76,7 @@ export default function ProfileView() {
          }
          })
          .catch(err =>{
-           if(err.response.status === 401) {
+           if(err.response?.status === 401) {
              showLoginModal()
            }else {
              errorPrompt(err.response?.data.msg)
@@ -101,7 +101,7 @@ export default function ProfileView() {
          }
          })
          .catch(err =>{
-           if(err.response.status === 401) {
+           if(err.response?.status === 401) {
              showLoginModal()
            }else {
              errorPrompt(err.response?.data.msg)
@@ -123,7 +123,7 @@ export default function ProfileView() {
           }
           })
           .catch(err =>{
-            if(err.response.status === 401) {
+            if(err.response?.status === 401) {
               showLoginModal()
             }else {
               errorPrompt(err.response?.data.msg)
@@ -161,7 +161,7 @@ const showTopFans = (e) => {
    })
    .catch(err =>{
        setTopFansFetchInfo({...topFansFetchInfo, isSpinning: false})
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
@@ -182,7 +182,7 @@ const showFollowers = () => {
   })
   .catch(err =>{
     setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
-    if(err.response.status === 401) {
+    if(err.response?.status === 401) {
       showLoginModal()
     }else {
       errorPrompt(err.response?.data.msg)
@@ -203,7 +203,7 @@ const showFaceOff = ()=> {
        setFaceOffFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd})
 
      }).catch(err =>{
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
@@ -231,7 +231,7 @@ const handleFollowClick = (e) => {
       successPrompt(res.data.msg)
    })
    .catch(err=>{
-     if(err.response.status === 401) {
+     if(err.response?.status === 401) {
        showLoginModal()
      }else {
        errorPrompt(err.response?.data.msg)
@@ -255,7 +255,7 @@ const handleFollowClick = (e) => {
           setUserSongs(userSongsCopy)
     })
     .catch(err =>{
-      if(err.response.status === 401) {
+      if(err.response?.status === 401) {
         showLoginModal()
       }else {
         errorPrompt(err.response?.data.msg)
@@ -280,7 +280,7 @@ axios.get(BASEURL + path3)
       setBrLoaderCount(res.data.nextFetch)
     })
     .catch(err =>{
-      if(err.response.status === 401) {
+      if(err.response?.status === 401) {
         showLoginModal()
       }else {
         errorPrompt(err.response?.data.msg)

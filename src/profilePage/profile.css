@@ -206,10 +206,12 @@ overflow-y: auto;
   background-color: rgba(0,0,0,0.5);
 }
 .top-fans-modal ul,#face-off-records-container{
+  position: absolute;
   display: flex;
   flex-direction: column;
-  margin-left: 50%;
-  transform: translate(-50%,0);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   background-color: white;
   width: 30%;
   padding: 25px 25px;
@@ -247,7 +249,6 @@ overflow-y: auto;
   margin-left: 10px;
 }
 #face-off-records-container {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
 }

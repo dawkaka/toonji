@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import axios from "axios"
 import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
 import {Helmet} from "react-helmet";
@@ -22,7 +22,7 @@ export default function FlutterWave() {
 
        })
        .catch(err => {
-         if(err.response.status === 401) {
+         if(err.response?.status === 401) {
            showLoginModal()
          }else {
            errorPrompt(err.response?.data.msg)

@@ -9,6 +9,7 @@ export function successPrompt(message) {
 }
 
 export function errorPrompt(message) {
+  message = message ? message : "something went wrong"
   let prompt = document.getElementById("prompt")
   document.getElementById("message").innerText = `${message}`
    prompt.className = "prompt-container animation errorBorder"

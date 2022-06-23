@@ -25,7 +25,7 @@ export default function SignUpOrLogIN(props) {
         if(newName.match(/\W/)) {
           setUserNameError("only english characters allowed")
         }else {
-        let newAvatarLetter =  newName[0] ? newName[0].toUpperCase(): 'J';
+        let newAvatarLetter =  newName[0] ? newName[0].toUpperCase(): ':';
         setAvatarLetter(newAvatarLetter)
         setUserName(newName)
         e.target.value === "" ? setUserNameError('name field is required'):

@@ -39,7 +39,7 @@ const axiosGetBreakdowns = () => {
        setBrDowns(res.data)
     })
     .catch(err => {
-      if(err.response.status === 401) {
+      if(err.response?.status === 401) {
         showLoginModal()
       }else {
         errorPrompt(err.response?.data.msg)
@@ -76,7 +76,7 @@ const axiosGetBreakdowns = () => {
          }
       })
       .catch(err => {
-        if(err.response.status === 401) {
+        if(err.response?.status === 401) {
           showLoginModal()
         }else {
           errorPrompt(err.response?.data.msg)
@@ -100,7 +100,7 @@ const axiosGetBreakdowns = () => {
        }
        })
         .catch((err)=>{
-          if(err.response.status === 401) {
+          if(err.response?.status === 401) {
             showLoginModal()
           }else {
             errorPrompt(err.response?.data.msg)
@@ -160,7 +160,7 @@ const axiosGetBreakdowns = () => {
         setBrDowns(res.data)
      })
      .catch(err => {
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
@@ -170,7 +170,7 @@ const axiosGetBreakdowns = () => {
    }
    })
     .catch((err)=>{
-      if(err.response.status === 401) {
+      if(err.response?.status === 401) {
         showLoginModal()
       }else {
         errorPrompt(err.response?.data.msg)
@@ -260,7 +260,7 @@ export function Breakdowns (props) {
 
     })
      .catch((err)=>{
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)

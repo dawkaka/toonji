@@ -44,7 +44,7 @@ export default function MyProfileView() {
               }
          })
          .catch(err =>{
-           if(err.response.status === 401) {
+           if(err.response?.status === 401) {
              showLoginModal()
            }else {
              errorPrompt(err.response?.data.msg)
@@ -66,7 +66,7 @@ export default function MyProfileView() {
            }
            })
            .catch(err =>{
-             if(err.response.status === 401) {
+             if(err.response?.status === 401) {
                showLoginModal()
              }else {
                errorPrompt(err.response?.data.msg)
@@ -91,7 +91,7 @@ export default function MyProfileView() {
             setBrLoaderCount(res.data.nextFetch)
           })
           .catch(err =>{
-            if(err.response.status === 401) {
+            if(err.response?.status === 401) {
               showLoginModal()
             }else {
               errorPrompt(err.response?.data.msg)
@@ -112,7 +112,7 @@ export default function MyProfileView() {
          })
          .catch(err =>{
            setFollowersFetchInfo({...followersFetchInfo, isSpinning: false})
-           if(err.response.status === 401) {
+           if(err.response?.status === 401) {
              showLoginModal()
            }else {
              errorPrompt(err.response?.data.msg)
@@ -132,7 +132,7 @@ export default function MyProfileView() {
          })
          .catch(err =>{
            setFollowingFetchInfo({...followersFetchInfo, isSpinning: false})
-           if(err.response.status === 401) {
+           if(err.response?.status === 401) {
              showLoginModal()
            }else {
              errorPrompt(err.response?.data.msg)
@@ -151,7 +151,7 @@ export default function MyProfileView() {
                setFaceOffData(prev => [...prev,...res.data.data])
                setFaceOffFetchInfo({nextFetch: res.data.nextFetch, isEnd: res.data.isEnd})
             }).catch(err =>{
-              if(err.response.status === 401) {
+              if(err.response?.status === 401) {
                 showLoginModal()
               }else {
                 errorPrompt(err.response?.data.msg)

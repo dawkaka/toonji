@@ -112,7 +112,7 @@ export function AwardBr() {
             document.getElementById("award-br-container").style.display = "none"
           })
         .catch((err)=>{
-          if(err.response.status === 401) {
+          if(err.response?.status === 401) {
             showLoginModal()
           }else {
             errorPrompt(err.response?.data.msg)
@@ -194,7 +194,7 @@ export function EditBr(){
 
       })
       .catch(err => {
-        if(err.response.status === 401) {
+        if(err.response?.status === 401) {
           showLoginModal()
         }else {
           errorPrompt(err.response?.data.msg)

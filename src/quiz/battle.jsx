@@ -4,7 +4,7 @@ import strSimilarity from 'string-similarity'
 import {Helmet} from "react-helmet"
 
 import './battle.css'
-import {BASEURL} from "../credentials"
+import {BASEURL, SOCKETURL} from "../credentials"
 import './startQuizCss.css'
 import {toggleBattlePointsAnimation} from './battleFunctions'
 import {errorPrompt,successPrompt,showLoginModal} from '../prompts/promptMessages'

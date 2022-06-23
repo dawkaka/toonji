@@ -60,7 +60,7 @@ export default function CommentSideView(props) {
                     didCancel = true
               })
               .catch(err => {
-                if(err.response.status === 401) {
+                if(err.response?.status === 401) {
                   showLoginModal()
                 }else {
                   errorPrompt(err.response?.data.msg)
@@ -110,7 +110,7 @@ export default function CommentSideView(props) {
           successPrompt(message)
     })
      .catch((err)=>{
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
@@ -138,7 +138,7 @@ export default function CommentSideView(props) {
           }
      })
      .catch(err => {
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
@@ -218,7 +218,7 @@ function LyricsComments(props) {
    }
    })
     .catch((err)=>{
-      if(err.response.status === 401) {
+      if(err.response?.status === 401) {
         showLoginModal()
       }else {
         errorPrompt(err.response?.data.msg)
@@ -298,7 +298,7 @@ export function Options(props) {
           successPrompt(res.data.msg)
       })
       .catch(err => {
-        if(err.response.status === 401) {
+        if(err.response?.status === 401) {
           showLoginModal()
         }else {
           errorPrompt(err.response?.data.msg)

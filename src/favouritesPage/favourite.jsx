@@ -21,11 +21,10 @@ const [favParam,setFavParam] = useState('songs')
     trackPromise(
      axios.get(BASEURL + '/my/favourites/' + favParam)
        .then((res)=>{
-      let message = res.data.msg
        favParam === "songs" ? setFavData(res.data) : setFavBars(res.data)
      })
      .catch(err => {
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
@@ -133,7 +132,7 @@ function FavouriteBarCard(props) {
           successPrompt(message)
      })
      .catch(err => {
-       if(err.response.status === 401) {
+       if(err.response?.status === 401) {
          showLoginModal()
        }else {
          errorPrompt(err.response?.data.msg)
