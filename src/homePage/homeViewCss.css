@@ -15,6 +15,7 @@ button, input[type="text"],textarea {
 #the-big-picture-container{
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 40px;
   gap: 40px;
   padding: 25px;
@@ -24,12 +25,14 @@ button, input[type="text"],textarea {
 }
 #the-big-picture-container img {
   box-shadow: 1px 1px 3px  rgba(0,0,0,1);
+  width: min(80%, 300px)
 }
 #the-big-picture-container h1 {
   font-size: 50px;
   margin-left: 30px;
   /* text-shadow: 1px 1px 1px black; */
   color: var(--main-color);
+  max-width: min(80%,400px)
 }
 
 .recommended-lyrics {

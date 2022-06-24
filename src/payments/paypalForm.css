@@ -1,7 +1,8 @@
 
 #donate-modal {
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
@@ -55,10 +56,7 @@
 }
 
 #crypto-address-container {
-  /* background-color: green; */
-  position: absolute;
-  top: 15rem;
-  width: inherit;
+  width: 100%;
   padding-right: 17px;
   overflow-x: hidden;
   display: none;

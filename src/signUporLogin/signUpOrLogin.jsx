@@ -98,13 +98,12 @@ export default function SignUpOrLogIN(props) {
           repeatPassword:rPassword
         }
         })
-    .then( res => {
-          let message = res.data.msg;
-        if(res.data.type === "SUCCESS"){
+    .then(res => {
+            let message = res.data.msg;
             document.getElementById("sign-login-collapse").style.transform = "scale(0)"
             props.handleSignedIn();
             successPrompt(message)
-            }
+             window.location.reload()
         })
     .catch(err => {
         errorPrompt(err.response?.data.msg)
@@ -126,12 +125,11 @@ export default function SignUpOrLogIN(props) {
      }
         })
          .then(res => {
-        let message = res.data.msg;
-            if(res.data.type === "SUCCESS"){
+             let message = res.data.msg;
              document.getElementById("sign-login-collapse").style.transform = "scale(0)"
              props.handleSignedIn();
              successPrompt(message)
-           }
+             window.location.reload()
          })
          .catch(err => {
              errorPrompt(err.response?.data.msg)

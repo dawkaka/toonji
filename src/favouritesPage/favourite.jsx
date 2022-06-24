@@ -10,7 +10,7 @@ import {Logo} from '../header-footer/header'
 import LyricsReviewCard from '../homePage/lyricsCard';
 import {BASEURL} from '../credentials'
 import LoadingSpinner from '../prompts/loadingComponent';
-import {BackIcon,LyricsCardIcon} from '../Icons/allIcons'
+import {LyricsCardIcon} from '../Icons/allIcons'
 
 export default function Favourite() {
 const [favData,setFavData] = useState([])
@@ -98,7 +98,6 @@ function FavouritesHeader() {
     <div className = "trending-header-container">
      <Logo />
      <Search />
-     <BackIcon />
     </div>
   )
 }

@@ -76,6 +76,7 @@ export default function LyricsReviewCard(props) {
      return '';
    }
    let others = getOthersPreview(props.otherArtist)
+   const title = props.songTitle.length > 13 ? props.songTitle.substr(0,13) + "..." : props.songTitle
   return (
    <div className="lyrics-card-container">
    <div className= "image-and-gradient-container">
@@ -83,7 +84,7 @@ export default function LyricsReviewCard(props) {
     <div className = "card-gradient"></div>
     </div>
     <div className = "song-info">
-    <Link to = {'/'+props.songId}><h4 className = "home-song-title">{props.songTitle}</h4></Link>
+    <Link to = {'/'+props.songId}><h4 className = "home-song-title">{title}</h4></Link>
     <Link to = {'/p/'+props.songArtist}> <span className='artist-name'>{props.songArtist}
     {others !== '' ? ` ft ${others}`:''}
        </span></Link>
@@ -92,7 +93,7 @@ export default function LyricsReviewCard(props) {
     <Link to = {'/'+props.songId}>
     <div className = "punchline-block">
     <p className="hottest-bar">
-    {props.hottesBar}
+    {props.hottesBar.trim()}
     </p>
     </div>
     </Link>

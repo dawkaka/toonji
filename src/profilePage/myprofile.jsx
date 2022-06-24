@@ -194,7 +194,9 @@ export default function MyProfileView() {
     <Link to = "/b/battle-link">
     <button className="profile-buttons">battle</button>
     </Link>
-    <button className = "profile-buttons"><a href = "/buy-coins.html" target = "_SELF">coins</a></button>
+    {/* <button className = "profile-buttons">
+    <a href = "/buy-coins.html" target = "_SELF">coins</a>
+    </button> */}
     </div>
     <div id = "profile-feed">
     <FeedFilters />

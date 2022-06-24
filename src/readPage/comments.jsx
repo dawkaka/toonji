@@ -72,13 +72,12 @@ export default function CommentSideView(props) {
         observer.observe(commentContainer)
      }
 
-
-
        const commentDeleted = (e) => {
          e.target.parentNode.parentNode.parentNode.style.display = "none"
        }
 
        let lyricComments = comments.map((a,indx) => {
+
            return (
              <LyricsComments key = {indx}
              commentImage = {`${IMAGEURL}${a.picture}?tr=w-45,h-45,c-at_max`}

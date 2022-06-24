@@ -9,7 +9,6 @@ import {errorPrompt} from '../prompts/promptMessages'
 import {BASEURL} from '../credentials'
 import LoadingSpinner from '../prompts/loadingComponent';
 import {ChartCardContainer} from './trendingCards'
-import {BackIcon} from '../Icons/allIcons'
 
 export default function TrendingView() {
       const [chartResult, setChartResult] = useState({today:[],week:[],allTime:[]})
@@ -150,7 +149,6 @@ function TrendingHeader() {
     <div className = "trending-header-container">
      <Logo />
      <Search />
-     <BackIcon />
     </div>
   )
 }

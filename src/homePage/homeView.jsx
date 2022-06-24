@@ -29,7 +29,6 @@ export default function HomeView() {
        trackPromise(
           axios.get(BASEURL)
           .then(res => {
-            console.log(res)
               setData(res.data);
               sessionStorage.setItem("home_data",JSON.stringify(res.data))
           })
@@ -53,7 +52,7 @@ export default function HomeView() {
     .then(response => {
        localStorage.setItem("continent",response.continent)
      })
-    .catch((data) => {
+    .catch( _err => {
     })
    }
   },[])

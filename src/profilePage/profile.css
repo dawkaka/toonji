@@ -29,12 +29,10 @@ body {
   z-index: 99999;
   position: fixed;
   right: 5px;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,1);
   padding-left: 10px;
   padding-bottom: 5px;
   border-radius: 50%;
-  border:1px solid var(--main-color);
-
 }
 
 #profile-photo {
@@ -221,14 +219,12 @@ overflow-y: auto;
 }
 .top-fans-modal ul li {
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 2fr 2fr 5fr;
-  grid-column-gap: 5px;
-  justify-content: center;
-  /* border-bottom: 2px solid var(--main-color); */
-  padding-top: 10px;
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid gray;
+  gap: 10px;
 }
+
 /* #top-fan-info {
   display: flex;
   justify-content: center;
@@ -246,7 +242,8 @@ overflow-y: auto;
 
 .top-fan-points {
   color: var(--main-color);
-  margin-left: 10px;
+  margin-left: 5px;
+  font-size: 12px
 }
 #face-off-records-container {
   display: flex;

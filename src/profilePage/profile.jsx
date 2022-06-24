@@ -458,7 +458,7 @@ export function TopFans(props) {
     }
     }}>
     <ul>
-    <h1>{window.location.pathname.substr(window.location.pathname.lastIndexOf("/")+1)}'s Top Fans</h1>
+    <h1>{decodeURIComponent(window.location.pathname.substr(window.location.pathname.lastIndexOf("/")+1))}'s Top Fans</h1>
     {
       props.topFans.map((f,indx) =>{
         return <TopFan key = {indx} pos = {indx + 1} name = {f.name}
@@ -529,8 +529,10 @@ export function TopFan(props) {
     <li>
     <h4 className ="top-fan-position">{props.pos}</h4>
     <img className = "top-fan-image" src = {props.picture} alt="user" />
-    <Link to={`/p/${props.name}`}><h4 className="top-fan-name">{props.name}</h4></Link>
-    <h4 className = "top-fan-points">{props.points} points</h4>
+    <h4 className="top-fan-name">
+    <Link to={`/p/${props.name}`}>{props.name}</Link>
+    <span className = "top-fan-points">{props.points} points</span>
+    </h4>
     </li>
   )
 }

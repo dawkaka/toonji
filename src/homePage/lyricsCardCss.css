@@ -1,4 +1,6 @@
 .lyrics-card-container{
+  display: flex;
+  flex-direction: column;
   background-color: white;
   max-width: 500px;
   margin-top: 20px;
@@ -7,7 +9,8 @@
   transition: margin-top .5s;
 }
 .lyrics-card-container:hover {
-  opacity: .95
+  opacity: .9;
+  box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 .image-and-gradient-container {
  position: relative;
@@ -68,7 +71,8 @@
   color: white;
 }
 .hottest-bar {
-  text-align: justify;
+  text-align: left;
+  white-space: pre-wrap;
   padding: 0 10px;
   text-decoration: none;
   font-size: 18px;
@@ -83,22 +87,22 @@ a:active {
 }
 
 .lyrics-card-icons-container {
-  margin-right: 0;
-  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 10px;
+  padding-top: 0;
+
 }
 
 .left-side {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  float: left;
-  padding-left: 10px;
-  padding-bottom: 10px;
+  order: 1;
+  display: flex;
+  gap: 5px;
 }
 .right-side {
   display: flex;
   justify-content: space-around;
-  float: right;
-  padding-right: 5px;
 }
 .play-pause-container {
   display: block;

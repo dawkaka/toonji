@@ -3,7 +3,7 @@ import axios from 'axios'
 import {errorPrompt,successPrompt} from '../prompts/promptMessages'
 import {trackPromise,usePromiseTracker} from 'react-promise-tracker';
 import LoadingSpinner from '../prompts/loadingComponent';
-import {IMAGEURL} from '../credentials'
+import {BASEURL, IMAGEURL} from '../credentials'
 
 function EditProfile(props){
   const {promiseInProgress} = usePromiseTracker({area:'edit-user'})
@@ -53,8 +53,10 @@ function EditProfile(props){
          }
        }
      }
-     document.getElementById("profile-name").innerText = name;
-     document.getElementById("profile-bio").innerText = bio
+     if(props.reqURL === BASEURL + '/profile/edit-profile') {
+       document.getElementById("profile-name").innerText = name;
+       document.getElementById("profile-bio").innerText = bio
+     }
      document.getElementById("edit-profile-main").style.display = "none"
   }
   const handleEditSubmit = (e) => {
@@ -75,8 +77,9 @@ function EditProfile(props){
     .then((res)=>{
       handleFileChangeFinish()
      successPrompt(res.data.msg)
-  })
+   })
    .catch((err)=>{
+     console.log(err)
        errorPrompt(err.response?.data.msg)
   }),'edit-user')
   }

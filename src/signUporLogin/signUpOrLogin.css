@@ -2,7 +2,7 @@
 .sign-login-modal {
   display: grid;
   place-items: center;
-  background-color: rgba(0,0,0,0.03);
+  background-color: rgba(0,0,0,0.1);
   height: 100%;
   width: 100%;
   top: 0;
