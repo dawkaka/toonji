@@ -27,9 +27,7 @@ export default function BattleLink() {
        setAvLinks(links)
      })
      .catch(err => {
-
          errorPrompt(err.response?.data.msg)
-       
      })
   },[])
 

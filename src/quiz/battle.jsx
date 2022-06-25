@@ -199,7 +199,6 @@ function StartQuiz(props) {
          useEffect(()=>{
               setTimeStart(Date.now())
               socket.on("opponent-points", points => {
-                console.log("here");
                 setOpponentPoints(oldPoints => oldPoints + parseInt(points))
                 let opponent = document.getElementById("opponent-points")
                 let userPoints = document.getElementById("user-points")

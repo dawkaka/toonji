@@ -33,7 +33,6 @@ export default function HomeView() {
               sessionStorage.setItem("home_data",JSON.stringify(res.data))
           })
           .catch(err =>{
-              console.log(err)
               errorPrompt(err.response?.data.msg)
           }),'recommended')
         }else {

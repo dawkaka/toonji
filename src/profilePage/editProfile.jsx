@@ -79,7 +79,6 @@ function EditProfile(props){
      successPrompt(res.data.msg)
    })
    .catch((err)=>{
-     console.log(err)
        errorPrompt(err.response?.data.msg)
   }),'edit-user')
   }
