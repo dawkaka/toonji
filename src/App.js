@@ -75,7 +75,6 @@ export default function App() {
         </Route>
         <Route exact path="/chart">
          <TrendingView />
-         <SiteInfo />
          <Footer />
         </Route>
         <Route exact path="/p/:profileId" >

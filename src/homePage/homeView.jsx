@@ -8,6 +8,7 @@ import LyricsReviewCard from './lyricsCard.jsx';
 import './homeViewCss.css';
 import {BASEURL} from '../credentials'
 import LoadingSpinner from '../prompts/loadingComponent';
+axios.defaults.withCredentials = true
 
 export default function HomeView() {
   const [data, setData] = useState({songs:[],newArrivals:[]})
@@ -24,7 +25,6 @@ export default function HomeView() {
            i++
          }
        },100)
-       axios.defaults.withCredentials = true
     if(!sessionStorage.getItem("home_data")){
        trackPromise(
           axios.get(BASEURL)
@@ -45,15 +45,17 @@ export default function HomeView() {
   },[])
 
   useEffect(()=> {
-    if(!localStorage.getItem("continent")){
-    fetch('https://extreme-ip-lookup.com/json/')
+    //if(!localStorage.getItem("continent")){
+    axios.get('https://extreme-ip-lookup.com/json/')
     .then( res => res.json())
     .then(response => {
+      console.log(response)
        localStorage.setItem("continent",response.continent)
      })
     .catch( _err => {
+      console.log(_err)
     })
-   }
+  // }
   },[])
 
   window.addEventListener("load",()=> {
