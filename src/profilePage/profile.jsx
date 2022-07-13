@@ -37,14 +37,14 @@ export default function ProfileView() {
       const [followersInfo, setFollowersInfo] = useState([])
       const [faceOffFetchInfo, setFaceOffFetchInfo] = useState({nextFetch: 0, isEnd: false})
 
-      const profileName = window.location.pathname.substr(window.location.pathname.lastIndexOf('/'));
+      const profileName = window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1);
 
        useEffect(()=>{
          let isCancel = false;
          let pathname  = window.location.pathname;
          let profileUser = document.cookie.split(";")
                                           .join("=").split("=").map(a => a.trim())
-                                          .includes(pathname.substr(pathname.lastIndexOf('/') + 1))
+                                          .includes(pathname.substring(pathname.lastIndexOf('/') + 1))
          if(profileUser){
           window.location.href= "/my/profile"
          }
@@ -56,7 +56,6 @@ export default function ProfileView() {
        }
 
          if(!isCancel){
-         document.title = "TOONJI - User Profile"
           let modals = document.getElementsByClassName("top-fans-modal")
            Array.from(modals).forEach((item, i) => {
              item.style.display = "none"
@@ -376,6 +375,7 @@ axios.get(BASEURL + path3)
     </div>
     </div>
     <Helmet>
+    <title>{`Toonji | ${profileName}'s profile`}</title>
     <meta name = "description" content = {`${profileName}'s toonji profile`}/>
     </Helmet>
     </>

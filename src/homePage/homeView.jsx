@@ -14,8 +14,7 @@ export default function HomeView() {
   const [data, setData] = useState({songs:[],newArrivals:[]})
 
      useEffect(()=> {
-       document.title = "TOONJI |Best song lyrics platform"
-       let msg  = "TOONJI, BEST SONGS LYRICS PLATFORM."
+       let msg  = "TOONJI, THE BEST SONGS LYRICS PLATFORM."
        let i = 0;
        let str = ""
        let interval = window.setInterval(()=> {
@@ -45,17 +44,15 @@ export default function HomeView() {
   },[])
 
   useEffect(()=> {
-    //if(!localStorage.getItem("continent")){
-    axios.get('https://extreme-ip-lookup.com/json/')
-    .then( res => res.json())
-    .then(response => {
-      console.log(response)
-       localStorage.setItem("continent",response.continent)
+    if(!localStorage.getItem("continent")){
+    axios.get('https://extreme-ip-lookup.com/json/?key=vm2uFXo6jpC3POq9ZHQF',{withCredentials: false})
+    .then(res => {
+       localStorage.setItem("continent",res.data.continent)
      })
     .catch( _err => {
       console.log(_err)
     })
-  // }
+  }
   },[])
 
   window.addEventListener("load",()=> {
@@ -105,8 +102,10 @@ export default function HomeView() {
     </div>
     </div>
     <Helmet>
+    <title>Toonji | Enjoy music lyrics the best way with Toonji</title>
     <meta name="description"
-    content="Toonji, a website made for Ksi's songs lyrics. Provide breakdowns, Rate punchlines, Rate lyrics, Add comments and see artists performance on a song" />
+    content="Toonji is the best song lyrics platform. Rate bars, take quizes based on your favorite artites lyrics, see bars breakdowns, compete with friends in real-time on songs lyric and more" />
+     <meta name="keywords" content="toonji, toonji lyrics, best lyrics platform, song lyrics, music lyrics, artist top fans, lyrics-quize, rate bars" />
     </Helmet>
     </>
   )

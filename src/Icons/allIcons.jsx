@@ -1,7 +1,6 @@
 import React from 'react'
 
 import './IconsCss.css'
-//import '../fontawesome/fontawesome-free-5.14.0-web/css/all.css'
 
 export function LyricsCardIcon(props) {
 let number = props.number ? <span className = {props.total}>{props.number}</span> : "";

@@ -127,7 +127,7 @@ function StartQuiz() {
     <button className = "profile-buttons" onClick = {() => window.history.back()}>ok</button>
     </div>
     <Helmet>
-    <title> TOP FAN QUIZ </title>
+    <title>Top Fan Quiz - Toonji</title>
     <meta name = "description"
           content = "Answer questions based on selected artist lyrics to earn points and climb the artist top fan list"/>
     </Helmet>

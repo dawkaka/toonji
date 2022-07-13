@@ -37,40 +37,40 @@ import "./footer.css"
   return (
     <>
     <div className = "footer-container">
-     <Link to="/">
+     <Link to="/" aria-labelledby='Home'>
      <FooterIcon
      icon = {<AiFillHome className = "footer-icon fas fa-home" id = "home-icon"  />}
      /> </Link>
-     <Link to="/chart">
+     <Link to="/chart" aria-labelledby='Chart'>
      <FooterIcon
       icon = {<BsFillBarChartFill className = "footer-icon fas fa-chart-bar"
       id = "f-chart-icon" /> }/>
      </Link>
-     <Link to="/favourites">
+     <Link to="/favourites" aria-labelledby='My favorites'>
      <FooterIcon
      icon = {<FaHeart className = "footer-icon fas fa-heart"
      id = 'f-heart-icon'/>}/>
      </Link>
-     <Link to="/my/profile">
+     <Link to="/my/profile" aria-labelledby='My profile'>
      <FooterIcon icon = {<FaUser className = "footer-icon fas fa-user"/>}/>
      </Link>
     </div>
     <div className = "footer-container-2">
-    <Link to="/">
+    <Link to="/" aria-labelledby='Home'>
     <FooterIcon
     icon = {<AiFillHome className = "footer-icon fas fa-home" id = "home-icon-2"  />}
     /> </Link>
-    <Link to="/chart">
+    <Link to="/chart" aria-labelledby='Chart'>
     <FooterIcon
      icon = {<BsFillBarChartFill className = "footer-icon fas fa-chart-bar"
      id = "f-chart-icon-2" /> }/>
     </Link>
-    <Link to="/favourites">
+    <Link to="/favourites" aria-labelledby='My favorites'>
     <FooterIcon
     icon = {<FaHeart className = "footer-icon fas fa-heart"
     id = 'f-heart-icon-2'/>}/>
     </Link>
-    <Link to="/my/profile">
+    <Link to="/my/profile" aria-labelledby='My profile'>
     <FooterIcon icon = {<FaUser className = "footer-icon fas fa-user"/>}/>
     </Link>
     </div>

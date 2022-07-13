@@ -101,9 +101,9 @@ export default function TrendingView() {
     </div>
     </div>
     <Helmet>
-    <title>TOONJI CHARTS</title>
+    <title>Chart for song lyrics, bars, artist and users - Toonji</title>
     <meta name = "description"
-        content = "See charts of top song lyrics, artist, bars and users on toonji.com"/>
+        content = "See charts of top song lyrics, artist, bars and users"/>
     </Helmet>
     </>
   )

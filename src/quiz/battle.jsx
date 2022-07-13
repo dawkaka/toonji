@@ -28,6 +28,7 @@ export default function BattlePage() {
       socket = io(BASEURL +"-battle",{transports: ["websocket"]});
       document.title = "TOONJI | battle quiz"
       socket.on("connect_error", (err) => {
+       console.log(err)
        errorPrompt("something went wrong")
        socket.disconnect()
      });
@@ -332,6 +333,10 @@ function StartQuiz(props) {
     <p>your points <span>{totalPoints}</span> : opponent's points <span>{opponentPoints}</span></p>
     <button className = "profile-buttons" onClick = {()=> window.history.back()}>ok</button>
     </div>
+    <Helmet>
+      <title>Toonji | Multi player real time battle</title>
+      <meta>Toonji lyrics multi player battle</meta>
+    </Helmet>
     </>
   )
 }

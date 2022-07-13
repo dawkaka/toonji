@@ -255,7 +255,6 @@ function HeaderPopLeft(props) {
       </div>
       <br />
       <ul className= "pop-left-list">
-      <center>
       {props.isSignedIn ? "" :
       <li id ="li-signup-link" onClick= {()=>{
         document.getElementById("sign-login-collapse").style.transform = 'scale(1)';
@@ -266,7 +265,7 @@ function HeaderPopLeft(props) {
         doc.style.right = "-300px";
         doc.style.top = "-300px";
       }}>Signup</li>}
-      {props.isSignedIn ? "": <li id ="li-login-link"  onClick= {()=> {
+      {props.isSignedIn ? null: <li id ="li-login-link"  onClick= {()=> {
         document.getElementById("sign-login-collapse").style.transform = 'scale(1)';
         document.getElementById("form-collapse").style.display = "block";
         document.getElementById("signup-form").style.display = "none";
@@ -275,11 +274,10 @@ function HeaderPopLeft(props) {
         doc.style.right = "-300px";
         doc.style.top = "-300px";
       }}>Login</li>}
-      {!props.isSignedIn ? "": <li id ="li-logout-link"
+      {!props.isSignedIn ? null: <li id ="li-logout-link"
        onClick= {logOutClicked}>logout</li>}
       <li onClick = {showDonationForm}>Donate</li>
       <li><Notifs id = "small-device-notifs" hasNotifs = {props.numOfNotifs}/></li>
-      </center>
       </ul>
      </div>
    )

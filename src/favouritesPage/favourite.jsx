@@ -86,8 +86,8 @@ const handleSelectChange = (e) => {
     <div id= "f-space-2"></div>
    </div>
    <Helmet>
-   <title>Favorites Lyrics and Bars</title>
-   <meta name = "description" content = "Your favourite song lyrics and bars all in one place." />
+   <title>Favorite lyrics and bars</title>
+   <meta name = "description" content = "Your favorite song lyrics and bars all in one place." />
    </Helmet>
    </>
   )

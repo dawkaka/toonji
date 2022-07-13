@@ -8,11 +8,8 @@ export default function SiteInfo() {
    },[])
   return (
    <div id = "site-info-container">
-   <a href="https://twitter.com/mo_yussif" target ="_BLANK"
-   rel="noopener noreferrer"> my twitter <i className="fab fa-twitter">
-   </i></a>
    <Link to ="/c/be-a-contributor">
-   {!isCont && <p>be a contributor</p>}
+   {!isCont && <p>Upload lyrics</p>}
    </Link>
    <Link to ="/c/report-bug">
    <p>report a bug</p>

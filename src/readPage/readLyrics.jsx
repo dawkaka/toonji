@@ -67,6 +67,7 @@ export default function ReadLyricsView() {
    </div>
    </div>
    <Helmet>
+    <title>{`${lyricData.songArtist} - ${lyricData.songTitle}`}</title>
    <meta name="description"
     content = {`Song lyrics for ${lyricData.songArtist}'s ${lyricData.songTitle}. Toonji.com the best lyrics platform on the internet`}
    />
